@@ -1,0 +1,7 @@
+# Ignore directories
+U-ViT/workdir/
+
+# Ignore everything in assets
+U-ViT/assets/*
+# But not text_embedder
+!U-ViT/assets/text_embedder/
