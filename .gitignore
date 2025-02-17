@@ -1,5 +1,6 @@
 # Ignore directories
 U-ViT/workdir/
+data/*
 
 # Ignore everything in assets
 U-ViT/assets/*
