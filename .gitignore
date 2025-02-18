@@ -1,6 +1,8 @@
 # Ignore directories
 U-ViT/workdir/
 data/*
+!data/*.py
+
 
 # Ignore everything in assets
 U-ViT/assets/*
