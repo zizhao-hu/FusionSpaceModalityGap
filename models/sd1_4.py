@@ -1,4 +1,4 @@
-import os
+import os 
 import json
 import torch
 from diffusers import StableDiffusionPipeline
@@ -19,16 +19,30 @@ pipe.safety_checker = lambda images, clip_input: (images, [False] * len(images))
 # -------------------------------
 # 2. Define paths and parameters
 # -------------------------------
-annotations_file = "data/annotations/captions_train2014.json"
-# We'll use the "images" info for naming.
+annotations_file = "data/coco/annotations/captions_train2014.json"
 model_version = "sd1_4"
-cfg_scales = [1, 3, 7, 10, 20]
-# Create an output folder for each CFG scale.
+cfg_scales = [7]
+sampling_steps_list = [10]  # Default is 50
+
+# Build output directories for each combination (cfg, sampling steps)
+# For steps==50, use the default naming convention (without adding steps)
 output_dirs = {}
+# We'll also mark which (cfg, steps) combinations have already been generated.
+skip_combinations = set()
+
 for cfg in cfg_scales:
-    folder_name = f"generated_{model_version}_{cfg}"
-    os.makedirs(folder_name, exist_ok=True)
-    output_dirs[cfg] = folder_name
+    for steps in sampling_steps_list:
+        if steps == 50:
+            folder_name = f"generated_{model_version}_{cfg}"
+        else:
+            folder_name = f"generated_{model_version}_{cfg}_steps_{steps}"
+        # Check if folder already exists and is non-empty (i.e. already generated)
+        if os.path.exists(folder_name) and os.listdir(folder_name):
+            print(f"Folder {folder_name} already exists and is non-empty. Skipping generation for cfg {cfg} with steps {steps}.")
+            skip_combinations.add((cfg, steps))
+        else:
+            os.makedirs(folder_name, exist_ok=True)
+        output_dirs[(cfg, steps)] = folder_name
 
 # -------------------------------
 # 3. Load annotations and build mappings
@@ -53,35 +67,34 @@ for ann in data["annotations"]:
 # 4. Sort images by file name and process the first 1000
 # -------------------------------
 sorted_images = sorted(images_data, key=lambda x: x["file_name"])
-num_images = 1000  # first 100 images
+num_images = 100
 
 for i, img in enumerate(sorted_images[:num_images]):
     image_id = img["id"]
     file_name = img["file_name"]
 
     # Use the first caption for the image if available; otherwise, use a fallback.
-    if image_id in image_id_to_captions:
-        caption = image_id_to_captions[image_id][0]
-    else:
-        caption = "A generic caption."
+    caption = image_id_to_captions.get(image_id, ["A generic caption."])[0]
 
-    # Optionally, print progress.
     print(f"Processing image {i+1}/{num_images}: {file_name} with caption: {caption}")
 
-    # Generate an image for each CFG scale.
+    # Generate an image for each combination of CFG scale and sampling steps.
     for cfg in cfg_scales:
-        try:
-            result = pipe(caption, guidance_scale=cfg)
-            # In diffusers v0.13+, the generated images are returned in result["images"]
-            generated_image = result["images"][0]
-        except Exception as e:
-            print(f"Error generating image for '{file_name}' with cfg {cfg}: {e}")
-            continue
+        for steps in sampling_steps_list:
+            if (cfg, steps) in skip_combinations:
+                continue
+            try:
+                result = pipe(caption, guidance_scale=cfg, num_inference_steps=steps)
+                # For diffusers v0.13+, images are in result["images"]
+                generated_image = result["images"][0]
+            except Exception as e:
+                print(f"Error generating image for '{file_name}' with cfg {cfg} and steps {steps}: {e}")
+                continue
 
-        # Save the generated image using the original file name.
-        output_path = os.path.join(output_dirs[cfg], file_name)
-        try:
-            generated_image.save(output_path)
-            print(f"Saved: {output_path}")
-        except Exception as e:
-            print(f"Error saving image {file_name} with cfg {cfg}: {e}")
+            # Save the generated image using the original file name.
+            output_path = os.path.join(output_dirs[(cfg, steps)], file_name)
+            try:
+                generated_image.save(output_path)
+                print(f"Saved: {output_path}")
+            except Exception as e:
+                print(f"Error saving image {file_name} with cfg {cfg} and steps {steps}: {e}")
