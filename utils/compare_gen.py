@@ -49,50 +49,97 @@ def extract_image_id_from_path(image_path):
         print(f"Error extracting image ID: {str(e)}")
         return None
 
-def find_image_by_index(index, cfg_scale, gen_number):
-    """Find an image by its index in a specific generation folder"""
-    if index < 0 or index > 99:
-        raise ValueError("Index must be between 0 and 99")
+def detect_existing_step_value(cfg_scale):
+    """Detect what step value is being used for existing checkpoints with this CFG scale"""
+    cfg_int = int(cfg_scale)
     
-    # Construct the path to the generation folder
-    gen_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_gen_{gen_number}"
+    # Check data directories first as they're more likely to exist
+    data_pattern = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_*_gen_*"
+    for dir_path in glob.glob(data_pattern):
+        try:
+            # Extract steps value from directory name
+            match = re.search(r'steps_(\d+)_gen_', dir_path)
+            if match:
+                return int(match.group(1))
+        except:
+            continue
     
-    if not os.path.exists(gen_dir):
-        return None
+    # If no data directories found, check model directories
+    model_pattern = f"models/sd_to_sd_cfg_{cfg_int}_steps_*_gen_*"
+    for dir_path in glob.glob(model_pattern):
+        try:
+            match = re.search(r'steps_(\d+)_gen_', dir_path)
+            if match:
+                return int(match.group(1))
+        except:
+            continue
     
-    # Get all image files in the directory
-    image_files = []
-    for ext in ['.jpg', '.jpeg', '.png']:
-        image_files.extend(glob.glob(f"{gen_dir}/*{ext}"))
-    
-    # Sort the files to ensure consistent ordering
-    image_files.sort()
-    
-    # Check if the index is valid
-    if index >= len(image_files):
-        return None
-    
-    return image_files[index]
+    return None
 
-def find_images_across_generations(index, cfg_scale, max_gen=10):
-    """Find the same image (by index) across all generations"""
+def find_image_by_index(index, cfg_scale, gen_number, folder_steps=None):
+    """Find a specific image by its index (position) in a generation"""
+    # Convert cfg_scale to integer for folder name
+    cfg_int = int(cfg_scale)
+    
+    # If folder_steps is None, try to detect from existing directories
+    if folder_steps is None:
+        detected_steps = detect_existing_step_value(cfg_scale)
+        if detected_steps:
+            print(f"Detected existing step value: {detected_steps}")
+            folder_steps = detected_steps
+    
+    # Build directory pattern
+    if folder_steps is not None:
+        base_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_{folder_steps}_gen_{gen_number}"
+    else:
+        base_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_gen_{gen_number}"
+    
+    if os.path.exists(base_dir):
+        print(f"Checking directory: {base_dir}")
+        # Get all image files and sort them
+        image_files = [f for f in os.listdir(base_dir) if f.endswith(('.jpg', '.png'))]
+        image_files.sort()  # Sort to ensure consistent ordering
+        
+        # Check if the requested index is valid
+        if 0 <= index < len(image_files):
+            return os.path.join(base_dir, image_files[index])
+        else:
+            print(f"Index {index} is out of range. Directory has {len(image_files)} images.")
+    
+    return None
+
+def find_images_across_generations(index, cfg_scale, max_gen=10, folder_steps=None):
+    """Find all instances of an image across generations"""
+    # If folder_steps is None, try to detect from existing directories
+    if folder_steps is None:
+        detected_steps = detect_existing_step_value(cfg_scale)
+        if detected_steps:
+            print(f"Detected existing step value: {detected_steps}")
+            folder_steps = detected_steps
+    
     matching_images = []
     
-    # Check for generation 0 first
-    gen_0_image = find_image_by_index(index, cfg_scale, 0)
-    if gen_0_image:
-        matching_images.append((0, gen_0_image))
+    # First, find the highest generation that exists
+    cfg_int = int(cfg_scale)
+    pattern = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_{folder_steps}_gen_*" if folder_steps else f"data/coco/sd_to_sd_cfg_{cfg_int}_gen_*"
+    existing_gens = []
+    for dir_path in glob.glob(pattern):
+        try:
+            gen = int(dir_path.split('_gen_')[-1])
+            existing_gens.append(gen)
+        except:
+            continue
     
-    # Check for all other generations
-    for gen in range(1, max_gen + 1):
-        gen_image = find_image_by_index(index, cfg_scale, gen)
-        if gen_image:
-            matching_images.append((gen, gen_image))
-        else:
-            # If we can't find an image in this generation, check if the directory exists
-            gen_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_gen_{gen}"
-            if not os.path.exists(gen_dir):
-                break  # No more generations found
+    if existing_gens:
+        max_existing_gen = max(existing_gens)
+        print(f"Found existing generations up to {max_existing_gen}")
+        max_gen = min(max_gen, max_existing_gen)
+    
+    # Now find images across generations
+    for gen in range(max_gen + 1):
+        image_path = find_image_by_index(index, cfg_scale, gen, folder_steps)
+        if image_path:
+            matching_images.append((gen, image_path))
     
     return matching_images
 
@@ -892,81 +939,74 @@ def create_multi_row_comparison(all_rows, output_path=None, cfg_scale=None, capt
     
     return output_path
 
+def list_available_indices(cfg_scale, gen_number=0, folder_steps=None):
+    """List information about available images in a specific generation"""
+    # Convert cfg_scale to integer for folder name
+    cfg_int = int(cfg_scale)
+    
+    # If folder_steps is None, try to detect from existing directories
+    if folder_steps is None:
+        detected_steps = detect_existing_step_value(cfg_scale)
+        if detected_steps:
+            print(f"Detected existing step value: {detected_steps}")
+            folder_steps = detected_steps
+    
+    # Build directory pattern
+    if folder_steps is not None:
+        base_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_{folder_steps}_gen_{gen_number}"
+    else:
+        base_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_gen_{gen_number}"
+    
+    if os.path.exists(base_dir):
+        print(f"\nFound directory: {base_dir}")
+        # Get all image files and sort them
+        image_files = [f for f in os.listdir(base_dir) if f.endswith(('.jpg', '.png'))]
+        image_files.sort()  # Sort to ensure consistent ordering
+        
+        if image_files:
+            print(f"Available indices: 0-{len(image_files)-1} ({len(image_files)} total images)")
+            print("\nSample mappings (index -> filename):")
+            # Show first 5 and last 5 mappings as examples
+            for i in range(min(5, len(image_files))):
+                print(f"  {i} -> {image_files[i]}")
+            if len(image_files) > 10:
+                print("  ...")
+            for i in range(max(5, len(image_files)-5), len(image_files)):
+                print(f"  {i} -> {image_files[i]}")
+            return range(len(image_files))
+    
+    print(f"No valid directories found for CFG scale {cfg_scale}")
+    return []
+
 def main():
-    parser = argparse.ArgumentParser(description="Compare generations by index or generate new images from a caption")
-    parser.add_argument("--cfg_scale", type=float, default=7.0, help="CFG scale to use for finding/generating images")
-    parser.add_argument("--index", type=int, help="Index of the image to compare (0-99)")
-    parser.add_argument("--indices", type=int, nargs="+", help="Multiple indices to compare in a grid")
-    parser.add_argument("--caption", type=str, help="Caption to generate new images with across all generations")
-    parser.add_argument("--generations", type=int, nargs="+", help="Specific generations to use (default: all available)")
-    parser.add_argument("--seed", type=int, help="Random seed for generation (default: random)")
-    parser.add_argument("--output", type=str, help="Output path for the comparison image (optional)")
-    parser.add_argument("--max_gen", type=int, default=10, help="Maximum generation number to check")
-    parser.add_argument("--output_dir", type=str, default="generated_comparisons", help="Directory to save generated images")
-    parser.add_argument("--no_caption", action="store_true", help="Disable automatic caption extraction for existing images")
-    parser.add_argument("--num_rows", type=int, default=1, help="Number of rows to generate with different noise seeds (for caption mode)")
-    parser.add_argument("--batch_size", type=int, default=4, help="Number of rows to process in a single batch (default: 4)")
+    parser = argparse.ArgumentParser(description="Compare generations of images")
+    parser.add_argument("--cfg_scale", type=float, required=True,
+                        help="CFG scale to compare")
+    parser.add_argument("--folder_steps", type=int, default=None,
+                        help="Steps number to use in folder names (default: try all common values)")
+    parser.add_argument("--index", type=int, help="Index of the image to compare")
+    parser.add_argument("--max_gen", type=int, default=10,
+                        help="Maximum generation to search up to")
+    parser.add_argument("--output", type=str, help="Output path for comparison image")
+    parser.add_argument("--no_caption", action="store_true",
+                        help="Don't extract and display caption")
+    parser.add_argument("--list_indices", action="store_true",
+                        help="List available image indices")
     
     args = parser.parse_args()
     
-    # Handle caption generation mode
-    if args.caption:
-        print(f"Generating images from caption: '{args.caption}' with CFG scale {args.cfg_scale}")
-        print(f"Creating {args.num_rows} row(s) with different noise seeds (batch size: {args.batch_size})")
-        
-        all_rows = generate_images_from_caption(
-            args.caption, 
-            args.cfg_scale, 
-            args.generations, 
-            args.seed,
-            args.output_dir,
-            args.num_rows,
-            args.batch_size
-        )
-        
-        if not all_rows:
-            print("Failed to generate any images.")
-            return
-        
-        total_images = sum(len(row_images) for _, row_images in all_rows)
-        print(f"Generated {total_images} images across {len(all_rows)} rows")
-        
-        if args.num_rows > 1:
-            # Create multi-row comparison for multiple seeds
-            create_multi_row_comparison(all_rows, args.output, args.cfg_scale, args.caption)
-        else:
-            # Use the original single-row comparison for a single seed
-            create_comparison_image(all_rows[0][1], args.output, args.cfg_scale, caption=args.caption)
-        
+    if args.list_indices:
+        list_available_indices(args.cfg_scale, gen_number=0, folder_steps=args.folder_steps)
         return
     
-    # Handle multiple indices (grid mode)
-    if args.indices:
-        # Validate indices
-        for idx in args.indices:
-            if idx < 0 or idx > 99:
-                print(f"Error: Index {idx} is out of range (must be 0-99)")
-                return
-        
-        print(f"Creating grid comparison for indices {args.indices} with CFG scale {args.cfg_scale}...")
-        print("Original captions will be automatically extracted and displayed (use --no_caption to disable)")
-        create_grid_comparison(args.indices, args.cfg_scale, args.output, args.max_gen)
-        return
-    
-    # Handle single index
-    if args.index is None:
-        print("Error: Please specify an index (--index), multiple indices (--indices), or a caption (--caption)")
-        return
-    
-    # Validate index
-    if args.index < 0 or args.index > 99:
-        print(f"Error: Index {args.index} is out of range (must be 0-99)")
+    if not args.index and not args.output:
+        print("Please provide either an index to compare or an output path for grid comparison")
         return
     
     print(f"Finding image with index {args.index} across generations with CFG scale {args.cfg_scale}...")
     
     # Find matching images across generations
-    matching_images = find_images_across_generations(args.index, args.cfg_scale, args.max_gen)
+    matching_images = find_images_across_generations(args.index, args.cfg_scale, args.max_gen, args.folder_steps)
     
     if not matching_images:
         print(f"No images found with index {args.index} across generations for CFG scale {args.cfg_scale}.")

@@ -17,6 +17,8 @@ from torchmetrics.image.inception import InceptionScore
 import clip
 from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
 import shutil
+import glob
+import re
 
 def load_coco_captions(annotation_file):
     """Load COCO captions from json file"""
@@ -78,26 +80,15 @@ def generate_gen_zero_images(cfg_scale, num_images=100, steps=50):
         with open(coco_captions_file, 'r') as f:
             annotations = json.load(f)
         
-        # Create a dictionary to store the first caption for each image ID
-        image_id_to_first_caption = {}
-        count = 0
+        # Get the first 100 image IDs and their first captions, sorted by image_id
+        image_id_to_caption = {}
         for ann in annotations['annotations']:
             image_id = ann['image_id']
-            if image_id not in image_id_to_first_caption and count < num_images:  # Only take up to num_images
-                image_id_to_first_caption[image_id] = ann['caption']
-                count += 1
-            if count >= num_images:
-                break
+            if image_id not in image_id_to_caption:
+                image_id_to_caption[image_id] = ann['caption']
         
-        # Convert to list of tuples and sort by image_id
-        image_id_caption_pairs = sorted(list(image_id_to_first_caption.items()))
-        
-        # Take only the first num_images items
-        selected_pairs = image_id_caption_pairs[:num_images]
-        
-        # Extract image IDs and captions
-        image_ids = [pair[0] for pair in selected_pairs]
-        captions = [pair[1] for pair in selected_pairs]
+        # Sort by image_id and take first 100
+        sorted_pairs = sorted(list(image_id_to_caption.items()))[:num_images]
         
         # Get a more accurate list of existing VALID images by checking file sizes
         existing_valid_images = {}
@@ -114,8 +105,10 @@ def generate_gen_zero_images(cfg_scale, num_images=100, steps=50):
                         continue
         
         # Filter out pairs that already have valid images
-        pairs_to_generate = [(image_id, caption) for image_id, caption in selected_pairs 
-                           if image_id not in existing_valid_images]
+        pairs_to_generate = [
+            (image_id, caption) for image_id, caption in sorted_pairs 
+            if image_id not in existing_valid_images
+        ]
         
         valid_count = len(existing_valid_images)
         print(f"Found {valid_count} valid existing images out of {num_images} needed")
@@ -492,9 +485,10 @@ def train_stable_diffusion(cfg_scale, gen_number, input_model_path=None, steps=5
         print(f"Error during training: {str(e)}")
         return float('nan')
 
-def generate_images(model_path, cfg_scale, gen_number, num_images=100, steps=50):
+def generate_images(model_path, cfg_scale, gen_number, image_caption_pairs, steps=50):
     """Generate images using the finetuned model for specific generation"""
     try:
+        num_images = len(image_caption_pairs)
         print(f"\nGenerating images for Generation {gen_number} using model finetuned on CFG {cfg_scale}, {num_images} images")
         
         torch.manual_seed(42)
@@ -502,35 +496,6 @@ def generate_images(model_path, cfg_scale, gen_number, num_images=100, steps=50)
         
         output_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}"
         os.makedirs(output_dir, exist_ok=True)
-        
-        # Load COCO captions and prepare image generation list
-        coco_captions_file = "data/coco/annotations/captions_train2014.json"
-        if not os.path.exists(coco_captions_file):
-            raise RuntimeError(f"COCO captions file not found: {coco_captions_file}")
-            
-        with open(coco_captions_file, 'r') as f:
-            annotations = json.load(f)
-        
-        # Create a dictionary to store the first caption for each image ID
-        image_id_to_first_caption = {}
-        count = 0
-        for ann in annotations['annotations']:
-            image_id = ann['image_id']
-            if image_id not in image_id_to_first_caption and count < num_images:  # Only take up to num_images
-                image_id_to_first_caption[image_id] = ann['caption']
-                count += 1
-            if count >= num_images:
-                break
-        
-        # Convert to list of tuples and sort by image_id
-        image_id_caption_pairs = sorted(list(image_id_to_first_caption.items()))
-        
-        # Take only the first num_images items
-        selected_pairs = image_id_caption_pairs[:num_images]
-        
-        # Extract image IDs and captions
-        image_ids = [pair[0] for pair in selected_pairs]
-        captions = [pair[1] for pair in selected_pairs]
         
         # Check existing valid images
         existing_images = {
@@ -542,8 +507,8 @@ def generate_images(model_path, cfg_scale, gen_number, num_images=100, steps=50)
         
         # Determine which images need to be generated
         images_to_generate = [
-            (i, image_id, captions[i])
-            for i, image_id in enumerate(image_ids)
+            (i, image_id, caption)
+            for i, (image_id, caption) in enumerate(image_caption_pairs)
             if image_id not in existing_images
         ]
         
@@ -749,51 +714,181 @@ def evaluate_model(cfg_scale, gen_number, steps=50):
     
     return results
 
+def detect_existing_step_value(cfg_scale):
+    """Detect what step value is being used for existing checkpoints with this CFG scale"""
+    cfg_int = int(cfg_scale)
+    
+    # Check data directories first as they're more likely to exist
+    data_pattern = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_*_gen_*"
+    for dir_path in glob.glob(data_pattern):
+        try:
+            # Extract steps value from directory name
+            match = re.search(r'steps_(\d+)_gen_', dir_path)
+            if match:
+                return int(match.group(1))
+        except:
+            continue
+    
+    # If no data directories found, check model directories
+    model_pattern = f"models/sd_to_sd_cfg_{cfg_int}_steps_*_gen_*"
+    for dir_path in glob.glob(model_pattern):
+        try:
+            match = re.search(r'steps_(\d+)_gen_', dir_path)
+            if match:
+                return int(match.group(1))
+        except:
+            continue
+    
+    return None
+
 def find_last_generation(cfg_scale, steps=50):
     """Find the last completed generation by checking both model and image directories"""
-    gen = 1
+    cfg_int = int(cfg_scale)
+    gen = 0
     while True:
-        model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
-        data_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
+        model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
+        data_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
         
-        if not os.path.exists(f"{model_dir}/unet") or not os.path.exists(data_dir):
-            return gen - 1
+        # For generation > 0, we need both model and data directories
+        if gen > 0:
+            if not os.path.exists(f"{model_dir}/unet") or not os.path.exists(data_dir):
+                return gen - 1
+        # For generation 0, we only need the data directory
+        else:
+            if not os.path.exists(data_dir):
+                return -1  # Return -1 if gen_0 doesn't exist
         gen += 1
+
+def check_checkpoint_image_pairs(cfg_scale, steps=50):
+    """Check if all checkpoint folders have corresponding image folders with 100 images"""
+    cfg_int = int(cfg_scale)
+    gen = 0
+    missing_pairs = []
+    
+    while True:
+        model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
+        data_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
+        
+        # For gen_0, we only need to check the data directory
+        if gen == 0:
+            if not os.path.exists(data_dir):
+                missing_pairs.append((None, data_dir))
+                break  # If gen_0 doesn't exist, we can't proceed
+            elif len([f for f in os.listdir(data_dir) if f.endswith(('.jpg', '.png'))]) < 100:
+                missing_pairs.append((None, data_dir))
+                break  # If gen_0 is incomplete, we can't proceed
+        else:
+            # For other generations, check both model and data directories
+            if not os.path.exists(f"{model_dir}/unet"):
+                break  # No more checkpoints
+            elif not os.path.exists(data_dir) or len([f for f in os.listdir(data_dir) if f.endswith(('.jpg', '.png'))]) < 100:
+                missing_pairs.append((model_dir, data_dir))
+        gen += 1
+    
+    return missing_pairs, gen - 1
+
+def get_gen_zero_pairs(cfg_scale, steps=50):
+    """Get the image ID and caption pairs from Generation 0"""
+    gen_zero_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
+    if not os.path.exists(gen_zero_dir):
+        return None
+        
+    # Get the sorted list of image IDs from gen_0
+    image_ids = []
+    for img_file in sorted(os.listdir(gen_zero_dir)):
+        if img_file.endswith(('.jpg', '.png')):
+            try:
+                image_id = int(img_file.split('_')[-1].split('.')[0])
+                image_ids.append(image_id)
+            except (ValueError, IndexError):
+                continue
+    
+    if len(image_ids) < 100:
+        return None
+        
+    # Load captions
+    coco_captions_file = "data/coco/annotations/captions_train2014.json"
+    if not os.path.exists(coco_captions_file):
+        return None
+        
+    with open(coco_captions_file, 'r') as f:
+        annotations = json.load(f)
+    
+    # Create mapping of image_id to first caption
+    image_id_to_caption = {}
+    for ann in annotations['annotations']:
+        image_id = ann['image_id']
+        if image_id not in image_id_to_caption:
+            image_id_to_caption[image_id] = ann['caption']
+    
+    # Create pairs using gen_0 image IDs
+    pairs = []
+    for image_id in image_ids[:100]:  # Take first 100 images
+        if image_id in image_id_to_caption:
+            pairs.append((image_id, image_id_to_caption[image_id]))
+    
+    return pairs if len(pairs) == 100 else None
 
 def run_generation_loop(cfg_scale, target_generation=3, steps=50, epochs=5, num_images=100):
     """Run generations until target_generation is reached"""
     results = {}
     eval_results = {}
     
-    # Check and create gen_0 (always use 100 images for gen_0)
+    print(f"\nChecking existing generations with CFG {cfg_scale} and {steps} steps...")
+    
+    # First, check and create gen_0 (always use 100 images for gen_0)
     if not check_and_create_gen_zero(cfg_scale, num_images=100, steps=steps):
-        print("Failed to create Generation 0 images. Cannot proceed.")
+        print(f"Failed to create Generation 0 images with {steps} steps. Cannot proceed.")
         return
     
     # Verify gen_0
     gen_zero_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
     if len([f for f in os.listdir(gen_zero_dir) if f.endswith(('.jpg', '.png'))]) < 100:
-        print("Generation 0 incomplete. Please check and try again.")
+        print(f"Generation 0 incomplete with {steps} steps. Please check and try again.")
         return
+    
+    # Get the Generation 0 pairs that we'll use for all generations
+    gen_zero_pairs = get_gen_zero_pairs(cfg_scale, steps)
+    if not gen_zero_pairs:
+        print(f"Failed to get Generation 0 image-caption pairs with {steps} steps. Please ensure Generation 0 is complete.")
+        return
+    
+    # Now check for missing checkpoint-image pairs for other generations
+    missing_pairs, last_gen = check_checkpoint_image_pairs(cfg_scale, steps)
+    
+    # If we found missing pairs, generate the missing images first
+    if missing_pairs:
+        print(f"\nFound missing or incomplete image folders with {steps} steps. Generating missing images...")
+        for model_dir, data_dir in missing_pairs:
+            if model_dir:  # This is a generation > 0
+                gen_number = int(model_dir.split('_gen_')[-1])
+                print(f"\nGenerating missing images for Generation {gen_number}")
+                pairs_to_use = gen_zero_pairs[:num_images]  # Respect num_images parameter
+                generate_images(model_dir, cfg_scale, gen_number, pairs_to_use, steps)
     
     # Find last completed generation and continue
     last_gen = find_last_generation(cfg_scale, steps)
     start_gen = last_gen + 1
     
     if start_gen > target_generation:
-        print(f"Target generation {target_generation} already completed!")
+        print(f"Target generation {target_generation} already completed with {steps} steps!")
         return
+    
+    print(f"\nStarting from generation {start_gen} to reach target generation {target_generation} using {steps} steps")
     
     try:
         for gen in range(start_gen, target_generation + 1):
-            print(f"\n{'='*50}\nStarting Generation {gen}\n{'='*50}")
+            print(f"\n{'='*50}\nStarting Generation {gen} with {steps} steps\n{'='*50}")
             
             current_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
             previous_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen-1}" if gen > 1 else None
             
-            # Train and generate
+            # Train and generate using gen_zero_pairs
             results[f"gen_{gen}"] = train_stable_diffusion(cfg_scale, gen, previous_model_dir, steps, epochs)
-            generate_images(current_model_dir, cfg_scale, gen, num_images=num_images, steps=steps)
+            
+            # Generate images using the same pairs as gen_0
+            pairs_to_use = gen_zero_pairs[:num_images]  # Respect num_images parameter
+            generate_images(current_model_dir, cfg_scale, gen, pairs_to_use, steps)
             
             # Evaluate
             try:
@@ -826,12 +921,24 @@ if __name__ == "__main__":
     import argparse
     
     parser = argparse.ArgumentParser(description="Train Stable Diffusion with multiple generations")
-    parser.add_argument("--cfg_scale", type=float, default=1.0, help="CFG scale for training")
-    parser.add_argument("--target_gen", type=int, default=3, help="Target generation to reach")
-    parser.add_argument("--steps", type=int, default=50, help="Number of inference steps")
-    parser.add_argument("--num_images", type=int, default=100, help="Number of images to generate for each generation (except gen_0 which always uses 100)")
-    parser.add_argument("--epochs", type=int, default=5, help="Number of training epochs")
+    parser.add_argument("--cfg_scales", type=float, nargs="+", default=[1.0], 
+                        help="List of CFG scales for training (e.g., --cfg_scales 1.0 7.5)")
+    parser.add_argument("--steps", type=int, default=50,
+                        help="Number of inference steps (also used for folder names)")
+    parser.add_argument("--target_gen", type=int, default=3, 
+                        help="Target generation to reach")
+    parser.add_argument("--num_images", type=int, default=100, 
+                        help="Number of images to generate for each generation (except gen_0 which always uses 100)")
+    parser.add_argument("--epochs", type=int, default=5, 
+                        help="Number of training epochs")
     
     args = parser.parse_args()
-    run_generation_loop(args.cfg_scale, args.target_gen, args.steps, args.epochs, args.num_images)
+    
+    # Run for each CFG scale
+    for cfg_scale in args.cfg_scales:
+        print(f"\n{'='*80}")
+        print(f"Running with CFG scale {cfg_scale}, steps {args.steps}")
+        print(f"{'='*80}")
+        # Use the same steps value for both folder names and inference
+        run_generation_loop(cfg_scale, args.target_gen, args.steps, args.epochs, args.num_images)
 
