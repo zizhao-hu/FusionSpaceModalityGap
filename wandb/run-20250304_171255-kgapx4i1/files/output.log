@@ -1,0 +1,244 @@
+  0%|                                                                                                      | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+
+ 15%|██████████████                                                                                | 9/60 [00:05<00:26,  1.93it/s]
+
+
+ 28%|██████████████████████████▎                                                                  | 17/60 [00:09<00:22,  1.92it/s]
+
+
+
+ 48%|████████████████████████████████████████████▉                                                | 29/60 [00:15<00:14,  2.10it/s]
+
+
+ 62%|█████████████████████████████████████████████████████████▎                                   | 37/60 [00:19<00:11,  1.96it/s]
+
+
+
+ 82%|███████████████████████████████████████████████████████████████████████████▉                 | 49/60 [00:25<00:04,  2.37it/s]
+
+
+ 95%|████████████████████████████████████████████████████████████████████████████████████████▎    | 57/60 [00:29<00:01,  2.14it/s]
+{'loss': 0.0015, 'grad_norm': 0.03280936926603317, 'learning_rate': 0.0, 'epoch': 8.64}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:31<00:00,  1.93it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: a yellow container with food in it
+INFO:__main__:Generated caption: a yellow container with food in it
+INFO:__main__:Model saved to models/vlm/gen_6
+INFO:__main__:Training generation 7
+INFO:__main__:Generating captions for generation 6
+INFO:__main__:Loading BLIP model from models/vlm/gen_6
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Generation 6 parameters: temperature=1.50, top_p=0.98, top_k=20, repetition_penalty=1.80, num_beams=1
+
+
+
+
+
+Generating captions: 100%|██████████████████████████████████████████████████████████████████████| 100/100 [00:12<00:00,  7.87it/s]
+INFO:__main__:Generated 100 captions
+INFO:__main__:Using checkpoint from models/vlm/gen_6
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm_training/gen_0
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_7
+INFO:__main__:Using all 100 images for training in gen_7
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 7 with 10 epochs
+  0%|                                                                                                      | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+  8%|███████▊                                                                                      | 5/60 [00:02<00:31,  1.75it/s]
+
+
+
+ 28%|██████████████████████████▎                                                                  | 17/60 [00:08<00:22,  1.92it/s]
+
+
+
+ 50%|██████████████████████████████████████████████▌                                              | 30/60 [00:15<00:14,  2.03it/s]
+
+
+ 62%|█████████████████████████████████████████████████████████▎                                   | 37/60 [00:18<00:11,  2.00it/s]
+
+
+
+ 83%|█████████████████████████████████████████████████████████████████████████████▌               | 50/60 [00:25<00:04,  2.14it/s]
+
+
+ 97%|█████████████████████████████████████████████████████████████████████████████████████████▉   | 58/60 [00:29<00:00,  2.05it/s]
+{'loss': 0.0006, 'grad_norm': 0.010577380657196045, 'learning_rate': 0.0, 'epoch': 8.64}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:30<00:00,  1.97it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: a yellow container with food in it
+INFO:__main__:Generated caption: a yellow container with food in it
+INFO:__main__:Model saved to models/vlm/gen_7
+INFO:__main__:Training generation 8
+INFO:__main__:Generating captions for generation 7
+INFO:__main__:Loading BLIP model from models/vlm/gen_7
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Generation 7 parameters: temperature=1.50, top_p=0.98, top_k=20, repetition_penalty=1.80, num_beams=1
+
+
+
+
+
+Generating captions: 100%|██████████████████████████████████████████████████████████████████████| 100/100 [00:12<00:00,  8.16it/s]
+INFO:__main__:Generated 100 captions
+INFO:__main__:Using checkpoint from models/vlm/gen_7
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm_training/gen_0
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_8
+INFO:__main__:Using all 100 images for training in gen_8
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 8 with 10 epochs
+  0%|                                                                                                      | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+
+ 17%|███████████████▌                                                                             | 10/60 [00:05<00:25,  1.94it/s]
+
+
+ 30%|███████████████████████████▉                                                                 | 18/60 [00:09<00:22,  1.90it/s]
+
+
+ 43%|████████████████████████████████████████▎                                                    | 26/60 [00:13<00:18,  1.87it/s]
+
+
+
+ 63%|██████████████████████████████████████████████████████████▉                                  | 38/60 [00:19<00:11,  1.96it/s]
+
+
+ 77%|███████████████████████████████████████████████████████████████████████▎                     | 46/60 [00:23<00:07,  1.90it/s]
+
+
+
+ 98%|███████████████████████████████████████████████████████████████████████████████████████████▍ | 59/60 [00:29<00:00,  1.97it/s]
+{'loss': 0.0003, 'grad_norm': 0.008909791707992554, 'learning_rate': 0.0, 'epoch': 8.64}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:30<00:00,  1.98it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: a yellow container with food in it
+INFO:__main__:Generated caption: a yellow container with food in it
+INFO:__main__:Model saved to models/vlm/gen_8
+INFO:__main__:Training generation 9
+INFO:__main__:Generating captions for generation 8
+INFO:__main__:Loading BLIP model from models/vlm/gen_8
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Generation 8 parameters: temperature=1.50, top_p=0.98, top_k=20, repetition_penalty=1.80, num_beams=1
+Generating captions:  16%|███████████▎                                                           | 16/100 [00:02<00:10,  7.65it/s]
+Generating captions:  34%|████████████████████████▏                                              | 34/100 [00:04<00:07,  8.75it/s]
+Generating captions:  48%|██████████████████████████████████                                     | 48/100 [00:06<00:06,  7.69it/s]
+Generating captions:  66%|██████████████████████████████████████████████▊                        | 66/100 [00:08<00:04,  8.01it/s]
+Generating captions:  83%|██████████████████████████████████████████████████████████▉            | 83/100 [00:10<00:02,  7.72it/s]
+Generating captions:  98%|█████████████████████████████████████████████████████████████████████▌ | 98/100 [00:12<00:00,  7.17it/s]
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+{'loss': 0.0083, 'grad_norm': 0.7115855813026428, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+{'loss': 0.0046, 'grad_norm': 0.25881555676460266, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+ 47%|███████████████████████████████████████████▍                                                 | 28/60 [00:14<00:13,  2.36it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 47%|███████████████████████████████████████████▍                                                 | 28/60 [00:14<00:13,  2.36it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 52%|████████████████████████████████████████████████                                             | 31/60 [00:15<00:14,  1.94it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 60%|███████████████████████████████████████████████████████▊                                     | 36/60 [00:18<00:11,  2.15it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 65%|████████████████████████████████████████████████████████████▍                                | 39/60 [00:19<00:11,  1.90it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 65%|████████████████████████████████████████████████████████████▍                                | 39/60 [00:19<00:11,  1.90it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 73%|████████████████████████████████████████████████████████████████████▏                        | 44/60 [00:22<00:07,  2.01it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 78%|████████████████████████████████████████████████████████████████████████▊                    | 47/60 [00:24<00:07,  1.85it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 78%|████████████████████████████████████████████████████████████████████████▊                    | 47/60 [00:24<00:07,  1.85it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 85%|███████████████████████████████████████████████████████████████████████████████              | 51/60 [00:25<00:04,  2.01it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 93%|██████████████████████████████████████████████████████████████████████████████████████▊      | 56/60 [00:28<00:01,  2.39it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 98%|███████████████████████████████████████████████████████████████████████████████████████████▍ | 59/60 [00:29<00:00,  1.95it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 98%|███████████████████████████████████████████████████████████████████████████████████████████▍ | 59/60 [00:29<00:00,  1.95it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+{'loss': 0.0002, 'grad_norm': 0.00313655030913651, 'learning_rate': 0.0, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...████████| 60/60 [00:30<00:00,  1.97it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...████████| 60/60 [00:30<00:00,  1.97it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Generating captions:  11%|███████▊                                                               | 11/100 [00:01<00:11,  7.93it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Generating captions:  26%|██████████████████▍                                                    | 26/100 [00:03<00:10,  7.34it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Generating captions:  41%|█████████████████████████████                                          | 41/100 [00:05<00:08,  6.84it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Generating captions:  59%|█████████████████████████████████████████▉                             | 59/100 [00:07<00:04,  9.29it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Generating captions:  76%|█████████████████████████████████████████████████████▉                 | 76/100 [00:09<00:02,  8.34it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Generating captions:  92%|█████████████████████████████████████████████████████████████████▎     | 92/100 [00:11<00:00,  8.09it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 12%|██████████▉                                                                                   | 7/60 [00:03<00:22,  2.33it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 17%|███████████████▌                                                                             | 10/60 [00:05<00:25,  1.94it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 17%|███████████████▌                                                                             | 10/60 [00:05<00:25,  1.94it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 25%|███████████████████████▎                                                                     | 15/60 [00:07<00:20,  2.14it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 30%|███████████████████████████▉                                                                 | 18/60 [00:09<00:22,  1.86it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 30%|███████████████████████████▉                                                                 | 18/60 [00:09<00:22,  1.86it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 37%|██████████████████████████████████                                                           | 22/60 [00:11<00:17,  2.14it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 43%|████████████████████████████████████████▎                                                    | 26/60 [00:13<00:18,  1.84it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 50%|██████████████████████████████████████████████▌                                              | 30/60 [00:15<00:14,  2.02it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 50%|██████████████████████████████████████████████▌                                              | 30/60 [00:15<00:14,  2.02it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 57%|████████████████████████████████████████████████████▋                                        | 34/60 [00:17<00:14,  1.84it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 63%|██████████████████████████████████████████████████████████▉                                  | 38/60 [00:19<00:11,  1.91it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 63%|██████████████████████████████████████████████████████████▉                                  | 38/60 [00:19<00:11,  1.91it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 70%|█████████████████████████████████████████████████████████████████                            | 42/60 [00:21<00:07,  2.28it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 77%|███████████████████████████████████████████████████████████████████████▎                     | 46/60 [00:23<00:07,  1.89it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 83%|█████████████████████████████████████████████████████████████████████████████▌               | 50/60 [00:25<00:04,  2.17it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 83%|█████████████████████████████████████████████████████████████████████████████▌               | 50/60 [00:25<00:04,  2.17it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 90%|███████████████████████████████████████████████████████████████████████████████████▋         | 54/60 [00:27<00:03,  1.88it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 97%|█████████████████████████████████████████████████████████████████████████████████████████▉   | 58/60 [00:29<00:00,  2.02it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+ 97%|█████████████████████████████████████████████████████████████████████████████████████████▉   | 58/60 [00:29<00:00,  2.02it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+{'loss': 0.0001, 'grad_norm': 0.0023834325838834047, 'learning_rate': 0.0, 'epoch': 8.64}
+100%|█████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:30<00:00,  1.96it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Generated caption: a yellow container with food in itng `use_cache=False`...████████| 60/60 [00:30<00:00,  1.96it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Generated caption: a yellow container with food in itng `use_cache=False`...████████| 60/60 [00:30<00:00,  1.96it/s]M. You can set `max_memory` in to a higher value to use more memory (at your own risk).
