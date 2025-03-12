@@ -66,25 +66,13 @@ def load_model(gen, cfg_scale=7.0):
                 torch_dtype=torch.float16
             ).to("cuda")
             
-            # Check multiple possible paths for the fine-tuned UNet
-            possible_paths = [
-                f"models/sd_to_sd_cfg_{int(cfg_scale)}_gen_{gen}/unet",
-                f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_50_gen_{gen}/unet",
-                f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_100_gen_{gen}/unet"
-            ]
-            
-            model_path = None
-            for path in possible_paths:
-                if os.path.exists(path):
-                    model_path = path
-                    break
-            
-            if model_path is None:
-                print(f"ERROR: Could not find UNet model for generation {gen}!")
-                print(f"Checked paths: {possible_paths}")
-                return None
-            
+            # Then load the fine-tuned UNet
+            model_path = f"models/sd_to_sd_cfg_{int(cfg_scale)}_gen_{gen}/unet"
             print(f"Loading UNet from {model_path}")
+            
+            if not os.path.exists(model_path):
+                print(f"ERROR: UNet model path {model_path} does not exist!")
+                return None
             
             # Load the fine-tuned UNet
             pipeline.unet = UNet2DConditionModel.from_pretrained(
@@ -118,52 +106,42 @@ def generate_images_batch(pipeline, occupation, gen, num_images=100, base_dir="d
     save_dir = os.path.join(base_dir, f"gen_{gen}", occupation.replace(" ", "_"))
     os.makedirs(save_dir, exist_ok=True)
     
-    # Check if images already exist
-    existing_images = [f for f in os.listdir(save_dir) if f.endswith(('.png', '.jpg', '.jpeg'))]
-    if len(existing_images) >= num_images:
-        print(f"Found {len(existing_images)} existing images for {occupation} (gen {gen}). Skipping generation.")
-        return [os.path.join(save_dir, img) for img in existing_images[:num_images]]
-    
     # Generate images in batches
-    image_paths = [os.path.join(save_dir, img) for img in existing_images]
-    num_to_generate = num_images - len(existing_images)
+    image_paths = []
     
-    if num_to_generate > 0:
-        print(f"Found {len(existing_images)} existing images. Generating {num_to_generate} more for {occupation} (gen {gen})...")
+    # Calculate number of batches
+    num_batches = (num_images + batch_size - 1) // batch_size  # Ceiling division
+    
+    for batch_idx in tqdm(range(num_batches), desc=f"Generating {occupation} images for gen {gen} in batches"):
+        # Calculate start and end indices for this batch
+        start_idx = batch_idx * batch_size
+        end_idx = min(start_idx + batch_size, num_images)
+        current_batch_size = end_idx - start_idx
         
-        # Calculate number of batches
-        num_batches = (num_to_generate + batch_size - 1) // batch_size  # Ceiling division
+        # Generate seeds for this batch
+        seeds = [random.randint(0, 2**32 - 1) for _ in range(current_batch_size)]
         
-        for batch_idx in tqdm(range(num_batches), desc=f"Generating {occupation} images for gen {gen} in batches"):
-            # Calculate start and end indices for this batch
-            start_idx = batch_idx * batch_size
-            end_idx = min(start_idx + batch_size, num_to_generate)
-            current_batch_size = end_idx - start_idx
+        try:
+            # Create a list of prompts (same prompt repeated for each image in the batch)
+            prompts = [prompt] * current_batch_size
             
-            # Generate seeds for this batch
-            seeds = [random.randint(0, 2**32 - 1) for _ in range(current_batch_size)]
+            # Generate the batch of images
+            result = pipeline(
+                prompts,
+                num_inference_steps=50,
+                guidance_scale=cfg_scale,
+                generator=[torch.Generator("cuda").manual_seed(seed) for seed in seeds]
+            )
             
-            try:
-                # Create a list of prompts (same prompt repeated for each image in the batch)
-                prompts = [prompt] * current_batch_size
-                
-                # Generate the batch of images
-                result = pipeline(
-                    prompts,
-                    num_inference_steps=50,
-                    guidance_scale=cfg_scale,
-                    generator=[torch.Generator("cuda").manual_seed(seed) for seed in seeds]
-                )
-                
-                # Save each image in the batch
-                for i, (image, seed) in enumerate(zip(result.images, seeds)):
-                    img_idx = len(existing_images) + start_idx + i
-                    image_path = os.path.join(save_dir, f"{img_idx:03d}_seed_{seed}.png")
-                    image.save(image_path)
-                    image_paths.append(image_path)
-                
-            except Exception as e:
-                print(f"Error generating batch {batch_idx} for {occupation} (gen {gen}): {str(e)}")
+            # Save each image in the batch
+            for i, (image, seed) in enumerate(zip(result.images, seeds)):
+                img_idx = start_idx + i
+                image_path = os.path.join(save_dir, f"{img_idx:03d}_seed_{seed}.png")
+                image.save(image_path)
+                image_paths.append(image_path)
+            
+        except Exception as e:
+            print(f"Error generating batch {batch_idx} for {occupation} (gen {gen}): {str(e)}")
     
     return image_paths
 
@@ -171,13 +149,20 @@ def load_classifiers():
     """Load pre-trained classifiers for gender and ethnicity detection"""
     print("Loading gender classifier...")
     try:
-        gender_extractor = AutoFeatureExtractor.from_pretrained("dima806/gender_detection_model")
-        gender_model = AutoModelForImageClassification.from_pretrained("dima806/gender_detection_model")
+        # Using a more robust gender classifier
+        gender_extractor = AutoFeatureExtractor.from_pretrained("mustafaHassoon/gender-classifier")
+        gender_model = AutoModelForImageClassification.from_pretrained("mustafaHassoon/gender-classifier")
     except Exception as e:
-        print(f"Error loading gender classifier: {str(e)}")
+        print(f"Error loading primary gender classifier: {str(e)}")
         print("Using fallback gender classifier...")
-        gender_extractor = AutoFeatureExtractor.from_pretrained("rizvandwiki/gender-classification")
-        gender_model = AutoModelForImageClassification.from_pretrained("rizvandwiki/gender-classification")
+        try:
+            gender_extractor = AutoFeatureExtractor.from_pretrained("rizvandwiki/gender-classification")
+            gender_model = AutoModelForImageClassification.from_pretrained("rizvandwiki/gender-classification")
+        except Exception as e2:
+            print(f"Error loading fallback gender classifier: {str(e2)}")
+            print("Using second fallback gender classifier...")
+            gender_extractor = AutoFeatureExtractor.from_pretrained("Falconsai/gender_classification")
+            gender_model = AutoModelForImageClassification.from_pretrained("Falconsai/gender_classification")
     
     print("Loading ethnicity classifier...")
     try:
@@ -195,8 +180,15 @@ def load_classifiers():
         "ethnicity": (ethnicity_extractor, ethnicity_model)
     }
 
-def classify_image(image_path, classifiers):
-    """Classify an image for gender and ethnicity"""
+def classify_image(image_path, classifiers, confidence_threshold=0.7):
+    """
+    Classify an image for gender and ethnicity
+    
+    Args:
+        image_path: Path to the image file
+        classifiers: Dictionary of classifiers
+        confidence_threshold: Minimum confidence score to accept a classification
+    """
     try:
         # Load the image
         image = Image.open(image_path).convert("RGB")
@@ -208,8 +200,13 @@ def classify_image(image_path, classifiers):
             gender_outputs = gender_model(**gender_inputs)
         gender_logits = gender_outputs.logits
         gender_pred = torch.argmax(gender_logits, dim=1).item()
-        gender_label = gender_model.config.id2label[gender_pred]
         gender_score = torch.softmax(gender_logits, dim=1)[0, gender_pred].item()
+        
+        # Check if the confidence is high enough
+        if gender_score < confidence_threshold:
+            gender_label = "unidentifiable"
+        else:
+            gender_label = gender_model.config.id2label[gender_pred]
         
         # Ethnicity classification
         ethnicity_extractor, ethnicity_model = classifiers["ethnicity"]
@@ -220,6 +217,10 @@ def classify_image(image_path, classifiers):
         ethnicity_pred = torch.argmax(ethnicity_logits, dim=1).item()
         ethnicity_label = ethnicity_model.config.id2label[ethnicity_pred]
         ethnicity_score = torch.softmax(ethnicity_logits, dim=1)[0, ethnicity_pred].item()
+        
+        # Check if the confidence is high enough
+        if ethnicity_score < confidence_threshold:
+            ethnicity_label = "unidentifiable"
         
         # If we're using the fallback classifier (beans), map to generic ethnicity groups
         if "angular_leaf_spot" in ethnicity_model.config.id2label.values():
@@ -239,9 +240,9 @@ def classify_image(image_path, classifiers):
     except Exception as e:
         print(f"Error classifying image {image_path}: {str(e)}")
         return {
-            "gender": "unknown",
+            "gender": "unidentifiable",
             "gender_score": 0.0,
-            "ethnicity": "unknown",
+            "ethnicity": "unidentifiable",
             "ethnicity_score": 0.0
         }
 
@@ -567,6 +568,533 @@ def analyze_results(results, base_dir="data/coco/occupation"):
     
     return df
 
+def create_comparative_visualization(results, base_dir="data/coco/occupation", exclude_unidentifiable=True):
+    """
+    Create a special visualization comparing gen 0 and gen 10.
+    - Y-axis: Occupations
+    - X-axis: Percentage bars
+    - Gen 0: Faded color bars
+    - Gen 10: Solid color bars (red for increase, blue for decrease)
+    
+    Args:
+        results: DataFrame or list of results
+        base_dir: Base directory for output
+        exclude_unidentifiable: Whether to exclude unidentifiable cases from analysis
+    """
+    results_dir = os.path.join(base_dir, "results")
+    os.makedirs(results_dir, exist_ok=True)
+    
+    # Convert results to DataFrame if it's not already
+    if not isinstance(results, pd.DataFrame):
+        df = pd.DataFrame(results)
+    else:
+        df = results.copy()
+    
+    # Filter out unidentifiable cases if requested
+    if exclude_unidentifiable:
+        df = df[df['gender'] != 'unidentifiable']
+        df = df[df['ethnicity'] != 'unidentifiable']
+        print(f"Filtered out unidentifiable cases. Remaining data points: {len(df)}")
+    
+    # Check if we have data for both gen 0 and gen 10
+    if 0 not in df['generation'].unique() or 10 not in df['generation'].unique():
+        print("Warning: Both generation 0 and 10 are required for comparative visualization.")
+        return
+    
+    # Analyze gender distribution by occupation and generation
+    gender_counts = df.groupby(['generation', 'occupation', 'gender']).size().unstack(fill_value=0)
+    gender_percentages = gender_counts.div(gender_counts.sum(axis=1), axis=0) * 100
+    
+    # Analyze ethnicity distribution by occupation and generation
+    ethnicity_counts = df.groupby(['generation', 'occupation', 'ethnicity']).size().unstack(fill_value=0)
+    ethnicity_percentages = ethnicity_counts.div(ethnicity_counts.sum(axis=1), axis=0) * 100
+    
+    # Get all occupations
+    all_occupations = sorted(df['occupation'].unique())
+    
+    # Create comparative gender visualization
+    if 'male' in gender_percentages.columns:
+        plt.figure(figsize=(12, 10))
+        
+        # Extract male percentages for gen 0 and gen 10
+        male_data = []
+        for occupation in all_occupations:
+            gen0_pct = gender_percentages.loc[(0, occupation)].get('male', 0) if (0, occupation) in gender_percentages.index else 0
+            gen10_pct = gender_percentages.loc[(10, occupation)].get('male', 0) if (10, occupation) in gender_percentages.index else 0
+            male_data.append((occupation, gen0_pct, gen10_pct))
+        
+        # Sort by gen 0 percentages
+        male_data.sort(key=lambda x: x[1])
+        
+        # Prepare data for plotting
+        occupations = [item[0] for item in male_data]
+        gen0_pcts = [item[1] for item in male_data]
+        gen10_pcts = [item[2] for item in male_data]
+        
+        # Calculate differences
+        differences = [gen10 - gen0 for gen0, gen10 in zip(gen0_pcts, gen10_pcts)]
+        
+        # Create figure
+        fig, ax = plt.subplots(figsize=(12, 10))
+        
+        # Set y-axis
+        y_pos = np.arange(len(occupations))
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels([occ.capitalize() for occ in occupations])
+        
+        # Plot gen 0 bars (faded)
+        gen0_bars = ax.barh(y_pos, gen0_pcts, alpha=0.3, color='gray', label='Gen 0')
+        
+        # Plot gen 10 differences
+        for i, (gen0, diff) in enumerate(zip(gen0_pcts, differences)):
+            if diff > 0:  # Increase (red)
+                ax.barh(y_pos[i], diff, left=gen0, color='red', alpha=0.8, label='Gen 10 (increase)' if i == 0 else "")
+            elif diff < 0:  # Decrease (blue)
+                ax.barh(y_pos[i], abs(diff), left=gen0 + diff, color='blue', alpha=0.8, label='Gen 10 (decrease)' if i == 0 else "")
+        
+        # Add value labels
+        for i, (gen0, gen10) in enumerate(zip(gen0_pcts, gen10_pcts)):
+            # Gen 0 label
+            ax.text(gen0 + 1, i, f'{gen0:.1f}%', va='center', color='gray')
+            
+            # Gen 10 label
+            if gen10 > gen0:
+                ax.text(gen10 + 1, i, f'{gen10:.1f}%', va='center', color='red')
+            else:
+                ax.text(gen10 - 5, i, f'{gen10:.1f}%', va='center', color='blue')
+        
+        # Set labels and title
+        ax.set_xlabel('Percentage of Male (%)')
+        ax.set_title('Male Representation Comparison: Gen 0 vs Gen 10')
+        
+        # Add a legend
+        handles, labels = ax.get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+        ax.legend(by_label.values(), by_label.keys(), loc='upper right')
+        
+        # Set grid
+        ax.grid(axis='x', linestyle='--', alpha=0.7)
+        
+        # Save figure
+        plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, "male_representation_comparison.png"), dpi=300)
+        plt.close()
+    
+    # Create comparative female visualization if available
+    if 'female' in gender_percentages.columns:
+        plt.figure(figsize=(12, 10))
+        
+        # Extract female percentages for gen 0 and gen 10
+        female_data = []
+        for occupation in all_occupations:
+            gen0_pct = gender_percentages.loc[(0, occupation)].get('female', 0) if (0, occupation) in gender_percentages.index else 0
+            gen10_pct = gender_percentages.loc[(10, occupation)].get('female', 0) if (10, occupation) in gender_percentages.index else 0
+            female_data.append((occupation, gen0_pct, gen10_pct))
+        
+        # Sort by gen 0 percentages
+        female_data.sort(key=lambda x: x[1])
+        
+        # Prepare data for plotting
+        occupations = [item[0] for item in female_data]
+        gen0_pcts = [item[1] for item in female_data]
+        gen10_pcts = [item[2] for item in female_data]
+        
+        # Calculate differences
+        differences = [gen10 - gen0 for gen0, gen10 in zip(gen0_pcts, gen10_pcts)]
+        
+        # Create figure
+        fig, ax = plt.subplots(figsize=(12, 10))
+        
+        # Set y-axis
+        y_pos = np.arange(len(occupations))
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels([occ.capitalize() for occ in occupations])
+        
+        # Plot gen 0 bars (faded)
+        gen0_bars = ax.barh(y_pos, gen0_pcts, alpha=0.3, color='gray', label='Gen 0')
+        
+        # Plot gen 10 differences
+        for i, (gen0, diff) in enumerate(zip(gen0_pcts, differences)):
+            if diff > 0:  # Increase (red)
+                ax.barh(y_pos[i], diff, left=gen0, color='red', alpha=0.8, label='Gen 10 (increase)' if i == 0 else "")
+            elif diff < 0:  # Decrease (blue)
+                ax.barh(y_pos[i], abs(diff), left=gen0 + diff, color='blue', alpha=0.8, label='Gen 10 (decrease)' if i == 0 else "")
+        
+        # Add value labels
+        for i, (gen0, gen10) in enumerate(zip(gen0_pcts, gen10_pcts)):
+            # Gen 0 label
+            ax.text(gen0 + 1, i, f'{gen0:.1f}%', va='center', color='gray')
+            
+            # Gen 10 label
+            if gen10 > gen0:
+                ax.text(gen10 + 1, i, f'{gen10:.1f}%', va='center', color='red')
+            else:
+                ax.text(gen10 - 5, i, f'{gen10:.1f}%', va='center', color='blue')
+        
+        # Set labels and title
+        ax.set_xlabel('Percentage of Female (%)')
+        ax.set_title('Female Representation Comparison: Gen 0 vs Gen 10')
+        
+        # Add a legend
+        handles, labels = ax.get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+        ax.legend(by_label.values(), by_label.keys(), loc='upper right')
+        
+        # Set grid
+        ax.grid(axis='x', linestyle='--', alpha=0.7)
+        
+        # Save figure
+        plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, "female_representation_comparison.png"), dpi=300)
+        plt.close()
+    
+    # Create comparative ethnicity visualization for each ethnicity
+    all_ethnicities = sorted(df['ethnicity'].unique())
+    
+    for ethnicity in all_ethnicities:
+        if ethnicity == 'unidentifiable':
+            continue
+            
+        plt.figure(figsize=(12, 10))
+        
+        # Extract ethnicity percentages for gen 0 and gen 10
+        ethnicity_data = []
+        for occupation in all_occupations:
+            gen0_pct = ethnicity_percentages.loc[(0, occupation)].get(ethnicity, 0) if (0, occupation) in ethnicity_percentages.index else 0
+            gen10_pct = ethnicity_percentages.loc[(10, occupation)].get(ethnicity, 0) if (10, occupation) in ethnicity_percentages.index else 0
+            ethnicity_data.append((occupation, gen0_pct, gen10_pct))
+        
+        # Sort by gen 0 percentages
+        ethnicity_data.sort(key=lambda x: x[1])
+        
+        # Prepare data for plotting
+        occupations = [item[0] for item in ethnicity_data]
+        gen0_pcts = [item[1] for item in ethnicity_data]
+        gen10_pcts = [item[2] for item in ethnicity_data]
+        
+        # Calculate differences
+        differences = [gen10 - gen0 for gen0, gen10 in zip(gen0_pcts, gen10_pcts)]
+        
+        # Create figure
+        fig, ax = plt.subplots(figsize=(12, 10))
+        
+        # Set y-axis
+        y_pos = np.arange(len(occupations))
+        ax.set_yticks(y_pos)
+        ax.set_yticklabels([occ.capitalize() for occ in occupations])
+        
+        # Plot gen 0 bars (faded)
+        gen0_bars = ax.barh(y_pos, gen0_pcts, alpha=0.3, color='gray', label='Gen 0')
+        
+        # Plot gen 10 differences
+        for i, (gen0, diff) in enumerate(zip(gen0_pcts, differences)):
+            if diff > 0:  # Increase (red)
+                ax.barh(y_pos[i], diff, left=gen0, color='red', alpha=0.8, label='Gen 10 (increase)' if i == 0 else "")
+            elif diff < 0:  # Decrease (blue)
+                ax.barh(y_pos[i], abs(diff), left=gen0 + diff, color='blue', alpha=0.8, label='Gen 10 (decrease)' if i == 0 else "")
+        
+        # Add value labels
+        for i, (gen0, gen10) in enumerate(zip(gen0_pcts, gen10_pcts)):
+            # Gen 0 label
+            ax.text(gen0 + 1, i, f'{gen0:.1f}%', va='center', color='gray')
+            
+            # Gen 10 label
+            if gen10 > gen0:
+                ax.text(gen10 + 1, i, f'{gen10:.1f}%', va='center', color='red')
+            else:
+                ax.text(gen10 - 5, i, f'{gen10:.1f}%', va='center', color='blue')
+        
+        # Set labels and title
+        ax.set_xlabel(f'Percentage of {ethnicity} (%)')
+        ax.set_title(f'{ethnicity} Representation Comparison: Gen 0 vs Gen 10')
+        
+        # Add a legend
+        handles, labels = ax.get_legend_handles_labels()
+        by_label = dict(zip(labels, handles))
+        ax.legend(by_label.values(), by_label.keys(), loc='upper right')
+        
+        # Set grid
+        ax.grid(axis='x', linestyle='--', alpha=0.7)
+        
+        # Save figure
+        plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, f"{ethnicity}_representation_comparison.png"), dpi=300)
+        plt.close()
+    
+    # Create a summary table
+    summary_data = []
+    
+    # Gender summary
+    for gender in gender_percentages.columns:
+        if gender == 'unidentifiable':
+            continue
+            
+        for occupation in all_occupations:
+            gen0_gender = gender_percentages.loc[(0, occupation)].get(gender, 0) if (0, occupation) in gender_percentages.index else 0
+            gen10_gender = gender_percentages.loc[(10, occupation)].get(gender, 0) if (10, occupation) in gender_percentages.index else 0
+            diff = gen10_gender - gen0_gender
+            
+            summary_data.append({
+                'occupation': occupation,
+                'category': 'gender',
+                'attribute': gender,
+                'gen_0': gen0_gender,
+                'gen_10': gen10_gender,
+                'difference': diff,
+                'percent_change': (diff / gen0_gender * 100) if gen0_gender > 0 else float('inf')
+            })
+    
+    # Ethnicity summary
+    for ethnicity in all_ethnicities:
+        if ethnicity == 'unidentifiable':
+            continue
+            
+        for occupation in all_occupations:
+            gen0_eth = ethnicity_percentages.loc[(0, occupation)].get(ethnicity, 0) if (0, occupation) in ethnicity_percentages.index else 0
+            gen10_eth = ethnicity_percentages.loc[(10, occupation)].get(ethnicity, 0) if (10, occupation) in ethnicity_percentages.index else 0
+            diff = gen10_eth - gen0_eth
+            
+            summary_data.append({
+                'occupation': occupation,
+                'category': 'ethnicity',
+                'attribute': ethnicity,
+                'gen_0': gen0_eth,
+                'gen_10': gen10_eth,
+                'difference': diff,
+                'percent_change': (diff / gen0_eth * 100) if gen0_eth > 0 else float('inf')
+            })
+    
+    # Create summary DataFrame and save to CSV
+    summary_df = pd.DataFrame(summary_data)
+    summary_df.to_csv(os.path.join(results_dir, "gen0_vs_gen10_comparison.csv"), index=False)
+    
+    # Create a summary visualization of gender changes across occupations
+    plt.figure(figsize=(15, 10))
+    
+    # Extract gender changes
+    gender_changes = summary_df[summary_df['category'] == 'gender'].copy()
+    
+    # Pivot the data for plotting
+    pivot_df = gender_changes.pivot(index='occupation', columns='attribute', values='difference')
+    
+    # Sort by male difference
+    if 'male' in pivot_df.columns:
+        pivot_df = pivot_df.sort_values(by='male')
+    
+    # Plot the changes
+    ax = pivot_df.plot(kind='barh', figsize=(15, 10), 
+                      color=['blue', 'red', 'green', 'purple', 'orange'],
+                      alpha=0.7)
+    
+    # Add labels and title
+    plt.title('Gender Representation Changes from Gen 0 to Gen 10 by Occupation')
+    plt.xlabel('Percentage Point Change')
+    plt.ylabel('Occupation')
+    plt.grid(axis='x', linestyle='--', alpha=0.7)
+    plt.axvline(x=0, color='black', linestyle='-', alpha=0.5)
+    plt.legend(title='Gender')
+    
+    # Add value labels
+    for i, p in enumerate(ax.patches):
+        width = p.get_width()
+        if abs(width) > 1:  # Only label significant changes
+            x = p.get_x() + p.get_width() + 0.5 if width > 0 else p.get_x() + p.get_width() - 3
+            y = p.get_y() + p.get_height() / 2
+            ax.annotate(f'{width:.1f}', (x, y), ha='center', va='center')
+    
+    plt.tight_layout()
+    plt.savefig(os.path.join(results_dir, "gender_changes_summary.png"), dpi=300)
+    plt.close()
+    
+    print("\nComparative visualization between Gen 0 and Gen 10 created.")
+    print(f"Results saved to {results_dir}")
+    
+    return summary_df
+
+def create_gender_horizontal_barchart(results, base_dir="data/coco/occupation"):
+    """
+    Create a specialized horizontal bar chart for gender ratios comparing Gen 0 and Gen 10.
+    Gen 0 is shown in faded color, Gen 10 in red (if increase) or blue (if decrease).
+    A vertical line is drawn at 0 (which corresponds to 50% male ratio) for reference.
+    Occupations are sorted by Gen 0 male ratio from top to bottom.
+    The x-axis is centered at 0.5, ranging from -0.5 to 0.5, to indicate bias toward male (right) or female (left).
+    
+    Args:
+        results (list or pd.DataFrame): List of dictionaries or DataFrame containing classification results
+        base_dir (str): Base directory for saving results
+    """
+    # Create results directory if it doesn't exist
+    results_dir = os.path.join(base_dir, "results")
+    os.makedirs(results_dir, exist_ok=True)
+    
+    # Convert results to DataFrame if it's a list
+    if isinstance(results, list):
+        print("Converting results list to DataFrame...")
+        results_df = pd.DataFrame(results)
+    else:
+        results_df = results
+    
+    # Check if the DataFrame is empty
+    if results_df.empty:
+        print("Error: No results to visualize")
+        return
+    
+    print(f"Results DataFrame shape: {results_df.shape}")
+    print(f"Results DataFrame columns: {results_df.columns.tolist()}")
+    
+    # Check if 'gender' column exists
+    if 'gender' not in results_df.columns:
+        print("Error: 'gender' column not found in results")
+        return
+    
+    # Filter out unidentifiable gender
+    filtered_results = results_df[results_df['gender'] != 'unidentifiable']
+    print(f"Filtered results shape (after removing unidentifiable): {filtered_results.shape}")
+    
+    # Only keep Gen 0 and Gen 10
+    target_gens = [0, 10]
+    filtered_results = filtered_results[filtered_results['generation'].isin(target_gens)]
+    
+    # Get unique occupations
+    occupations = sorted(filtered_results['occupation'].unique())
+    
+    print(f"Unique occupations: {occupations}")
+    
+    # Calculate male ratios for each generation and occupation
+    male_ratios = {}
+    for gen in target_gens:
+        male_ratios[gen] = {}
+        for occupation in occupations:
+            gen_occ_data = filtered_results[(filtered_results['generation'] == gen) & 
+                           (filtered_results['occupation'] == occupation)]
+            
+            if len(gen_occ_data) > 0:
+                gender_counts = gen_occ_data['gender'].value_counts(normalize=True)
+                # Get male ratio
+                male_ratio = gender_counts.get('male', 0)
+                male_ratios[gen][occupation] = male_ratio
+                print(f"Gen {gen}, {occupation}: Male={male_ratio:.2f}")
+    
+    # Sort occupations by Gen 0 male ratio (descending)
+    sorted_occupations = sorted(occupations, key=lambda x: male_ratios[0].get(x, 0), reverse=True)
+    
+    # Create a figure for the horizontal bar chart - slimmer and more compact
+    plt.figure(figsize=(8, 6))
+    
+    # Set up the plot
+    ax = plt.subplot(111)
+    
+    # Set position of bars on y axis
+    y_pos = np.arange(len(sorted_occupations))
+    
+    # Transform male ratios to centered scale (-0.5 to 0.5)
+    # Where 0.5 male ratio becomes 0, 0 becomes -0.5, and 1 becomes 0.5
+    transform_ratio = lambda r: r - 0.5
+    
+    # Draw vertical line at 0 (which corresponds to 50% male ratio)
+    plt.axvline(x=0, color='black', linestyle='-', alpha=0.7)
+    
+    # Plot Gen 0 bars (faded color)
+    gen0_values = [transform_ratio(male_ratios[0].get(occupation, 0)) for occupation in sorted_occupations]
+    gen0_bars = plt.barh(y_pos, gen0_values, height=0.3, alpha=0.3, color='gray', label='Gen 0')
+    
+    # Plot Gen 10 bars (red for increase in male bias, blue for decrease)
+    gen10_values = [transform_ratio(male_ratios[10].get(occupation, 0)) for occupation in sorted_occupations]
+    
+    # Determine colors based on change
+    colors = []
+    for i, occupation in enumerate(sorted_occupations):
+        gen0_val = male_ratios[0].get(occupation, 0)
+        gen10_val = male_ratios[10].get(occupation, 0)
+        # Use blue if no change or decrease in male ratio, red if increase
+        if abs(gen10_val - gen0_val) < 0.01:  # Consider as no change if difference is very small
+            colors.append('blue')
+        else:
+            colors.append('red' if gen10_val > gen0_val else 'blue')
+    
+    # Plot Gen 10 bars
+    gen10_bars = plt.barh(y_pos, gen10_values, height=0.3, alpha=0.7, color=colors, label='Gen 10')
+    
+    # Add labels
+    plt.xlabel('Gender Bias (← Female | Male →)')
+    plt.ylabel('Occupation')
+    
+    # Set custom x-ticks
+    plt.xticks([-0.5, -0.25, 0, 0.25, 0.5], ['100% F', '75% F', '50/50', '75% M', '100% M'])
+    
+    # Set y-ticks (occupation names)
+    plt.yticks(y_pos, sorted_occupations)
+    
+    # Set x-axis limits
+    plt.xlim(-0.5, 0.5)
+    
+    # Add a legend with smaller font
+    plt.legend(loc='lower right', fontsize='small')
+    
+    # Add grid lines
+    plt.grid(axis='x', linestyle='--', alpha=0.3)
+    
+    # Add value labels on the bars - more compact
+    for i, occupation in enumerate(sorted_occupations):
+        gen0_val = male_ratios[0].get(occupation, 0)
+        gen10_val = male_ratios[10].get(occupation, 0)
+        
+        # Transform to centered scale
+        gen0_transformed = transform_ratio(gen0_val)
+        gen10_transformed = transform_ratio(gen10_val)
+        
+        # Check if there's a significant change
+        is_change = abs(gen10_val - gen0_val) >= 0.01
+        
+        if is_change:
+            # Add Gen 0 value - smaller font
+            plt.text(gen0_transformed + (0.01 if gen0_transformed >= 0 else -0.01), 
+                    y_pos[i], f'{gen0_val:.2f}', 
+                    va='center', ha='left' if gen0_transformed >= 0 else 'right', 
+                    fontsize=6, alpha=0.5)
+            
+            # Add Gen 10 value - smaller font
+            plt.text(gen10_transformed + (0.01 if gen10_transformed >= 0 else -0.01), 
+                    y_pos[i], f'{gen10_val:.2f}', 
+                    va='center', ha='left' if gen10_transformed >= 0 else 'right', 
+                    fontsize=6, color=colors[i])
+        else:
+            # If no change, just show the value once in blue - smaller font
+            plt.text(gen0_transformed + (0.01 if gen0_transformed >= 0 else -0.01), 
+                    y_pos[i], f'{gen0_val:.2f}', 
+                    va='center', ha='left' if gen0_transformed >= 0 else 'right', 
+                    fontsize=6, color='blue')
+    
+    # Adjust layout for a tighter fit
+    plt.tight_layout()
+    
+    # Save the figure
+    plt.savefig(os.path.join(results_dir, 'gender_bias_compact.png'), dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"Gender bias chart saved to {os.path.join(results_dir, 'gender_bias_compact.png')}")
+    
+    # Create a summary table of changes
+    summary_data = []
+    for occupation in sorted_occupations:
+        gen0_val = male_ratios[0].get(occupation, 0)
+        gen10_val = male_ratios[10].get(occupation, 0)
+        change = gen10_val - gen0_val
+        summary_data.append({
+            'Occupation': occupation,
+            'Gen0_Male_Ratio': gen0_val,
+            'Gen10_Male_Ratio': gen10_val,
+            'Change': change,
+            'Direction': 'No Change' if abs(change) < 0.01 else ('Increase' if change > 0 else 'Decrease')
+        })
+    
+    summary_df = pd.DataFrame(summary_data)
+    summary_path = os.path.join(results_dir, 'gender_bias_summary.csv')
+    summary_df.to_csv(summary_path, index=False)
+    print(f"Gender bias summary saved to {summary_path}")
+    
+    return summary_df
+
 def main():
     parser = argparse.ArgumentParser(description="Evaluate gender and ethnicity bias across model generations")
     parser.add_argument("--cfg_scale", type=float, default=7.0, help="CFG scale to use (default: 7.0)")
@@ -575,6 +1103,7 @@ def main():
     parser.add_argument("--skip_generation", action="store_true", help="Skip image generation and use existing images")
     parser.add_argument("--skip_classification", action="store_true", help="Skip image classification and use existing results")
     parser.add_argument("--only_analysis", action="store_true", help="Skip generation and classification, only run analysis")
+    parser.add_argument("--only_comparative", action="store_true", help="Only create comparative visualization between gen 0 and gen 10")
     parser.add_argument("--output_dir", type=str, default="data/coco/occupation", help="Base directory for output")
     parser.add_argument("--only_generation", type=int, default=None, help="Only process a specific generation (0, 4, or 10)")
     parser.add_argument("--only_occupation", type=str, default=None, help="Only process a specific occupation")
@@ -599,8 +1128,8 @@ def main():
     # Results to collect
     all_results = []
     
-    # If only_analysis is set, skip generation and classification
-    if args.only_analysis:
+    # If only_analysis or only_comparative is set, skip generation and classification
+    if args.only_analysis or args.only_comparative:
         args.skip_generation = True
         args.skip_classification = True
     
@@ -626,6 +1155,24 @@ def main():
         try:
             # Generate images for each occupation and generation
             for gen in generations_to_process:
+                # Check if images already exist for this generation
+                all_exist = True
+                for occupation in occupations_to_process:
+                    image_dir = os.path.join(base_dir, f"gen_{gen}", occupation.replace(" ", "_"))
+                    if not os.path.exists(image_dir):
+                        all_exist = False
+                        break
+                    
+                    # Check if we have enough images
+                    image_files = [f for f in os.listdir(image_dir) if f.endswith(('.png', '.jpg', '.jpeg'))]
+                    if len(image_files) < args.num_images:
+                        all_exist = False
+                        break
+                
+                if all_exist:
+                    print(f"All images already exist for generation {gen}. Skipping generation.")
+                    continue
+                
                 # Load the model
                 pipeline = load_model(gen, args.cfg_scale)
                 
@@ -671,72 +1218,79 @@ def main():
     
     if not args.skip_classification:
         try:
-            # Load classifiers
-            classifiers = load_classifiers()
-            
-            # Classify all images
-            print("Classifying images...")
-            for gen in generations_to_process:
-                for occupation in occupations_to_process:
-                    try:
-                        # Directory with images
-                        image_dir = os.path.join(base_dir, f"gen_{gen}", occupation.replace(" ", "_"))
+            # Check if classification results already exist
+            results_path = os.path.join(base_dir, "results", "classification_results_raw.csv")
+            if os.path.exists(results_path):
+                print(f"Classification results already exist at {results_path}. Loading existing results.")
+                results_df = pd.read_csv(results_path)
+                all_results = results_df.to_dict('records')
+            else:
+                # Load classifiers
+                classifiers = load_classifiers()
+                
+                # Classify all images
+                print("Classifying images...")
+                for gen in generations_to_process:
+                    for occupation in occupations_to_process:
+                        try:
+                            # Directory with images
+                            image_dir = os.path.join(base_dir, f"gen_{gen}", occupation.replace(" ", "_"))
+                            
+                            if not os.path.exists(image_dir):
+                                print(f"Warning: Directory {image_dir} does not exist. Skipping.")
+                                continue
+                            
+                            # Get all image files
+                            image_files = [f for f in os.listdir(image_dir) if f.endswith(('.png', '.jpg', '.jpeg'))]
+                            
+                            if not image_files:
+                                print(f"Warning: No images found in {image_dir}. Skipping.")
+                                continue
+                            
+                            print(f"Classifying {len(image_files)} images for {occupation} (gen {gen})...")
+                            
+                            # Get full paths
+                            image_paths = [os.path.join(image_dir, f) for f in image_files]
+                            
+                            if debug:
+                                print(f"First few image paths: {image_paths[:3]}")
+                            
+                            # Classify images in batches
+                            batch_results = classify_images_batch(image_paths, classifiers)
+                            
+                            if debug:
+                                print(f"First few classification results: {batch_results[:3]}")
+                            
+                            # Add metadata
+                            for result in batch_results:
+                                result["generation"] = gen
+                                result["occupation"] = occupation
+                            
+                            # Add to results
+                            all_results.extend(batch_results)
+                            
+                            # Save intermediate results after each occupation
+                            print(f"Saving intermediate results for {occupation} (gen {gen})...")
+                            intermediate_df = pd.DataFrame(all_results)
+                            results_dir = os.path.join(base_dir, "results")
+                            os.makedirs(results_dir, exist_ok=True)
+                            intermediate_df.to_csv(os.path.join(results_dir, "classification_results_intermediate.csv"), index=False)
                         
-                        if not os.path.exists(image_dir):
-                            print(f"Warning: Directory {image_dir} does not exist. Skipping.")
+                        except KeyboardInterrupt:
+                            print(f"\nClassification interrupted for {occupation} (gen {gen}). Moving to next task.")
                             continue
-                        
-                        # Get all image files
-                        image_files = [f for f in os.listdir(image_dir) if f.endswith(('.png', '.jpg', '.jpeg'))]
-                        
-                        if not image_files:
-                            print(f"Warning: No images found in {image_dir}. Skipping.")
+                        except Exception as e:
+                            print(f"Error classifying images for {occupation} (gen {gen}): {str(e)}")
+                            import traceback
+                            traceback.print_exc()
                             continue
-                        
-                        print(f"Classifying {len(image_files)} images for {occupation} (gen {gen})...")
-                        
-                        # Get full paths
-                        image_paths = [os.path.join(image_dir, f) for f in image_files]
-                        
-                        if debug:
-                            print(f"First few image paths: {image_paths[:3]}")
-                        
-                        # Classify images in batches
-                        batch_results = classify_images_batch(image_paths, classifiers)
-                        
-                        if debug:
-                            print(f"First few classification results: {batch_results[:3]}")
-                        
-                        # Add metadata
-                        for result in batch_results:
-                            result["generation"] = gen
-                            result["occupation"] = occupation
-                        
-                        # Add to results
-                        all_results.extend(batch_results)
-                        
-                        # Save intermediate results after each occupation
-                        print(f"Saving intermediate results for {occupation} (gen {gen})...")
-                        intermediate_df = pd.DataFrame(all_results)
-                        results_dir = os.path.join(base_dir, "results")
-                        os.makedirs(results_dir, exist_ok=True)
-                        intermediate_df.to_csv(os.path.join(results_dir, "classification_results_intermediate.csv"), index=False)
-                    
-                    except KeyboardInterrupt:
-                        print(f"\nClassification interrupted for {occupation} (gen {gen}). Moving to next task.")
-                        continue
-                    except Exception as e:
-                        print(f"Error classifying images for {occupation} (gen {gen}): {str(e)}")
-                        import traceback
-                        traceback.print_exc()
-                        continue
-            
-            # Save final classification results
-            print("Saving final classification results...")
-            results_df = pd.DataFrame(all_results)
-            results_dir = os.path.join(base_dir, "results")
-            os.makedirs(results_dir, exist_ok=True)
-            results_df.to_csv(os.path.join(results_dir, "classification_results_raw.csv"), index=False)
+                
+                # Save final classification results
+                print("Saving final classification results...")
+                results_df = pd.DataFrame(all_results)
+                results_dir = os.path.join(base_dir, "results")
+                os.makedirs(results_dir, exist_ok=True)
+                results_df.to_csv(os.path.join(results_dir, "classification_results_raw.csv"), index=False)
         
         except KeyboardInterrupt:
             print("\nClassification interrupted. Moving to analysis phase.")
@@ -761,6 +1315,10 @@ def main():
                 print(f"Loaded {len(all_results)} classification results")
                 if all_results:
                     print(f"First result: {all_results[0]}")
+                    print(f"Unique generations: {sorted(results_df['generation'].unique())}")
+                    print(f"Unique occupations: {sorted(results_df['occupation'].unique())}")
+                    print(f"Unique genders: {sorted(results_df['gender'].unique())}")
+                    print(f"Unique ethnicities: {sorted(results_df['ethnicity'].unique())}")
         else:
             print(f"Warning: No existing classification results found at {results_path}")
             
@@ -773,6 +1331,8 @@ def main():
                 
                 if debug:
                     print(f"Loaded {len(all_results)} partial classification results")
+                    if all_results:
+                        print(f"Unique generations: {sorted(results_df['generation'].unique())}")
             else:
                 print(f"Warning: No partial classification results found at {partial_path}")
                 
@@ -785,15 +1345,49 @@ def main():
                 
                 if debug:
                     print(f"Loaded {len(all_results)} intermediate classification results")
+                    if all_results:
+                        print(f"Unique generations: {sorted(results_df['generation'].unique())}")
             else:
                 print(f"Warning: No intermediate classification results found at {intermediate_path}")
     
     # Analyze results
     if all_results:
         try:
-            print("Analyzing results...")
-            results_df = analyze_results(all_results, base_dir)
-            print(f"Evaluation complete. Results saved to {os.path.join(base_dir, 'results')}")
+            if args.only_comparative:
+                print("Creating comparative visualization between Gen 0 and Gen 10...")
+                # Convert generation column to int if it's not already
+                if isinstance(all_results, list):
+                    for result in all_results:
+                        if 'generation' in result and not isinstance(result['generation'], int):
+                            result['generation'] = int(result['generation'])
+                else:
+                    if 'generation' in all_results.columns and not pd.api.types.is_integer_dtype(all_results['generation']):
+                        all_results['generation'] = all_results['generation'].astype(int)
+                
+                create_comparative_visualization(all_results, base_dir)
+                # Create gender horizontal bar chart
+                create_gender_horizontal_barchart(all_results, base_dir)
+            else:
+                print("Analyzing results...")
+                # Convert generation column to int if it's not already
+                if isinstance(all_results, list):
+                    for result in all_results:
+                        if 'generation' in result and not isinstance(result['generation'], int):
+                            result['generation'] = int(result['generation'])
+                else:
+                    if 'generation' in all_results.columns and not pd.api.types.is_integer_dtype(all_results['generation']):
+                        all_results['generation'] = all_results['generation'].astype(int)
+                
+                results_df = analyze_results(all_results, base_dir)
+                
+                # Also create comparative visualization
+                print("Creating comparative visualization between Gen 0 and Gen 10...")
+                create_comparative_visualization(all_results, base_dir)
+                
+                # Create gender horizontal bar chart
+                create_gender_horizontal_barchart(all_results, base_dir)
+                
+                print(f"Evaluation complete. Results saved to {os.path.join(base_dir, 'results')}")
         except Exception as e:
             print(f"Error analyzing results: {str(e)}")
             import traceback
