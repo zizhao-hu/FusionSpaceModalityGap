@@ -64,7 +64,7 @@ def generate_gen_zero_images(cfg_scale, num_images=100, steps=50):
     print(f"\nGenerating Generation 0 images with pretrained model using CFG scale {cfg_scale}, {num_images} images and {steps} steps")
     
     # Set output directory for generated images with consistent naming - include steps
-    output_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
+    output_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
     os.makedirs(output_dir, exist_ok=True)
     
     # Set fixed seed for deterministic generation
@@ -200,7 +200,7 @@ def generate_gen_zero_images(cfg_scale, num_images=100, steps=50):
 def check_and_create_gen_zero(cfg_scale, num_images=100, steps=50):
     """Check if Generation 0 images exist and create them if needed"""
     # Set output directory for generation 0 images - include steps
-    output_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
+    output_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
     
     # Check if directory exists
     if not os.path.exists(output_dir):
@@ -294,12 +294,31 @@ def generate_missing_images(data_dir, required_count=100):
     del pipeline
     torch.cuda.empty_cache()
 
-def train_stable_diffusion(cfg_scale, gen_number, input_model_path=None, steps=50, epochs=5):
+def train_stable_diffusion(cfg_scale, gen_number, input_model_path=None, steps=50, epochs=5, baseline=False, finetune=False):
     """Train stable diffusion model with specified parameters"""
     try:
         model_id = "CompVis/stable-diffusion-v1-4"
-        train_data_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number-1}"
+        
+        # Determine training data directory based on flags
+        if finetune:
+            # Use original COCO training images
+            train_data_dir = "data/coco/train2014"
+            print(f"FINETUNE MODE: Training on original COCO images")
+        elif baseline:
+            # Use Generation 0 images for all generations
+            train_data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
+            print(f"BASELINE MODE: Training on Generation 0 images")
+        else:
+            # Standard mode: use previous generation's images
+            train_data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number-1}"
+        
         output_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}"
+        
+        # Add suffix to output directory based on mode
+        if finetune:
+            output_dir = f"{output_dir}_finetune"
+        elif baseline:
+            output_dir = f"{output_dir}_baseline"
         
         num_images = 100
         batch_size = 1
@@ -485,7 +504,7 @@ def train_stable_diffusion(cfg_scale, gen_number, input_model_path=None, steps=5
         print(f"Error during training: {str(e)}")
         return float('nan')
 
-def generate_images(model_path, cfg_scale, gen_number, image_caption_pairs, steps=50):
+def generate_images(model_path, cfg_scale, gen_number, image_caption_pairs, steps=50, baseline=False, finetune=False):
     """Generate images using the finetuned model for specific generation"""
     try:
         num_images = len(image_caption_pairs)
@@ -494,7 +513,16 @@ def generate_images(model_path, cfg_scale, gen_number, image_caption_pairs, step
         torch.manual_seed(42)
         torch.cuda.manual_seed(42)
         
-        output_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}"
+        output_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}"
+        
+        # Add suffix to output directory based on mode
+        if finetune:
+            output_dir = f"{output_dir}_finetune"
+            print(f"FINETUNE MODE: Generating images to {output_dir}")
+        elif baseline:
+            output_dir = f"{output_dir}_baseline"
+            print(f"BASELINE MODE: Generating images to {output_dir}")
+            
         os.makedirs(output_dir, exist_ok=True)
         
         # Check existing valid images
@@ -600,13 +628,22 @@ def generate_images(model_path, cfg_scale, gen_number, image_caption_pairs, step
     except Exception as e:
         print(f"Error in image generation: {str(e)}")
 
-def evaluate_model(cfg_scale, gen_number, steps=50):
+def evaluate_model(cfg_scale, gen_number, steps=50, baseline=False, finetune=False):
     """Evaluate the generated images using FID, IS, and CLIP scores"""
     print(f"\nEvaluating generated images for CFG scale {cfg_scale}, Generation {gen_number}")
     
     # Setup paths with steps parameter
     eval_folder = "data/coco/eval"  # Original evaluation images
-    gen_folder = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}"
+    gen_folder = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}"
+    
+    # Adjust folder based on mode
+    if finetune:
+        gen_folder = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}_finetune"
+        print(f"FINETUNE MODE: Evaluating images from {gen_folder}")
+    elif baseline:
+        gen_folder = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen_number}_baseline"
+        print(f"BASELINE MODE: Evaluating images from {gen_folder}")
+    
     annotation_file = "data/coco/annotations/captions_val2014.json"
     
     # Load CLIP model with error handling
@@ -719,7 +756,7 @@ def detect_existing_step_value(cfg_scale):
     cfg_int = int(cfg_scale)
     
     # Check data directories first as they're more likely to exist
-    data_pattern = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_*_gen_*"
+    data_pattern = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_*_gen_*"
     for dir_path in glob.glob(data_pattern):
         try:
             # Extract steps value from directory name
@@ -741,13 +778,24 @@ def detect_existing_step_value(cfg_scale):
     
     return None
 
-def find_last_generation(cfg_scale, steps=50):
+def find_last_generation(cfg_scale, steps=50, baseline=False, finetune=False):
     """Find the last completed generation by checking both model and image directories"""
     cfg_int = int(cfg_scale)
     gen = 0
     while True:
-        model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
-        data_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
+        if finetune:
+            model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_finetune"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_finetune"
+        elif baseline:
+            model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_baseline"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_baseline"
+            
+            # For gen_0 in baseline mode, we use the regular directory
+            if gen == 0:
+                data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_0"
+        else:
+            model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
         
         # For generation > 0, we need both model and data directories
         if gen > 0:
@@ -759,15 +807,26 @@ def find_last_generation(cfg_scale, steps=50):
                 return -1  # Return -1 if gen_0 doesn't exist
         gen += 1
 
-def check_checkpoint_image_pairs(cfg_scale, steps=50):
+def check_checkpoint_image_pairs(cfg_scale, steps=50, baseline=False, finetune=False):
     """Check if all checkpoint folders have corresponding image folders with 100 images"""
     cfg_int = int(cfg_scale)
     gen = 0
     missing_pairs = []
     
     while True:
-        model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
-        data_dir = f"data/coco/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
+        if finetune:
+            model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_finetune"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_finetune"
+        elif baseline:
+            model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_baseline"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}_baseline"
+            
+            # For gen_0 in baseline mode, we use the regular directory
+            if gen == 0:
+                data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_0"
+        else:
+            model_dir = f"models/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{cfg_int}_steps_{steps}_gen_{gen}"
         
         # For gen_0, we only need to check the data directory
         if gen == 0:
@@ -789,7 +848,7 @@ def check_checkpoint_image_pairs(cfg_scale, steps=50):
 
 def get_gen_zero_pairs(cfg_scale, steps=50):
     """Get the image ID and caption pairs from Generation 0"""
-    gen_zero_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
+    gen_zero_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
     if not os.path.exists(gen_zero_dir):
         return None
         
@@ -829,12 +888,17 @@ def get_gen_zero_pairs(cfg_scale, steps=50):
     
     return pairs if len(pairs) == 100 else None
 
-def run_generation_loop(cfg_scale, target_generation=3, steps=50, epochs=5, num_images=100):
+def run_generation_loop(cfg_scale, target_generation=3, steps=50, epochs=5, num_images=100, baseline=False, finetune=False):
     """Run generations until target_generation is reached"""
     results = {}
     eval_results = {}
     
     print(f"\nChecking existing generations with CFG {cfg_scale} and {steps} steps...")
+    if finetune:
+        print("FINETUNE MODE: Will train on original COCO images for all generations")
+        print("Generated images will still be saved to the standard generation folders with _finetune suffix")
+    elif baseline:
+        print("BASELINE MODE: Will train on Generation 0 images for all generations")
     
     # First, check and create gen_0 (always use 100 images for gen_0)
     if not check_and_create_gen_zero(cfg_scale, num_images=100, steps=steps):
@@ -842,7 +906,7 @@ def run_generation_loop(cfg_scale, target_generation=3, steps=50, epochs=5, num_
         return
     
     # Verify gen_0
-    gen_zero_dir = f"data/coco/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
+    gen_zero_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_0"
     if len([f for f in os.listdir(gen_zero_dir) if f.endswith(('.jpg', '.png'))]) < 100:
         print(f"Generation 0 incomplete with {steps} steps. Please check and try again.")
         return
@@ -853,22 +917,148 @@ def run_generation_loop(cfg_scale, target_generation=3, steps=50, epochs=5, num_
         print(f"Failed to get Generation 0 image-caption pairs with {steps} steps. Please ensure Generation 0 is complete.")
         return
     
-    # Now check for missing checkpoint-image pairs for other generations
-    missing_pairs, last_gen = check_checkpoint_image_pairs(cfg_scale, steps)
-    
-    # If we found missing pairs, generate the missing images first
-    if missing_pairs:
-        print(f"\nFound missing or incomplete image folders with {steps} steps. Generating missing images...")
-        for model_dir, data_dir in missing_pairs:
-            if model_dir:  # This is a generation > 0
-                gen_number = int(model_dir.split('_gen_')[-1])
+    # For finetune mode, check if COCO training data exists
+    if finetune:
+        coco_train_dir = "data/coco/train2014"
+        if not os.path.exists(coco_train_dir):
+            print(f"COCO training directory not found: {coco_train_dir}")
+            print("Please download and extract COCO 2014 training images to this directory.")
+            return
+            
+        # Check if we have enough COCO images
+        if not check_training_data(coco_train_dir, required_count=100):
+            print("Not enough valid COCO training images found. Please ensure at least 100 images are available.")
+            return
+            
+        # Find the last completed finetune generation by checking both model and image directories
+        last_gen = -1
+        for gen in range(target_generation, -1, -1):
+            # For finetune mode, we need to check both model and image directories
+            model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_finetune"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_finetune"
+            
+            if gen == 0:
+                # For gen_0, we use the regular directory
+                data_dir = gen_zero_dir
+                
+            # For generation > 0, we need both model and data directories
+            if gen > 0:
+                if os.path.exists(f"{model_dir}/unet") and os.path.exists(data_dir):
+                    # Check if we have enough images
+                    valid_images = sum(
+                        1 for img_file in os.listdir(data_dir)
+                        if img_file.endswith(('.jpg', '.png')) and 
+                        os.path.getsize(os.path.join(data_dir, img_file)) > 1024
+                    )
+                    if valid_images >= num_images:
+                        last_gen = gen
+                        break
+            # For generation 0, we only need the data directory
+            elif os.path.exists(data_dir):
+                valid_images = sum(
+                    1 for img_file in os.listdir(data_dir)
+                    if img_file.endswith(('.jpg', '.png')) and 
+                    os.path.getsize(os.path.join(data_dir, img_file)) > 1024
+                )
+                if valid_images >= num_images:
+                    last_gen = 0
+                    break
+                
+        start_gen = last_gen + 1
+    elif baseline:
+        # Find the last completed baseline generation by checking both model and image directories
+        last_gen = -1
+        for gen in range(target_generation, -1, -1):
+            # For baseline mode, we need to check both model and image directories
+            model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_baseline"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_baseline"
+            
+            if gen == 0:
+                # For gen_0, we use the regular directory
+                data_dir = gen_zero_dir
+                
+            # For generation > 0, we need both model and data directories
+            if gen > 0:
+                if os.path.exists(f"{model_dir}/unet") and os.path.exists(data_dir):
+                    # Check if we have enough images
+                    valid_images = sum(
+                        1 for img_file in os.listdir(data_dir)
+                        if img_file.endswith(('.jpg', '.png')) and 
+                        os.path.getsize(os.path.join(data_dir, img_file)) > 1024
+                    )
+                    if valid_images >= num_images:
+                        last_gen = gen
+                        break
+            # For generation 0, we only need the data directory
+            elif os.path.exists(data_dir):
+                valid_images = sum(
+                    1 for img_file in os.listdir(data_dir)
+                    if img_file.endswith(('.jpg', '.png')) and 
+                    os.path.getsize(os.path.join(data_dir, img_file)) > 1024
+                )
+                if valid_images >= num_images:
+                    last_gen = 0
+                    break
+                
+        start_gen = last_gen + 1
+    else:
+        # Find the last completed generation by checking both model and image directories
+        last_gen = -1
+        for gen in range(target_generation, -1, -1):
+            model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
+            
+            # For generation > 0, we need both model and data directories
+            if gen > 0:
+                if os.path.exists(f"{model_dir}/unet") and os.path.exists(data_dir):
+                    # Check if we have enough images
+                    valid_images = sum(
+                        1 for img_file in os.listdir(data_dir)
+                        if img_file.endswith(('.jpg', '.png')) and 
+                        os.path.getsize(os.path.join(data_dir, img_file)) > 1024
+                    )
+                    if valid_images >= num_images:
+                        last_gen = gen
+                        break
+            # For generation 0, we only need the data directory
+            elif os.path.exists(data_dir):
+                valid_images = sum(
+                    1 for img_file in os.listdir(data_dir)
+                    if img_file.endswith(('.jpg', '.png')) and 
+                    os.path.getsize(os.path.join(data_dir, img_file)) > 1024
+                )
+                if valid_images >= num_images:
+                    last_gen = 0
+                    break
+        
+        # Check for missing checkpoint-image pairs for other generations
+        missing_pairs = []
+        for gen in range(1, last_gen + 1):
+            model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
+            data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
+            
+            if not os.path.exists(f"{model_dir}/unet"):
+                continue  # Skip if model doesn't exist
+                
+            # Check if we have enough images
+            valid_images = sum(
+                1 for img_file in os.listdir(data_dir) if img_file.endswith(('.jpg', '.png')) and 
+                os.path.getsize(os.path.join(data_dir, img_file)) > 1024
+            ) if os.path.exists(data_dir) else 0
+            
+            if valid_images < num_images:
+                missing_pairs.append((model_dir, data_dir))
+        
+        # If we found missing pairs, generate the missing images first
+        if missing_pairs:
+            print(f"\nFound missing or incomplete image folders with {steps} steps. Generating missing images...")
+            for model_dir, data_dir in missing_pairs:
+                gen_number = int(model_dir.split('_gen_')[-1].split('_')[0])  # Handle potential suffixes
                 print(f"\nGenerating missing images for Generation {gen_number}")
                 pairs_to_use = gen_zero_pairs[:num_images]  # Respect num_images parameter
-                generate_images(model_dir, cfg_scale, gen_number, pairs_to_use, steps)
-    
-    # Find last completed generation and continue
-    last_gen = find_last_generation(cfg_scale, steps)
-    start_gen = last_gen + 1
+                generate_images(model_dir, cfg_scale, gen_number, pairs_to_use, steps, baseline, finetune)
+        
+        start_gen = last_gen + 1
     
     if start_gen > target_generation:
         print(f"Target generation {target_generation} already completed with {steps} steps!")
@@ -880,19 +1070,31 @@ def run_generation_loop(cfg_scale, target_generation=3, steps=50, epochs=5, num_
         for gen in range(start_gen, target_generation + 1):
             print(f"\n{'='*50}\nStarting Generation {gen} with {steps} steps\n{'='*50}")
             
-            current_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
-            previous_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen-1}" if gen > 1 else None
+            if finetune:
+                current_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_finetune"
+                previous_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen-1}_finetune" if gen > 1 else None
+                output_data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_finetune"
+            elif baseline:
+                current_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_baseline"
+                previous_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen-1}_baseline" if gen > 1 else None
+                output_data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}_baseline"
+            else:
+                current_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
+                previous_model_dir = f"models/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen-1}" if gen > 1 else None
+                output_data_dir = f"data/coco/steps_gen/sd_to_sd_cfg_{int(cfg_scale)}_steps_{steps}_gen_{gen}"
             
-            # Train and generate using gen_zero_pairs
-            results[f"gen_{gen}"] = train_stable_diffusion(cfg_scale, gen, previous_model_dir, steps, epochs)
+            # Train using appropriate flags
+            results[f"gen_{gen}"] = train_stable_diffusion(cfg_scale, gen, previous_model_dir, steps, epochs, baseline, finetune)
             
             # Generate images using the same pairs as gen_0
             pairs_to_use = gen_zero_pairs[:num_images]  # Respect num_images parameter
-            generate_images(current_model_dir, cfg_scale, gen, pairs_to_use, steps)
+            
+            # Generate images with appropriate flags
+            generate_images(current_model_dir, cfg_scale, gen, pairs_to_use, steps, baseline, finetune)
             
             # Evaluate
             try:
-                eval_results[f"gen_{gen}"] = evaluate_model(cfg_scale, gen, steps)
+                eval_results[f"gen_{gen}"] = evaluate_model(cfg_scale, gen, steps, baseline, finetune)
             except Exception as e:
                 print(f"Evaluation error for Gen {gen}: {str(e)}")
                 eval_results[f"gen_{gen}"] = {"fid": float('nan'), "is_mean": float('nan'), 
@@ -931,8 +1133,17 @@ if __name__ == "__main__":
                         help="Number of images to generate for each generation (except gen_0 which always uses 100)")
     parser.add_argument("--epochs", type=int, default=5, 
                         help="Number of training epochs")
+    parser.add_argument("--baseline", action="store_true",
+                        help="If set, train on Generation 0 images for all generations")
+    parser.add_argument("--finetune", action="store_true",
+                        help="If set, train on original COCO training images for all generations")
     
     args = parser.parse_args()
+    
+    # Ensure baseline and finetune are not both set
+    if args.baseline and args.finetune:
+        print("Error: Cannot use both --baseline and --finetune flags together. Please choose one.")
+        exit(1)
     
     # Run for each CFG scale
     for cfg_scale in args.cfg_scales:
@@ -940,5 +1151,5 @@ if __name__ == "__main__":
         print(f"Running with CFG scale {cfg_scale}, steps {args.steps}")
         print(f"{'='*80}")
         # Use the same steps value for both folder names and inference
-        run_generation_loop(cfg_scale, args.target_gen, args.steps, args.epochs, args.num_images)
+        run_generation_loop(cfg_scale, args.target_gen, args.steps, args.epochs, args.num_images, args.baseline, args.finetune)
 

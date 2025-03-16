@@ -4,6 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
 
+# Import color constants
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
+from utils.colors import *
+
 # ----- Parameters & Paths -----
 data_folder = "data"
 model_fname = "openai_clip-vit-base-patch32"  # model name with "/" replaced by "_"
@@ -59,13 +63,33 @@ r_value, p_value = pearsonr(all_cos, all_l2)
 
 # ----- Plotting the Scatter Plot -----
 plt.figure(figsize=(8, 6))
-plt.scatter(all_cos, all_l2, alpha=0.7, s=50, color='purple')
-plt.xlabel("Cosine Similarity", fontsize=14, fontweight="bold")
-plt.ylabel("L2 Distance", fontsize=14, fontweight="bold")
-plt.title(f"Cosine Similarity vs L2 Distance\nPearson r: {r_value:.3f} (p={p_value:.2e})", fontsize=16)
-plt.tight_layout()
+plt.scatter(all_cos, all_l2, alpha=0.7, s=50, color=ACCENT)
+
+# Calculate regression line
+z = np.polyfit(all_cos, all_l2, 1)
+regression_line = z[0] * all_cos + z[1]
+plt.plot(all_cos, regression_line, color=ERROR, 
+         linestyle='--', linewidth=2, label=f'Regression Line (y={z[0]:.3f}x+{z[1]:.3f})')
+
+# Set labels and title with consistent styling
+plt.xlabel("Cosine Similarity", fontsize=12, fontweight="bold", color=GREY_900)
+plt.ylabel("L2 Distance", fontsize=12, fontweight="bold", color=GREY_900)
+plt.title(f"Cosine Similarity vs L2 Distance\nPearson r: {r_value:.3f} (p={p_value:.2e})", 
+          fontsize=14, fontweight="bold", color=GREY_900)
+
+# Add grid with consistent styling
+plt.grid(axis='both', linestyle='--', alpha=0.3, color=GREY_300)
+
+# Add legend
+plt.legend(fontsize=10, framealpha=0.9)
+
+# Set tick parameters
+plt.tick_params(axis='both', which='major', labelsize=9, colors=GREY_800)
+
+# Adjust layout for better spacing
+plt.tight_layout(pad=1.2)
 
 output_plot = os.path.join(data_folder, "cosine_vs_l2_scatter_plot_all600_pairs.png")
-plt.savefig(output_plot, dpi=300)
+plt.savefig(output_plot, dpi=300, bbox_inches='tight')
 plt.close()
 print(f"Saved scatter plot to {output_plot}")

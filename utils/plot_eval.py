@@ -2,6 +2,7 @@ import os
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 from PIL import Image
 from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize, InterpolationMode
 from torchmetrics.image.fid import FrechetInceptionDistance
@@ -16,6 +17,10 @@ sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), "clipsc
 from clipscore import get_clip_score, extract_all_images, get_refonlyclipscore
 import sklearn
 from packaging import version
+
+# Import color constants
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
+from utils.colors import *
 
 def extract_image_id(filename):
     """Extract COCO image ID from filename"""
@@ -266,211 +271,288 @@ def evaluate_folder(ref_images, folder_path, target_image_ids, clip_model=None, 
     return results
 
 def plot_metrics(all_metrics, output_path="evaluation_results.png"):
-    """Plot FID, IS, and CLIP scores with confidence regions from multiple runs"""
-    cfg_values = sorted(all_metrics[0].keys())
-    num_runs = len(all_metrics)
+    """Plot evaluation metrics for different CFG values"""
+    # Extract metrics
+    cfg_values = sorted(all_metrics.keys())
+    fid_values = [all_metrics[cfg]['fid'] for cfg in cfg_values]
+    is_values = [all_metrics[cfg]['is'] for cfg in cfg_values]
+    clip_values = [all_metrics[cfg]['clip'] for cfg in cfg_values]
+    refclip_values = [all_metrics[cfg]['refclip'] for cfg in cfg_values]
     
-    # Prepare data arrays for each metric
-    fid_scores = np.zeros((num_runs, len(cfg_values)))
-    is_scores = np.zeros((num_runs, len(cfg_values)))
-    is_stds = np.zeros((num_runs, len(cfg_values)))
-    clip_scores = np.zeros((num_runs, len(cfg_values)))
-    refclip_scores = np.zeros((num_runs, len(cfg_values)))
+    # Create figure with GridSpec for better control over subplot alignment
+    fig = plt.figure(figsize=(12, 10))
+    gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.25, hspace=0.3)
     
-    # Fill arrays with data from all runs
-    for run in range(num_runs):
-        for i, cfg in enumerate(cfg_values):
-            fid_scores[run, i] = all_metrics[run][cfg]['fid']/10.0  # Normalize FID
-            is_scores[run, i] = all_metrics[run][cfg]['is_mean']
-            is_stds[run, i] = all_metrics[run][cfg]['is_std']
-            clip_scores[run, i] = all_metrics[run][cfg]['clip_score']
-            refclip_scores[run, i] = all_metrics[run][cfg]['refclip_score']
+    fig.suptitle('Image Generation Quality Metrics vs. CFG Scale', 
+                fontsize=20, fontweight='bold', color=GREY_900, y=0.98)
     
-    # Calculate means and standard deviations across runs
-    fid_means = np.mean(fid_scores, axis=0)
-    fid_stds = np.std(fid_scores, axis=0)
-    is_means = np.mean(is_scores, axis=0)
-    is_run_stds = np.std(is_scores, axis=0)
-    clip_means = np.mean(clip_scores, axis=0)
-    clip_stds = np.std(clip_scores, axis=0)
-    refclip_means = np.mean(refclip_scores, axis=0)
-    refclip_stds = np.std(refclip_scores, axis=0)
+    # Create a list to store all axes for later synchronization
+    all_axes = []
     
-    # Invert FID scores (higher is better)
-    max_fid = np.max(fid_means + fid_stds) + 1  # Add 1 for padding
-    fid_means = max_fid - fid_means
+    # FID plot (lower is better)
+    ax1 = fig.add_subplot(gs[0, 0])
+    all_axes.append(ax1)
+    ax1.set_facecolor('white')
+    ax1.plot(cfg_values, fid_values, 'o-', color=PRIMARY, linewidth=2.5, markersize=10)
+    ax1.set_title('FID Score (lower is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax1.set_xlabel('CFG Scale', fontsize=14, fontweight='bold', color=GREY_800)
+    ax1.set_ylabel('FID', fontsize=14, fontweight='bold', color=GREY_800)
+    ax1.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax1.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Create square figure with two y-axes
-    fig, ax1 = plt.subplots(figsize=(8, 8))
-    ax2 = ax1.twinx()
+    # Find and mark the best (lowest) FID value
+    best_fid_idx = np.argmin(fid_values)
+    best_fid_cfg = cfg_values[best_fid_idx]
+    best_fid = fid_values[best_fid_idx]
+    ax1.plot(best_fid_cfg, best_fid, 'o', color=PRIMARY, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax1.annotate(f'Best: {best_fid:.2f}', 
+               xy=(best_fid_cfg, best_fid), 
+               xytext=(10, -20),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=PRIMARY,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    # Plot FID and IS on primary y-axis with confidence regions
-    ln1 = ax1.plot(cfg_values, fid_means, 'b-o', label='Inversed Normalized FID ↑', linewidth=2)
-    ax1.fill_between(cfg_values, 
-                     fid_means - fid_stds, 
-                     fid_means + fid_stds, 
-                     color='blue', alpha=0.2)
+    # Add shaded region for good FID values
+    ax1.axhspan(0, 50, alpha=0.2, color=SUCCESS)
+    ax1.axhspan(50, 100, alpha=0.2, color=WARNING)
+    ax1.axhspan(100, max(fid_values) * 1.1, alpha=0.2, color=ERROR)
     
-    ln2 = ax1.plot(cfg_values, is_means, 'g-o', label='Inception Score ↑', linewidth=2)
-    # Combine both sources of variance for IS (run variance and internal variance)
-    total_is_std = np.sqrt(is_run_stds**2 + np.mean(is_stds, axis=0)**2)
-    ax1.fill_between(cfg_values,
-                     is_means - total_is_std,
-                     is_means + total_is_std,
-                     color='green', alpha=0.2)
+    # Inception Score plot (higher is better)
+    ax2 = fig.add_subplot(gs[0, 1])
+    all_axes.append(ax2)
+    ax2.set_facecolor('white')
+    ax2.plot(cfg_values, is_values, 'o-', color=SUCCESS, linewidth=2.5, markersize=10)
+    ax2.set_title('Inception Score (higher is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax2.set_xlabel('CFG Scale', fontsize=14, fontweight='bold', color=GREY_800)
+    ax2.set_ylabel('IS', fontsize=14, fontweight='bold', color=GREY_800)
+    ax2.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax2.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Plot CLIP scores on secondary y-axis with confidence regions
-    ln3 = ax2.plot(cfg_values, clip_means, 'r-o', label='CLIP Score ↑', linewidth=2)
-    ax2.fill_between(cfg_values,
-                     clip_means - clip_stds,
-                     clip_means + clip_stds,
-                     color='red', alpha=0.2)
+    # Find and mark the best (highest) IS value
+    best_is_idx = np.argmax(is_values)
+    best_is_cfg = cfg_values[best_is_idx]
+    best_is = is_values[best_is_idx]
+    ax2.plot(best_is_cfg, best_is, 'o', color=SUCCESS, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax2.annotate(f'Best: {best_is:.2f}', 
+               xy=(best_is_cfg, best_is), 
+               xytext=(10, 10),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=SUCCESS,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    ln4 = ax2.plot(cfg_values, refclip_means, 'm-o', label='RefCLIP Score ↑', linewidth=2)
-    ax2.fill_between(cfg_values,
-                     refclip_means - refclip_stds,
-                     refclip_means + refclip_stds,
-                     color='magenta', alpha=0.2)
+    # CLIP Score plot (higher is better)
+    ax3 = fig.add_subplot(gs[1, 0])
+    all_axes.append(ax3)
+    ax3.set_facecolor('white')
+    ax3.plot(cfg_values, clip_values, 'o-', color=ERROR, linewidth=2.5, markersize=10)
+    ax3.set_title('CLIP Score (higher is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax3.set_xlabel('CFG Scale', fontsize=14, fontweight='bold', color=GREY_800)
+    ax3.set_ylabel('CLIP Score', fontsize=14, fontweight='bold', color=GREY_800)
+    ax3.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax3.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Customize plot
-    ax1.grid(True, linestyle='--', alpha=0.7)
-    ax1.set_xlabel('CFG Value', fontsize=12)
-    ax1.set_ylabel('FID and IS Scores', fontsize=12)
-    ax2.set_ylabel('RefCLIP and CLIP Scores', fontsize=12)
-    plt.title(f'Evaluation Metrics vs CFG Value\n(Mean ± Std over {num_runs} runs)', fontsize=14, pad=20)
+    # Find and mark the best (highest) CLIP value
+    best_clip_idx = np.argmax(clip_values)
+    best_clip_cfg = cfg_values[best_clip_idx]
+    best_clip = clip_values[best_clip_idx]
+    ax3.plot(best_clip_cfg, best_clip, 'o', color=ERROR, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax3.annotate(f'Best: {best_clip:.4f}', 
+               xy=(best_clip_cfg, best_clip), 
+               xytext=(10, 10),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=ERROR,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    # Adjust y-axis limits to make room for legend
-    ax1.set_ylim(top=max(np.max(is_means + total_is_std), np.max(fid_means + fid_stds)) * 1.2)
-    ax2.set_ylim(top=max(np.max(clip_means + clip_stds), np.max(refclip_means + refclip_stds)) * 1.2)
+    # RefCLIP Score plot (higher is better)
+    ax4 = fig.add_subplot(gs[1, 1])
+    all_axes.append(ax4)
+    ax4.set_facecolor('white')
+    ax4.plot(cfg_values, refclip_values, 'o-', color=ACCENT, linewidth=2.5, markersize=10)
+    ax4.set_title('RefCLIP Score (higher is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax4.set_xlabel('CFG Scale', fontsize=14, fontweight='bold', color=GREY_800)
+    ax4.set_ylabel('RefCLIP Score', fontsize=14, fontweight='bold', color=GREY_800)
+    ax4.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax4.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Combine legends from both axes
-    lns = ln1 + ln2 + ln3 + ln4
-    labs = [l.get_label() for l in lns]
-    ax1.legend(lns, labs, loc='upper right', bbox_to_anchor=(0.98, 0.98),
-              fontsize=10, framealpha=0.9, edgecolor='white')
+    # Find and mark the best (highest) RefCLIP value
+    best_refclip_idx = np.argmax(refclip_values)
+    best_refclip_cfg = cfg_values[best_refclip_idx]
+    best_refclip = refclip_values[best_refclip_idx]
+    ax4.plot(best_refclip_cfg, best_refclip, 'o', color=ACCENT, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax4.annotate(f'Best: {best_refclip:.4f}', 
+               xy=(best_refclip_cfg, best_refclip), 
+               xytext=(10, 10),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=ACCENT,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    # Adjust layout
-    plt.tight_layout()
+    # Ensure all x-axes have the same limits for perfect alignment
+    all_x_ticks = set()
+    for ax in all_axes:
+        all_x_ticks.update(ax.get_xticks())
+    all_x_ticks = sorted(list(all_x_ticks))
     
-    # Save plot
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    for ax in all_axes:
+        ax.set_xticks(cfg_values)  # Use the actual CFG values for ticks
+    
+    # Use constrained_layout instead of tight_layout for better alignment
+    fig.set_constrained_layout(True)
+    
+    # Save figure with high quality
+    plt.savefig(output_path, dpi=300)
     plt.close()
     
-    print(f"Plot saved to {output_path}")
-    
-    # Print statistical summary
-    print("\nStatistical Summary:")
-    for i, cfg in enumerate(cfg_values):
-        print(f"\nCFG {cfg}:")
-        print(f"FID: {fid_scores.mean(axis=0)[i]*10:.2f} ± {fid_stds[i]*10:.2f}")
-        print(f"IS: {is_means[i]:.2f} ± {total_is_std[i]:.2f}")
-        print(f"CLIP: {clip_means[i]:.4f} ± {clip_stds[i]:.4f}")
-        print(f"RefCLIP: {refclip_means[i]:.4f} ± {refclip_stds[i]:.4f}")
+    print(f"Metrics plot saved to {output_path}")
 
 def plot_step_metrics(all_metrics, output_path="step_evaluation_results.png"):
-    """Plot FID, IS, and CLIP scores with confidence regions from multiple runs for different step counts"""
-    step_values = sorted(all_metrics[0].keys())
-    num_runs = len(all_metrics)
+    """Plot evaluation metrics for different step values"""
+    # Extract metrics
+    step_values = sorted(all_metrics.keys())
+    fid_values = [all_metrics[step]['fid'] for step in step_values]
+    is_values = [all_metrics[step]['is'] for step in step_values]
+    clip_values = [all_metrics[step]['clip'] for step in step_values]
+    refclip_values = [all_metrics[step]['refclip'] for step in step_values]
     
-    # Prepare data arrays for each metric
-    fid_scores = np.zeros((num_runs, len(step_values)))
-    is_scores = np.zeros((num_runs, len(step_values)))
-    is_stds = np.zeros((num_runs, len(step_values)))
-    clip_scores = np.zeros((num_runs, len(step_values)))
-    refclip_scores = np.zeros((num_runs, len(step_values)))
+    # Create figure with GridSpec for better control over subplot alignment
+    fig = plt.figure(figsize=(12, 10))
+    gs = gridspec.GridSpec(2, 2, figure=fig, wspace=0.25, hspace=0.3)
     
-    # Fill arrays with data from all runs
-    for run in range(num_runs):
-        for i, step in enumerate(step_values):
-            fid_scores[run, i] = all_metrics[run][step]['fid']/10.0  # Normalize FID
-            is_scores[run, i] = all_metrics[run][step]['is_mean']
-            is_stds[run, i] = all_metrics[run][step]['is_std']
-            clip_scores[run, i] = all_metrics[run][step]['clip_score']
-            refclip_scores[run, i] = all_metrics[run][step]['refclip_score']
+    fig.suptitle('Image Generation Quality Metrics vs. Diffusion Steps', 
+                fontsize=20, fontweight='bold', color=GREY_900, y=0.98)
     
-    # Calculate means and standard deviations across runs
-    fid_means = np.mean(fid_scores, axis=0)
-    fid_stds = np.std(fid_scores, axis=0)
-    is_means = np.mean(is_scores, axis=0)
-    is_run_stds = np.std(is_scores, axis=0)
-    clip_means = np.mean(clip_scores, axis=0)
-    clip_stds = np.std(clip_scores, axis=0)
-    refclip_means = np.mean(refclip_scores, axis=0)
-    refclip_stds = np.std(refclip_scores, axis=0)
+    # Create a list to store all axes for later synchronization
+    all_axes = []
     
-    # Invert FID scores (higher is better)
-    max_fid = np.max(fid_means + fid_stds) + 1  # Add 1 for padding
-    fid_means = max_fid - fid_means
+    # FID plot (lower is better)
+    ax1 = fig.add_subplot(gs[0, 0])
+    all_axes.append(ax1)
+    ax1.set_facecolor('white')
+    ax1.plot(step_values, fid_values, 'o-', color=PRIMARY, linewidth=2.5, markersize=10)
+    ax1.set_title('FID Score (lower is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax1.set_xlabel('Diffusion Steps', fontsize=14, fontweight='bold', color=GREY_800)
+    ax1.set_ylabel('FID', fontsize=14, fontweight='bold', color=GREY_800)
+    ax1.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax1.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Create square figure with two y-axes
-    fig, ax1 = plt.subplots(figsize=(8, 8))
-    ax2 = ax1.twinx()
+    # Find and mark the best (lowest) FID value
+    best_fid_idx = np.argmin(fid_values)
+    best_fid_step = step_values[best_fid_idx]
+    best_fid = fid_values[best_fid_idx]
+    ax1.plot(best_fid_step, best_fid, 'o', color=PRIMARY, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax1.annotate(f'Best: {best_fid:.2f}', 
+               xy=(best_fid_step, best_fid), 
+               xytext=(10, -20),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=PRIMARY,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    # Plot FID and IS on primary y-axis with confidence regions
-    ln1 = ax1.plot(step_values, fid_means, 'b-o', label='Inversed Normalized FID ↑', linewidth=2)
-    ax1.fill_between(step_values, 
-                     fid_means - fid_stds, 
-                     fid_means + fid_stds, 
-                     color='blue', alpha=0.2)
+    # Add shaded region for good FID values
+    ax1.axhspan(0, 50, alpha=0.2, color=SUCCESS)
+    ax1.axhspan(50, 100, alpha=0.2, color=WARNING)
+    ax1.axhspan(100, max(fid_values) * 1.1, alpha=0.2, color=ERROR)
     
-    ln2 = ax1.plot(step_values, is_means, 'g-o', label='Inception Score ↑', linewidth=2)
-    # Combine both sources of variance for IS
-    total_is_std = np.sqrt(is_run_stds**2 + np.mean(is_stds, axis=0)**2)
-    ax1.fill_between(step_values,
-                     is_means - total_is_std,
-                     is_means + total_is_std,
-                     color='green', alpha=0.2)
+    # Inception Score plot (higher is better)
+    ax2 = fig.add_subplot(gs[0, 1])
+    all_axes.append(ax2)
+    ax2.set_facecolor('white')
+    ax2.plot(step_values, is_values, 'o-', color=SUCCESS, linewidth=2.5, markersize=10)
+    ax2.set_title('Inception Score (higher is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax2.set_xlabel('Diffusion Steps', fontsize=14, fontweight='bold', color=GREY_800)
+    ax2.set_ylabel('IS', fontsize=14, fontweight='bold', color=GREY_800)
+    ax2.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax2.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Plot CLIP scores on secondary y-axis with confidence regions
-    ln3 = ax2.plot(step_values, clip_means, 'r-o', label='CLIP Score ↑', linewidth=2)
-    ax2.fill_between(step_values,
-                     clip_means - clip_stds,
-                     clip_means + clip_stds,
-                     color='red', alpha=0.2)
+    # Find and mark the best (highest) IS value
+    best_is_idx = np.argmax(is_values)
+    best_is_step = step_values[best_is_idx]
+    best_is = is_values[best_is_idx]
+    ax2.plot(best_is_step, best_is, 'o', color=SUCCESS, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax2.annotate(f'Best: {best_is:.2f}', 
+               xy=(best_is_step, best_is), 
+               xytext=(10, 10),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=SUCCESS,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    ln4 = ax2.plot(step_values, refclip_means, 'm-o', label='RefCLIP Score ↑', linewidth=2)
-    ax2.fill_between(step_values,
-                     refclip_means - refclip_stds,
-                     refclip_means + refclip_stds,
-                     color='magenta', alpha=0.2)
+    # CLIP Score plot (higher is better)
+    ax3 = fig.add_subplot(gs[1, 0])
+    all_axes.append(ax3)
+    ax3.set_facecolor('white')
+    ax3.plot(step_values, clip_values, 'o-', color=ERROR, linewidth=2.5, markersize=10)
+    ax3.set_title('CLIP Score (higher is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax3.set_xlabel('Diffusion Steps', fontsize=14, fontweight='bold', color=GREY_800)
+    ax3.set_ylabel('CLIP Score', fontsize=14, fontweight='bold', color=GREY_800)
+    ax3.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax3.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Customize plot
-    ax1.grid(True, linestyle='--', alpha=0.7)
-    ax1.set_xlabel('Number of Steps', fontsize=12)
-    ax1.set_ylabel('FID and IS Scores', fontsize=12)
-    ax2.set_ylabel('RefCLIP and CLIP Scores', fontsize=12)
-    plt.title(f'Evaluation Metrics vs Steps (CFG=7)\n(Mean ± Std over {num_runs} runs)', fontsize=14, pad=20)
+    # Find and mark the best (highest) CLIP value
+    best_clip_idx = np.argmax(clip_values)
+    best_clip_step = step_values[best_clip_idx]
+    best_clip = clip_values[best_clip_idx]
+    ax3.plot(best_clip_step, best_clip, 'o', color=ERROR, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax3.annotate(f'Best: {best_clip:.4f}', 
+               xy=(best_clip_step, best_clip), 
+               xytext=(10, 10),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=ERROR,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    # Use logarithmic scale for x-axis
-    ax1.set_xscale('log')
+    # RefCLIP Score plot (higher is better)
+    ax4 = fig.add_subplot(gs[1, 1])
+    all_axes.append(ax4)
+    ax4.set_facecolor('white')
+    ax4.plot(step_values, refclip_values, 'o-', color=ACCENT, linewidth=2.5, markersize=10)
+    ax4.set_title('RefCLIP Score (higher is better)', fontsize=16, fontweight='bold', color=GREY_900, pad=10)
+    ax4.set_xlabel('Diffusion Steps', fontsize=14, fontweight='bold', color=GREY_800)
+    ax4.set_ylabel('RefCLIP Score', fontsize=14, fontweight='bold', color=GREY_800)
+    ax4.grid(True, linestyle='--', alpha=0.3, color=GREY_300)
+    ax4.tick_params(axis='both', which='major', labelsize=12, colors=GREY_800)
     
-    # Adjust y-axis limits to make room for legend
-    ax1.set_ylim(top=max(np.max(is_means + total_is_std), np.max(fid_means + fid_stds)) * 1.2)
-    ax2.set_ylim(top=max(np.max(clip_means + clip_stds), np.max(refclip_means + refclip_stds)) * 1.2)
+    # Find and mark the best (highest) RefCLIP value
+    best_refclip_idx = np.argmax(refclip_values)
+    best_refclip_step = step_values[best_refclip_idx]
+    best_refclip = refclip_values[best_refclip_idx]
+    ax4.plot(best_refclip_step, best_refclip, 'o', color=ACCENT, markersize=15, 
+           markeredgecolor=GREY_800, markeredgewidth=2)
+    ax4.annotate(f'Best: {best_refclip:.4f}', 
+               xy=(best_refclip_step, best_refclip), 
+               xytext=(10, 10),
+               textcoords='offset points',
+               fontsize=12, fontweight='bold',
+               color=ACCENT,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    # Combine legends from both axes
-    lns = ln1 + ln2 + ln3 + ln4
-    labs = [l.get_label() for l in lns]
-    ax1.legend(lns, labs, loc='upper right', bbox_to_anchor=(0.98, 0.98),
-              fontsize=10, framealpha=0.9, edgecolor='white')
+    # Ensure all x-axes have the same limits for perfect alignment
+    all_x_ticks = set()
+    for ax in all_axes:
+        all_x_ticks.update(ax.get_xticks())
+    all_x_ticks = sorted(list(all_x_ticks))
     
-    # Adjust layout
-    plt.tight_layout()
+    for ax in all_axes:
+        ax.set_xticks(step_values)  # Use the actual step values for ticks
     
-    # Save plot
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    # Use constrained_layout instead of tight_layout for better alignment
+    fig.set_constrained_layout(True)
+    
+    # Save figure with high quality
+    plt.savefig(output_path, dpi=300)
     plt.close()
     
-    print(f"Plot saved to {output_path}")
-    
-    # Print statistical summary
-    print("\nStatistical Summary (Steps):")
-    for i, step in enumerate(step_values):
-        print(f"\nSteps {step}:")
-        print(f"FID: {fid_scores.mean(axis=0)[i]*10:.2f} ± {fid_stds[i]*10:.2f}")
-        print(f"IS: {is_means[i]:.2f} ± {total_is_std[i]:.2f}")
-        print(f"CLIP: {clip_means[i]:.4f} ± {clip_stds[i]:.4f}")
-        print(f"RefCLIP: {refclip_means[i]:.4f} ± {refclip_stds[i]:.4f}")
+    print(f"Step metrics plot saved to {output_path}")
 
 def get_folder_path(cfg=7, steps=None):
     """Get the folder path based on whether it's a CFG or step variation"""

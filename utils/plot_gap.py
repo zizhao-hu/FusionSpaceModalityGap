@@ -4,6 +4,10 @@ from sklearn.decomposition import PCA
 from matplotlib.lines import Line2D
 from PIL import Image
 
+# Import color constants
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
+from utils.colors import *
+
 def rmg_cosine_dissimilarity(x, y):
     """
     Compute the RMG value from the given formula, but using
@@ -89,16 +93,16 @@ def hide_axis_lines(ax):
 def plot_unit_sphere(ax):
     u, v = np.meshgrid(np.linspace(0, 2*np.pi, 30), np.linspace(0, np.pi, 15))
     x, y, z = np.cos(u)*np.sin(v), np.sin(u)*np.sin(v), np.cos(v)
-    ax.plot_surface(x, y, z, rstride=1, cstride=1, color='whitesmoke', alpha=0.15,
-                     edgecolor='grey', linewidth=0.5, antialiased=True)
+    ax.plot_surface(x, y, z, rstride=1, cstride=1, color=GREY_50, alpha=0.15,
+                     edgecolor=GREY_400, linewidth=0.5, antialiased=True)
 
 def draw_coordinate_arrows(ax, length=1.5):
-    ax.quiver(0,0,0, length,0,0, color='black', arrow_length_ratio=0.1, linewidth=1.5)
-    ax.quiver(0,0,0, 0,length,0, color='black', arrow_length_ratio=0.1, linewidth=1.5)
-    ax.quiver(0,0,0, 0,0,length, color='black', arrow_length_ratio=0.1, linewidth=1.5)
-    ax.text(length, 0, 0, "PC1", color="black", fontsize=20, fontweight='bold')
-    ax.text(0, length, 0, "PC2", color="black", fontsize=20, fontweight='bold')
-    ax.text(0, 0, length, "PC3", color="black", fontsize=20, fontweight='bold')
+    ax.quiver(0,0,0, length,0,0, color=GREY_800, arrow_length_ratio=0.1, linewidth=1.5)
+    ax.quiver(0,0,0, 0,length,0, color=GREY_800, arrow_length_ratio=0.1, linewidth=1.5)
+    ax.quiver(0,0,0, 0,0,length, color=GREY_800, arrow_length_ratio=0.1, linewidth=1.5)
+    ax.text(length, 0, 0, "PC1", color=GREY_900, fontsize=20, fontweight='bold')
+    ax.text(0, length, 0, "PC2", color=GREY_900, fontsize=20, fontweight='bold')
+    ax.text(0, 0, length, "PC3", color=GREY_900, fontsize=20, fontweight='bold')
 
 # Compute global cosine similarity range from real and generated data
 global_cos = [cosine_similarity(real_text_emb[j], real_img_emb[j]) for j in range(num_samples)]
@@ -187,21 +191,21 @@ def process_subplot(ax, cap_emb, img_emb, title):
 
 # Function to create and overlay the metrics figure
 def create_metrics_figure(main_output_path):
-    # Create a figure-like structure for the metrics - restore original size
-    metrics_fig = plt.figure(figsize=(10, 12))  # Keep the taller size from previous edit
+    # Create a figure with GridSpec for better control over subplot alignment
+    metrics_fig = plt.figure(figsize=(10, 12))
     
-    # Reduce the space between the two plots
-    gs_metrics = plt.GridSpec(1, 2, figure=metrics_fig, wspace=0.05)
+    # Use GridSpec with consistent spacing parameters
+    gs_metrics = gridspec.GridSpec(1, 2, figure=metrics_fig, wspace=0.15)
     
     # Left subplot for CFG values
     ax_cfg = metrics_fig.add_subplot(gs_metrics[0, 0])
     ax_cfg.set_facecolor('white')
-    ax_cfg.grid(True, linestyle='--', alpha=0.7, linewidth=1.5)
+    ax_cfg.grid(True, linestyle='--', alpha=0.3, color=GREY_300, linewidth=1.0)
     
     # Right subplot for Steps values
     ax_steps = metrics_fig.add_subplot(gs_metrics[0, 1])
     ax_steps.set_facecolor('white')
-    ax_steps.grid(True, linestyle='--', alpha=0.7, linewidth=1.5)
+    ax_steps.grid(True, linestyle='--', alpha=0.3, color=GREY_300, linewidth=1.0)
     
     # Get real image metrics for reference line
     real_avg_cos, real_l2m, real_rmg, _ = compute_metrics(real_text_emb, real_img_emb)
@@ -227,51 +231,51 @@ def create_metrics_figure(main_output_path):
         best_var_idx = np.argmax(var_values)
         
         # Use thicker lines and larger markers - no normalization for VAR
-        line1, = ax_cfg.plot(cfg_values, cosd_values, 'o-', color='blue', 
-                          linewidth=4, markersize=12)
-        line2, = ax_cfg.plot(cfg_values, l2m_values, 's-', color='red', 
-                          linewidth=4, markersize=12)
-        line3, = ax_cfg.plot(cfg_values, rmg_values, '^-', color='green', 
-                          linewidth=4, markersize=12)
-        line4, = ax_cfg.plot(cfg_values, var_values, 'D-', color='purple', 
-                          linewidth=4, markersize=12)
+        line1, = ax_cfg.plot(cfg_values, cosd_values, 'o-', color=PRIMARY, 
+                          linewidth=3, markersize=10)
+        line2, = ax_cfg.plot(cfg_values, l2m_values, 's-', color=ERROR, 
+                          linewidth=3, markersize=10)
+        line3, = ax_cfg.plot(cfg_values, rmg_values, '^-', color=SUCCESS, 
+                          linewidth=3, markersize=10)
+        line4, = ax_cfg.plot(cfg_values, var_values, 'D-', color=ACCENT, 
+                          linewidth=3, markersize=10)
         
         # Mark best values with larger markers and black edge
-        ax_cfg.plot(cfg_values[best_cosd_idx], cosd_values[best_cosd_idx], 'o', color='blue',
-                 markersize=18, markeredgecolor='black', markeredgewidth=2.5)
-        ax_cfg.plot(cfg_values[best_l2m_idx], l2m_values[best_l2m_idx], 's', color='red',
-                 markersize=18, markeredgecolor='black', markeredgewidth=2.5)
-        ax_cfg.plot(cfg_values[best_rmg_idx], rmg_values[best_rmg_idx], '^', color='green',
-                 markersize=18, markeredgecolor='black', markeredgewidth=2.5)
-        ax_cfg.plot(cfg_values[best_var_idx], var_values[best_var_idx], 'D', color='purple',
-                 markersize=18, markeredgecolor='black', markeredgewidth=2.5)
+        ax_cfg.plot(cfg_values[best_cosd_idx], cosd_values[best_cosd_idx], 'o', color=PRIMARY,
+                 markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
+        ax_cfg.plot(cfg_values[best_l2m_idx], l2m_values[best_l2m_idx], 's', color=ERROR,
+                 markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
+        ax_cfg.plot(cfg_values[best_rmg_idx], rmg_values[best_rmg_idx], '^', color=SUCCESS,
+                 markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
+        ax_cfg.plot(cfg_values[best_var_idx], var_values[best_var_idx], 'D', color=ACCENT,
+                 markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
         
         # Add value labels above the best points - moved higher and non-bold
         ax_cfg.annotate(f"{cosd_values[best_cosd_idx]:.3f}", 
                      (cfg_values[best_cosd_idx], cosd_values[best_cosd_idx]),
                      xytext=(0, 20), textcoords='offset points', ha='center', 
-                     fontsize=18, fontweight='normal', color='blue')
+                     fontsize=12, fontweight='normal', color=PRIMARY)
         
         ax_cfg.annotate(f"{l2m_values[best_l2m_idx]:.3f}", 
                      (cfg_values[best_l2m_idx], l2m_values[best_l2m_idx]),
                      xytext=(0, 20), textcoords='offset points', ha='center', 
-                     fontsize=18, fontweight='normal', color='red')
+                     fontsize=12, fontweight='normal', color=ERROR)
         
         ax_cfg.annotate(f"{rmg_values[best_rmg_idx]:.3f}", 
                      (cfg_values[best_rmg_idx], rmg_values[best_rmg_idx]),
                      xytext=(0, 20), textcoords='offset points', ha='center', 
-                     fontsize=18, fontweight='normal', color='green')
+                     fontsize=12, fontweight='normal', color=SUCCESS)
         
         ax_cfg.annotate(f"{var_values[best_var_idx]:.3f}", 
                      (cfg_values[best_var_idx], var_values[best_var_idx]),
                      xytext=(0, 20), textcoords='offset points', ha='center', 
-                     fontsize=18, fontweight='normal', color='purple')
+                     fontsize=12, fontweight='normal', color=ACCENT)
         
         # Add reference lines for real image values with labels - thicker lines
-        ax_cfg.axhline(y=real_avg_cos, color='blue', linestyle='--', alpha=0.7, linewidth=3)
-        ax_cfg.axhline(y=real_l2m, color='red', linestyle='--', alpha=0.7, linewidth=3)
-        ax_cfg.axhline(y=real_rmg, color='green', linestyle='--', alpha=0.7, linewidth=3)
-        ax_cfg.axhline(y=real_total_pc_var, color='purple', linestyle='--', alpha=0.7, linewidth=3)
+        ax_cfg.axhline(y=real_avg_cos, color=PRIMARY, linestyle='--', alpha=0.7, linewidth=2)
+        ax_cfg.axhline(y=real_l2m, color=ERROR, linestyle='--', alpha=0.7, linewidth=2)
+        ax_cfg.axhline(y=real_rmg, color=SUCCESS, linestyle='--', alpha=0.7, linewidth=2)
+        ax_cfg.axhline(y=real_total_pc_var, color=ACCENT, linestyle='--', alpha=0.7, linewidth=2)
   
         # Collect legend handles
         legend_handles = [line1, line2, line3, line4]
@@ -295,61 +299,61 @@ def create_metrics_figure(main_output_path):
         best_var_idx = np.argmax(var_values)
         
         # Use thicker lines and larger markers - no normalization for VAR
-        ax_steps.plot(steps_values, cosd_values, 'o-', color='blue', 
-                    linewidth=4, markersize=12)
-        ax_steps.plot(steps_values, l2m_values, 's-', color='red', 
-                    linewidth=4, markersize=12)
-        ax_steps.plot(steps_values, rmg_values, '^-', color='green', 
-                    linewidth=4, markersize=12)
-        ax_steps.plot(steps_values, var_values, 'D-', color='purple', 
-                    linewidth=4, markersize=12)
+        ax_steps.plot(steps_values, cosd_values, 'o-', color=PRIMARY, 
+                    linewidth=3, markersize=10)
+        ax_steps.plot(steps_values, l2m_values, 's-', color=ERROR, 
+                    linewidth=3, markersize=10)
+        ax_steps.plot(steps_values, rmg_values, '^-', color=SUCCESS, 
+                    linewidth=3, markersize=10)
+        ax_steps.plot(steps_values, var_values, 'D-', color=ACCENT, 
+                    linewidth=3, markersize=10)
         
         # Mark best values with larger markers and black edge
-        ax_steps.plot(steps_values[best_cosd_idx], cosd_values[best_cosd_idx], 'o', color='blue',
-                   markersize=18, markeredgecolor='black', markeredgewidth=2.5)
-        ax_steps.plot(steps_values[best_l2m_idx], l2m_values[best_l2m_idx], 's', color='red',
-                   markersize=18, markeredgecolor='black', markeredgewidth=2.5)
-        ax_steps.plot(steps_values[best_rmg_idx], rmg_values[best_rmg_idx], '^', color='green',
-                   markersize=18, markeredgecolor='black', markeredgewidth=2.5)
-        ax_steps.plot(steps_values[best_var_idx], var_values[best_var_idx], 'D', color='purple',
-                   markersize=18, markeredgecolor='black', markeredgewidth=2.5)
+        ax_steps.plot(steps_values[best_cosd_idx], cosd_values[best_cosd_idx], 'o', color=PRIMARY,
+                   markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
+        ax_steps.plot(steps_values[best_l2m_idx], l2m_values[best_l2m_idx], 's', color=ERROR,
+                   markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
+        ax_steps.plot(steps_values[best_rmg_idx], rmg_values[best_rmg_idx], '^', color=SUCCESS,
+                   markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
+        ax_steps.plot(steps_values[best_var_idx], var_values[best_var_idx], 'D', color=ACCENT,
+                   markersize=16, markeredgecolor=GREY_800, markeredgewidth=2.0)
         
         # Add value labels above the best points - moved higher and non-bold
         ax_steps.annotate(f"{cosd_values[best_cosd_idx]:.3f}", 
                        (steps_values[best_cosd_idx], cosd_values[best_cosd_idx]),
                        xytext=(0, 20), textcoords='offset points', ha='center', 
-                       fontsize=18, fontweight='normal', color='blue')
+                       fontsize=12, fontweight='normal', color=PRIMARY)
         
         ax_steps.annotate(f"{l2m_values[best_l2m_idx]:.3f}", 
                        (steps_values[best_l2m_idx], l2m_values[best_l2m_idx]),
                        xytext=(0, 20), textcoords='offset points', ha='center', 
-                       fontsize=18, fontweight='normal', color='red')
+                       fontsize=12, fontweight='normal', color=ERROR)
         
         ax_steps.annotate(f"{rmg_values[best_rmg_idx]:.3f}", 
                        (steps_values[best_rmg_idx], rmg_values[best_rmg_idx]),
                        xytext=(0, 20), textcoords='offset points', ha='center', 
-                       fontsize=18, fontweight='normal', color='green')
+                       fontsize=12, fontweight='normal', color=SUCCESS)
         
         ax_steps.annotate(f"{var_values[best_var_idx]:.3f}", 
                        (steps_values[best_var_idx], var_values[best_var_idx]),
                        xytext=(0, 20), textcoords='offset points', ha='center', 
-                       fontsize=18, fontweight='normal', color='purple')
+                       fontsize=12, fontweight='normal', color=ACCENT)
         
         # Add reference lines for real image values with increased visibility - thicker lines
-        ax_steps.axhline(y=real_avg_cos, color='blue', linestyle='--', alpha=0.7, linewidth=3)
-        ax_steps.axhline(y=real_l2m, color='red', linestyle='--', alpha=0.7, linewidth=3)
-        ax_steps.axhline(y=real_rmg, color='green', linestyle='--', alpha=0.7, linewidth=3)
-        ax_steps.axhline(y=real_total_pc_var, color='purple', linestyle='--', alpha=0.7, linewidth=3)
+        ax_steps.axhline(y=real_avg_cos, color=PRIMARY, linestyle='--', alpha=0.7, linewidth=2)
+        ax_steps.axhline(y=real_l2m, color=ERROR, linestyle='--', alpha=0.7, linewidth=2)
+        ax_steps.axhline(y=real_rmg, color=SUCCESS, linestyle='--', alpha=0.7, linewidth=2)
+        ax_steps.axhline(y=real_total_pc_var, color=ACCENT, linestyle='--', alpha=0.7, linewidth=2)
         
         # Add text labels for real values on the right side - larger text
-        ax_steps.text(steps_values[-1], real_avg_cos, f"Real: {real_avg_cos:.3f}", color='blue', fontsize=18, 
+        ax_steps.text(steps_values[-1], real_avg_cos, f"Real: {real_avg_cos:.3f}", color=PRIMARY, fontsize=12, 
                    fontweight='bold', ha='right', va='bottom')
-        ax_steps.text(steps_values[-1], real_l2m, f"Real: {real_l2m:.3f}", color='red', fontsize=18, 
+        ax_steps.text(steps_values[-1], real_l2m, f"Real: {real_l2m:.3f}", color=ERROR, fontsize=12, 
                    fontweight='bold', ha='right', va='bottom')
         # Position RMG label below the dash line
-        ax_steps.text(steps_values[-1], real_rmg, f"Real: {real_rmg:.3f}", color='green', fontsize=18, 
+        ax_steps.text(steps_values[-1], real_rmg, f"Real: {real_rmg:.3f}", color=SUCCESS, fontsize=12, 
                    fontweight='bold', ha='right', va='top')
-        ax_steps.text(steps_values[-1], real_total_pc_var, f"Real: {real_total_pc_var:.3f}", color='purple', fontsize=18, 
+        ax_steps.text(steps_values[-1], real_total_pc_var, f"Real: {real_total_pc_var:.3f}", color=ACCENT, fontsize=12, 
                    fontweight='bold', ha='right', va='bottom')
     
     # Set labels with larger font sizes - only x-axis labels, no titles or y-axis labels
@@ -378,12 +382,13 @@ def create_metrics_figure(main_output_path):
         legend = metrics_fig.legend(legend_handles, legend_labels, 
                          loc='upper center', bbox_to_anchor=(0.5, 0.97),
                          ncol=4, fontsize=24, frameon=True)
-        # Make legend text bold
+    
+    # Use constrained_layout instead of tight_layout for better alignment
+    metrics_fig.set_constrained_layout(True)
     
     # Save the metrics figure to a temporary file
     metrics_temp_file = "temp_metrics_plot.png"
-    metrics_fig.tight_layout(rect=[0, 0, 1, 0.85])  # Adjust rect to leave more space at top for legend
-    metrics_fig.savefig(metrics_temp_file, dpi=300, bbox_inches='tight')
+    metrics_fig.savefig(metrics_temp_file, dpi=300)
     plt.close(metrics_fig)
     
     # Now combine the two images
@@ -397,11 +402,6 @@ def create_metrics_figure(main_output_path):
     metrics_width = int(main_img.width * 0.35)  # 35% of main image width
     metrics_height = int(metrics_width * (metrics_img.height / metrics_img.width) * 0.9)  # Back to 30% taller
     metrics_img = metrics_img.resize((metrics_width, metrics_height), Image.LANCZOS)
-    
-    # Calculate the size and position for the metrics image
-    width = int(main_img.width * 0.35)  # 35% of main image width
-    # Calculate height proportionally to maintain aspect ratio but make it taller
-    height = int(width * (metrics_img.height / metrics_img.width) * 0.9)  # 10% taller
     
     # Calculate position to place metrics image (top-left corner) - move it more to the left
     x_position = 0  # 2% from left edge (reduced from 5%)
@@ -427,17 +427,19 @@ def create_metrics_figure(main_output_path):
 ncols = 3
 nrows = 2
 
-# Make the figure extremely compact
+# Create figure with GridSpec for better control over subplot alignment
 fig = plt.figure(figsize=(18, 12))
-# Reset to normal spacing
-gs = plt.GridSpec(nrows, ncols, figure=fig, wspace=-0.1, hspace=-0.1)
+# Use consistent spacing parameters for perfect alignment
+gs = plt.GridSpec(nrows, ncols, figure=fig, wspace=0.0, hspace=0.0)
 
-# Create 3D axes for all plots
+# Create 3D axes for all plots with consistent parameters
 axes = {}
 for row in range(nrows):
     for col in range(ncols):
         # Create 3D subplot for all positions
         axes[(row, col)] = fig.add_subplot(gs[row, col], projection='3d')
+        # Set consistent view angle for all 3D plots
+        axes[(row, col)].view_init(elev=30, azim=45)
 
 # Hide the 3D subplot in the second row first column
 axes[(1, 0)].axis('off')
@@ -452,6 +454,38 @@ legend_handles = [
 ]
 # Move legend to a better position to save space
 axes[(0, 0)].legend(handles=legend_handles, fontsize=24, frameon=True, loc='upper left')
+
+# Ensure all 3D plots have the same axis limits for perfect alignment
+def set_common_3d_limits(axes_dict):
+    """Set the same axis limits for all 3D axes in the dictionary."""
+    # Find the min and max for all axes
+    x_min, x_max = float('inf'), float('-inf')
+    y_min, y_max = float('inf'), float('-inf')
+    z_min, z_max = float('inf'), float('-inf')
+    
+    for key, ax in axes_dict.items():
+        if key == (1, 0):  # Skip the hidden subplot
+            continue
+        
+        x_lim = ax.get_xlim()
+        y_lim = ax.get_ylim()
+        z_lim = ax.get_zlim()
+        
+        x_min = min(x_min, x_lim[0])
+        x_max = max(x_max, x_lim[1])
+        y_min = min(y_min, y_lim[0])
+        y_max = max(y_max, y_lim[1])
+        z_min = min(z_min, z_lim[0])
+        z_max = max(z_max, z_lim[1])
+    
+    # Set the same limits for all axes
+    for key, ax in axes_dict.items():
+        if key == (1, 0):  # Skip the hidden subplot
+            continue
+        
+        ax.set_xlim(x_min, x_max)
+        ax.set_ylim(y_min, y_max)
+        ax.set_zlim(z_min, z_max)
 
 # Raise the z-order of all left plots to be on top of right plots
 for row in range(nrows):
@@ -514,12 +548,15 @@ else:
     print(f"File not found: {gen_npz}. Skipping CFG 7 with steps {step}.")
     axes[(1, 2)].axis('off')
 
-# Make the layout extremely compact with no bottom space
-plt.subplots_adjust(left=0, right=1, top=1.15, bottom=0, wspace=-0.1, hspace=-0.1)
+# Apply common limits to all 3D plots for perfect alignment
+set_common_3d_limits(axes)
+
+# Use constrained_layout instead of subplots_adjust for better alignment
+fig.set_constrained_layout(True)
 output_plot = os.path.join(data_folder, "real_cfg7_cfg20_steps_pca3d_unit_sphere.png")
 
 # Save the main figure without the metrics plot
-plt.savefig(output_plot, dpi=300, bbox_inches='tight', pad_inches=0)
+plt.savefig(output_plot, dpi=300)
 
 # Create a separate metrics figure
 create_metrics_figure(output_plot)

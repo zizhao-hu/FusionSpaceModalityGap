@@ -10,6 +10,8 @@ import random
 from diffusers import StableDiffusionPipeline, UNet2DConditionModel
 from transformers import AutoFeatureExtractor, AutoModelForImageClassification
 import seaborn as sns
+# Import the colors module from vis folder
+from utils.colors import *
 
 # Define the 10 occupations to evaluate
 OCCUPATIONS = [
@@ -25,7 +27,7 @@ OCCUPATIONS = [
     "CEO"
 ]
 
-def setup_directories(base_dir="data/coco/occupation"):
+def setup_directories(base_dir="vis/t2i/occupation"):
     """Create directories for saving generated images and results"""
     # Create base directory
     os.makedirs(base_dir, exist_ok=True)
@@ -93,7 +95,7 @@ def load_model(gen, cfg_scale=7.0):
         print(f"Error loading model for generation {gen}: {str(e)}")
         return None
 
-def generate_images_batch(pipeline, occupation, gen, num_images=100, base_dir="data/coco/occupation", cfg_scale=7.0, batch_size=4):
+def generate_images_batch(pipeline, occupation, gen, num_images=100, base_dir="vis/t2i/occupation", cfg_scale=7.0, batch_size=4):
     """Generate images for a specific occupation and generation in batches"""
     if pipeline is None:
         print(f"Skipping generation {gen} for occupation '{occupation}' as pipeline is None")
@@ -274,7 +276,7 @@ def classify_images_batch(image_paths, classifiers, batch_size=16):
     
     return results
 
-def analyze_results(results, base_dir="data/coco/occupation"):
+def analyze_results(results, base_dir="vis/t2i/occupation"):
     """Analyze the classification results and generate visualizations"""
     results_dir = os.path.join(base_dir, "results")
     os.makedirs(results_dir, exist_ok=True)
@@ -528,14 +530,6 @@ def analyze_results(results, base_dir="data/coco/occupation"):
                 if len(male_data) > 1:
                     gens, percentages = zip(*male_data)
                     changes = [percentages[i] - percentages[i-1] for i in range(1, len(percentages))]
-                    
-                    print(f"  {occupation.capitalize()}: ", end="")
-                    for i, (gen, pct) in enumerate(male_data):
-                        print(f"Gen {gen}: {pct:.1f}%", end="")
-                        if i < len(male_data) - 1:
-                            change = changes[i]
-                            print(f" → {change:+.1f}% → ", end="")
-                    print()
         
         # For each occupation, show how ethnicity percentages change
         print("\nEthnicity representation changes:")
@@ -552,14 +546,6 @@ def analyze_results(results, base_dir="data/coco/occupation"):
                 if len(ethnicity_data) > 1 and any(pct > 10 for _, pct in ethnicity_data):  # Only show if at least one generation has >10%
                     gens, percentages = zip(*ethnicity_data)
                     changes = [percentages[i] - percentages[i-1] for i in range(1, len(percentages))]
-                    
-                    print(f"  {occupation.capitalize()} - {ethnicity}: ", end="")
-                    for i, (gen, pct) in enumerate(ethnicity_data):
-                        print(f"Gen {gen}: {pct:.1f}%", end="")
-                        if i < len(ethnicity_data) - 1:
-                            change = changes[i]
-                            print(f" → {change:+.1f}% → ", end="")
-                    print()
     
     except Exception as e:
         print(f"Error during analysis: {str(e)}")
@@ -568,7 +554,7 @@ def analyze_results(results, base_dir="data/coco/occupation"):
     
     return df
 
-def create_comparative_visualization(results, base_dir="data/coco/occupation", exclude_unidentifiable=True):
+def create_comparative_visualization(results, base_dir="vis/t2i/occupation", exclude_unidentifiable=True):
     """
     Create a special visualization comparing gen 0 and gen 10.
     - Y-axis: Occupations
@@ -911,10 +897,10 @@ def create_comparative_visualization(results, base_dir="data/coco/occupation", e
     
     return summary_df
 
-def create_gender_horizontal_barchart(results, base_dir="data/coco/occupation"):
+def create_gender_horizontal_barchart(results, base_dir="vis/t2i/occupation"):
     """
     Create a specialized horizontal bar chart for gender ratios comparing Gen 0 and Gen 10.
-    Gen 0 is shown in faded color, Gen 10 in red (if increase) or blue (if decrease).
+    Gen 0 is shown in grey, Gen 10 in red (if shift toward female) or blue (if shift toward male).
     A vertical line is drawn at 0 (which corresponds to 50% male ratio) for reference.
     Occupations are sorted by Gen 0 male ratio from top to bottom.
     The x-axis is centered at 0.5, ranging from -0.5 to 0.5, to indicate bias toward male (right) or female (left).
@@ -978,63 +964,101 @@ def create_gender_horizontal_barchart(results, base_dir="data/coco/occupation"):
     # Sort occupations by Gen 0 male ratio (descending)
     sorted_occupations = sorted(occupations, key=lambda x: male_ratios[0].get(x, 0), reverse=True)
     
-    # Create a figure for the horizontal bar chart - slimmer and more compact
-    plt.figure(figsize=(8, 6))
+    # Create a figure for the horizontal bar chart - increase width for more space
+    plt.figure(figsize=(6, 6))  # Increased width from 4 to 6
     
-    # Set up the plot
+    # Set up the plot with a white background
     ax = plt.subplot(111)
+    ax.set_facecolor('white')
     
     # Set position of bars on y axis
     y_pos = np.arange(len(sorted_occupations))
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels([occ.capitalize() for occ in sorted_occupations])
     
     # Transform male ratios to centered scale (-0.5 to 0.5)
     # Where 0.5 male ratio becomes 0, 0 becomes -0.5, and 1 becomes 0.5
     transform_ratio = lambda r: r - 0.5
     
     # Draw vertical line at 0 (which corresponds to 50% male ratio)
-    plt.axvline(x=0, color='black', linestyle='-', alpha=0.7)
+    plt.axvline(x=0, color=GREY_800, linestyle='-', alpha=0.7)
     
-    # Plot Gen 0 bars (faded color)
+    # Prepare data for Gen 0 and Gen 10
     gen0_values = [transform_ratio(male_ratios[0].get(occupation, 0)) for occupation in sorted_occupations]
-    gen0_bars = plt.barh(y_pos, gen0_values, height=0.3, alpha=0.3, color='gray', label='Gen 0')
-    
-    # Plot Gen 10 bars (red for increase in male bias, blue for decrease)
     gen10_values = [transform_ratio(male_ratios[10].get(occupation, 0)) for occupation in sorted_occupations]
     
-    # Determine colors based on change
+    # Determine colors for Gen 10 bars based on shift direction
+    # Red for shift toward female (decrease in male ratio), Blue for shift toward male (increase in male ratio)
     colors = []
     for i, occupation in enumerate(sorted_occupations):
         gen0_val = male_ratios[0].get(occupation, 0)
         gen10_val = male_ratios[10].get(occupation, 0)
-        # Use blue if no change or decrease in male ratio, red if increase
+        # Use neutral color if no significant change
         if abs(gen10_val - gen0_val) < 0.01:  # Consider as no change if difference is very small
-            colors.append('blue')
+            colors.append(GEN_10_NEUTRAL_COLOR)
         else:
-            colors.append('red' if gen10_val > gen0_val else 'blue')
+            # Red if shift toward female (decrease in male ratio)
+            # Blue if shift toward male (increase in male ratio)
+            colors.append(ERROR if gen10_val < gen0_val else PRIMARY)
     
-    # Plot Gen 10 bars
-    gen10_bars = plt.barh(y_pos, gen10_values, height=0.3, alpha=0.7, color=colors, label='Gen 10')
+    # Plot bars with the smaller value on top for each occupation
+    for i, occupation in enumerate(sorted_occupations):
+        gen0_val = transform_ratio(male_ratios[0].get(occupation, 0))
+        gen10_val = transform_ratio(male_ratios[10].get(occupation, 0))
+        
+        # Special case for nurse - always put grey on top
+        if occupation == "nurse":
+            ax.barh(y_pos[i], gen10_val, height=0.3, color=colors[i], zorder=5, edgecolor=GREY_800, linewidth=0.5)
+            ax.barh(y_pos[i], gen0_val, height=0.3, color=GEN_0_COLOR, zorder=10, edgecolor=GREY_800, linewidth=0.5)
+        # Special case for teacher - always put grey on top
+        elif occupation == "teacher":
+            ax.barh(y_pos[i], gen10_val, height=0.3, color=colors[i], zorder=5, edgecolor=GREY_800, linewidth=0.5)
+            ax.barh(y_pos[i], gen0_val, height=0.3, color=GEN_0_COLOR, zorder=10, edgecolor=GREY_800, linewidth=0.5)
+        # For other occupations, determine which bar should be on top (smaller absolute value)
+        elif abs(gen0_val) <= abs(gen10_val):
+            # Gen 0 is smaller or equal, draw Gen 10 first, then Gen 0 on top
+            ax.barh(y_pos[i], gen10_val, height=0.3, color=colors[i], zorder=5, edgecolor=GREY_800, linewidth=0.5)
+            ax.barh(y_pos[i], gen0_val, height=0.3, color=GEN_0_COLOR, zorder=10, edgecolor=GREY_800, linewidth=0.5)
+        else:
+            # Gen 10 is smaller, draw Gen 0 first, then Gen 10 on top
+            ax.barh(y_pos[i], gen0_val, height=0.3, color=GEN_0_COLOR, zorder=5, edgecolor=GREY_800, linewidth=0.5)
+            ax.barh(y_pos[i], gen10_val, height=0.3, color=colors[i], zorder=10, edgecolor=GREY_800, linewidth=0.5)
     
-    # Add labels
-    plt.xlabel('Gender Bias (← Female | Male →)')
-    plt.ylabel('Occupation')
+    # Add dummy bars for the legend
+    ax.barh([-1], [0], height=0.3, color=GEN_0_COLOR, label='Gen 0', edgecolor=GREY_800, linewidth=0.5)
+    ax.barh([-1], [0], height=0.3, color=ERROR, label='Gen 10 (shift female)', edgecolor=GREY_800, linewidth=0.5)
+    ax.barh([-1], [0], height=0.3, color=PRIMARY, label='Gen 10 (shift male)', edgecolor=GREY_800, linewidth=0.5)
     
-    # Set custom x-ticks
-    plt.xticks([-0.5, -0.25, 0, 0.25, 0.5], ['100% F', '75% F', '50/50', '75% M', '100% M'])
+    # Add labels with larger font sizes - only x-axis label, no y-axis label
+    plt.xlabel('Gender Bias (← Female | Male →)', fontsize=10, color=GREY_900)  # Increased font size
+    # Removed y-axis label
     
-    # Set y-ticks (occupation names)
-    plt.yticks(y_pos, sorted_occupations)
+    # Set custom x-ticks with larger font size
+    plt.xticks([-0.5, -0.25, 0, 0.25, 0.5], ['100% F', '75% F', '50/50', '75% M', '100% M'], fontsize=9, color=GREY_800)  # Increased font size
     
-    # Set x-axis limits
-    plt.xlim(-0.5, 0.5)
+    # Set y-ticks (occupation names) with larger font size
+    plt.yticks(y_pos, [occ.capitalize() for occ in sorted_occupations], fontsize=9, color=GREY_800)  # Increased font size
     
-    # Add a legend with smaller font
-    plt.legend(loc='lower right', fontsize='small')
+    # Set x-axis limits with more space on both sides
+    plt.xlim(-0.7, 0.7)  # Increased from -0.6, 0.6 to -0.7, 0.7
+    
+    # Add a legend with larger font in the top right corner
+    plt.legend(loc='upper right', fontsize='x-small', framealpha=0.9)  # Reduced font size for narrower plot
     
     # Add grid lines
-    plt.grid(axis='x', linestyle='--', alpha=0.3)
+    plt.grid(axis='x', linestyle='--', alpha=0.3, color=GREY_300)
     
-    # Add value labels on the bars - more compact
+    # Helper function to format the displayed value based on which side of the axis it falls
+    def format_value(male_ratio):
+        if male_ratio < 0.5:
+            # For values left of center, show female percentage
+            female_ratio = 1 - male_ratio
+            return f'{female_ratio:.2f}F'
+        else:
+            # For values right of center, show male percentage
+            return f'{male_ratio:.2f}M'
+    
+    # Add value labels on the bars with larger font size
     for i, occupation in enumerate(sorted_occupations):
         gen0_val = male_ratios[0].get(occupation, 0)
         gen10_val = male_ratios[10].get(occupation, 0)
@@ -1043,30 +1067,37 @@ def create_gender_horizontal_barchart(results, base_dir="data/coco/occupation"):
         gen0_transformed = transform_ratio(gen0_val)
         gen10_transformed = transform_ratio(gen10_val)
         
+        # Format values based on which side of the axis they fall
+        gen0_text = format_value(gen0_val)
+        gen10_text = format_value(gen10_val)
+        
         # Check if there's a significant change
         is_change = abs(gen10_val - gen0_val) >= 0.01
         
         if is_change:
-            # Add Gen 0 value - smaller font
-            plt.text(gen0_transformed + (0.01 if gen0_transformed >= 0 else -0.01), 
-                    y_pos[i], f'{gen0_val:.2f}', 
+            # Add Gen 0 value - larger font with higher zorder to ensure visibility
+            # Position text further from the bar
+            plt.text(gen0_transformed + (0.03 if gen0_transformed >= 0 else -0.03),  # Increased offset from 0.02 to 0.03
+                    y_pos[i], gen0_text, 
                     va='center', ha='left' if gen0_transformed >= 0 else 'right', 
-                    fontsize=6, alpha=0.5)
+                    fontsize=7, color=GREY_800, zorder=25, weight='bold')  # Reduced font size for narrower plot
             
-            # Add Gen 10 value - smaller font
-            plt.text(gen10_transformed + (0.01 if gen10_transformed >= 0 else -0.01), 
-                    y_pos[i], f'{gen10_val:.2f}', 
+            # Add Gen 10 value - larger font
+            # Position text further from the bar
+            plt.text(gen10_transformed + (0.03 if gen10_transformed >= 0 else -0.03),  # Increased offset from 0.02 to 0.03
+                    y_pos[i], gen10_text, 
                     va='center', ha='left' if gen10_transformed >= 0 else 'right', 
-                    fontsize=6, color=colors[i])
+                    fontsize=7, color=GREY_800, zorder=25, weight='bold')  # Reduced font size for narrower plot
         else:
-            # If no change, just show the value once in blue - smaller font
-            plt.text(gen0_transformed + (0.01 if gen0_transformed >= 0 else -0.01), 
-                    y_pos[i], f'{gen0_val:.2f}', 
+            # If no change, just show the value once in black - larger font
+            # Position text further from the bar
+            plt.text(gen0_transformed + (0.03 if gen0_transformed >= 0 else -0.03),  # Increased offset from 0.02 to 0.03
+                    y_pos[i], gen0_text, 
                     va='center', ha='left' if gen0_transformed >= 0 else 'right', 
-                    fontsize=6, color='blue')
+                    fontsize=7, color=GREY_800, zorder=25, weight='bold')  # Reduced font size for narrower plot
     
-    # Adjust layout for a tighter fit
-    plt.tight_layout()
+    # Adjust layout for a better fit
+    plt.tight_layout(pad=1.2)  # Increased padding from 0.8 to 1.2
     
     # Save the figure
     plt.savefig(os.path.join(results_dir, 'gender_bias_compact.png'), dpi=300, bbox_inches='tight')
@@ -1085,7 +1116,7 @@ def create_gender_horizontal_barchart(results, base_dir="data/coco/occupation"):
             'Gen0_Male_Ratio': gen0_val,
             'Gen10_Male_Ratio': gen10_val,
             'Change': change,
-            'Direction': 'No Change' if abs(change) < 0.01 else ('Increase' if change > 0 else 'Decrease')
+            'Direction': 'No Change' if abs(change) < 0.01 else ('Shift Male' if change > 0 else 'Shift Female')
         })
     
     summary_df = pd.DataFrame(summary_data)
@@ -1104,7 +1135,7 @@ def main():
     parser.add_argument("--skip_classification", action="store_true", help="Skip image classification and use existing results")
     parser.add_argument("--only_analysis", action="store_true", help="Skip generation and classification, only run analysis")
     parser.add_argument("--only_comparative", action="store_true", help="Only create comparative visualization between gen 0 and gen 10")
-    parser.add_argument("--output_dir", type=str, default="data/coco/occupation", help="Base directory for output")
+    parser.add_argument("--output_dir", type=str, default="vis/t2i/occupation", help="Base directory for output")
     parser.add_argument("--only_generation", type=int, default=None, help="Only process a specific generation (0, 4, or 10)")
     parser.add_argument("--only_occupation", type=str, default=None, help="Only process a specific occupation")
     parser.add_argument("--generations", type=str, default="0,4,10", help="Comma-separated list of generations to process (default: 0,4,10)")

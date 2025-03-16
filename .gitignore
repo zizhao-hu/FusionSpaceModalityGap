@@ -5,6 +5,7 @@ U-ViT/workdir/
 data/
 data/*
 !data/*.py
+vis/
 
 # Ignore models directory and its contents
 models/
