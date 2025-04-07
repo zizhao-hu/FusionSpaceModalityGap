@@ -553,7 +553,7 @@ def load_reference_images(ref_folder, max_images=1000, device="cuda"):
     
     return torch.stack(ref_images).to(device)
 
-def plot_batch_metrics(all_results, output_path, target_generations=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], include_std=True, real_metrics=None):
+def plot_batch_metrics(all_results, output_path, target_generations=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], include_std=True, real_metrics=None):
     """Plot metrics for each batch across generations and groups
     
     Args:
@@ -587,27 +587,12 @@ def plot_batch_metrics(all_results, output_path, target_generations=[0, 1, 2, 3,
         {'name': 'CLIP Score', 'key': 'clip_score', 'source': 'scores'}
     ]
     
-    # Use hardcoded real metric values
-    hardcoded_real_metrics = {
-        'saturation': 40.07,
-        'color_std': 62.61,
-        'contrast': 0.5766,
-        'brightness': 114.27,
-        'colorfulness': 41.03,
-        'fid': 0,  # We won't use this for the FID figure
-        'is_mean': 6.5722,
-        'clip_score': 0.6099,
-        'rmg': 0.7482,
-        'l2m': 12.0547,
-        'clip_variance': 0.1113
-    }
-    
     # Fixed layout: 2 rows, 5 columns
     n_rows = 2
     n_cols = 5
     
     # Define the specific generations to show on x-axis ticks
-    display_generations = [0, 5, 10]
+    display_generations = [0, 4, 9]  # Changed from [0, 5, 10] to [0, 4, 9]
     
     # Increase font sizes globally
     plt.rcParams.update({
@@ -706,7 +691,7 @@ def plot_batch_metrics(all_results, output_path, target_generations=[0, 1, 2, 3,
             y_stds = []
             
             # Get all available generations for this group
-            available_gens = sorted([int(gen) for gen in all_results[group_key].keys() if gen.isdigit()])
+            available_gens = sorted([int(gen) for gen in all_results[group_key].keys() if gen.isdigit() and int(gen) <= 9])  # Exclude gen 10
             
             for gen in available_gens:
                 gen_str = str(gen)
@@ -725,9 +710,6 @@ def plot_batch_metrics(all_results, output_path, target_generations=[0, 1, 2, 3,
                             processed_value = trial_data['scores'][metric_key] * scale_factor
                             if metric_key == 'l2m':  # Apply offset only to L2M
                                 processed_value += offset
-                            # Special handling for FID Gen 10: deduct 9.5 points
-                            if metric_key == 'fid' and gen == 10:
-                                processed_value -= 9.5
                             trial_means.append(processed_value)
                     else:
                         # Calculate from results dictionary
@@ -736,33 +718,7 @@ def plot_batch_metrics(all_results, output_path, target_generations=[0, 1, 2, 3,
                             img_values = []
                             for img_data in trial_data['results']:
                                 if metric_key in img_data and img_data[metric_key] is not None:
-                                    # Special handling for Gen 10 brightness - make it higher than Gen 9
-                                    if metric_key == 'brightness' and gen == 10:
-                                        # Find Gen 9 brightness value for this group if available
-                                        gen9_brightness = None
-                                        if "9" in all_results[group_key]:
-                                            gen9_means = []
-                                            for gen9_trial_idx, gen9_trial_data in all_results[group_key]["9"].items():
-                                                if 'results' in gen9_trial_data:
-                                                    gen9_values = [r.get('brightness', 0) for r in gen9_trial_data['results'] if 'brightness' in r]
-                                                    if gen9_values:
-                                                        gen9_means.append(np.mean(gen9_values))
-                                            if gen9_means:
-                                                gen9_brightness = np.mean(gen9_means)
-                                                
-                                        # Set Gen 10 brightness higher than Gen 9, or use a reasonable value if Gen 9 not available
-                                        if gen9_brightness:
-                                            # Make it 5-10% higher than Gen 9
-                                            img_values.append(gen9_brightness * 1.07)
-                                        else:
-                                            # If Gen 9 not available, use a reasonable value
-                                            img_values.append(120)
-                                    # Fix for other Gen 10 brightness values that might be too high
-                                    elif metric_key == 'brightness' and gen == 10 and img_data[metric_key] > 200:
-                                        # Cap the value to a reasonable range
-                                        img_values.append(min(img_data[metric_key], 150))
-                                    else:
-                                        img_values.append(img_data[metric_key])
+                                    img_values.append(img_data[metric_key])
                             if img_values:
                                 trial_means.append(np.mean(img_values))
                 
@@ -811,7 +767,7 @@ def plot_batch_metrics(all_results, output_path, target_generations=[0, 1, 2, 3,
             lines.append(plt.Line2D([0], [0], color='black', linestyle='--', linewidth=2, alpha=0.5))
             labels.append('Real Images')
         
-        # Set x-axis ticks to only show GEN 0, GEN 5, GEN 10
+        # Set x-axis ticks to only show GEN 0, GEN 4, GEN 9
         ax.set_xticks(display_generations)
         ax.set_xticklabels([f"GEN {x}" for x in display_generations], fontsize=18)
         

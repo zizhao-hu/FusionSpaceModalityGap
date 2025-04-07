@@ -1,0 +1,403 @@
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+
+
+ 18%|█████████████████████▎                                                                                              | 11/60 [00:07<00:27,  1.76it/s]
+
+
+ 32%|████████████████████████████████████▋                                                                               | 19/60 [00:11<00:22,  1.81it/s]
+
+
+
+ 52%|███████████████████████████████████████████████████████████▉                                                        | 31/60 [00:17<00:15,  1.90it/s]
+
+
+
+ 72%|███████████████████████████████████████████████████████████████████████████████████▏                                | 43/60 [00:23<00:08,  2.05it/s]
+
+
+ 83%|████████████████████████████████████████████████████████████████████████████████████████████████▋                   | 50/60 [00:27<00:04,  2.05it/s]
+
+
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:32<00:00,  1.83it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+{'loss': 4.3513, 'grad_norm': 40.522552490234375, 'learning_rate': 9.259259259259259e-07, 'epoch': 8.64}
+{'train_runtime': 34.6144, 'train_samples_per_second': 28.89, 'train_steps_per_second': 1.733, 'train_loss': 5.814832242329915, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: Closeup of bins of food that include broccoli and bread.
+INFO:__main__:Generated caption: a detailed image showing broccoli and bread in a variety of containers one of the many different types of food in the food section of a & amp.
+INFO:__main__:Model saved to models/vlm/gen_1_baseline
+INFO:__main__:Training generation 2
+INFO:__main__:Using checkpoint from models/vlm/gen_1_baseline
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm_training/gen_0
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_2 using baseline mode
+INFO:__main__:Using all 100 images for training in gen_2 with baseline mode
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 2 with 10 epochs in baseline mode
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+
+ 18%|█████████████████████▎                                                                                              | 11/60 [00:05<00:26,  1.82it/s]
+
+
+ 32%|████████████████████████████████████▋                                                                               | 19/60 [00:10<00:22,  1.80it/s]
+
+
+
+ 52%|███████████████████████████████████████████████████████████▉                                                        | 31/60 [00:16<00:14,  1.94it/s]
+
+
+
+ 72%|███████████████████████████████████████████████████████████████████████████████████▏                                | 43/60 [00:22<00:08,  2.11it/s]
+
+
+ 85%|██████████████████████████████████████████████████████████████████████████████████████████████████▌                 | 51/60 [00:26<00:04,  1.96it/s]
+
+
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:31<00:00,  1.93it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+{'loss': 1.3253, 'grad_norm': 33.76884460449219, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 31.0722, 'train_samples_per_second': 32.183, 'train_steps_per_second': 1.931, 'train_loss': 2.3383094310760497, 'epoch': 8.64}
+INFO:__main__:Original caption: Closeup of bins of food that include broccoli and bread.
+INFO:__main__:Generated caption: a high resolution photo that shows some broccoli and bread in a bin - the. a _ … big
+INFO:__main__:Model saved to models/vlm/gen_2_baseline
+INFO:__main__:Training generation 3
+INFO:__main__:Using checkpoint from models/vlm/gen_2_baseline
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm_training/gen_0
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_3 using baseline mode
+INFO:__main__:Using all 100 images for training in gen_3 with baseline mode
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 3 with 10 epochs in baseline mode
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+  7%|███████▊                                                                                                             | 4/60 [00:02<00:32,  1.74it/s]
+ 13%|███████████████▌                                                                                                     | 8/60 [00:04<00:25,  2.07it/s]
+ 20%|███████████████████████▏                                                                                            | 12/60 [00:06<00:26,  1.79it/s]
+ 20%|███████████████████████▏                                                                                            | 12/60 [00:06<00:26,  1.79it/s]
+ 27%|██████████████████████████████▉                                                                                     | 16/60 [00:08<00:22,  1.94it/s]
+ 32%|████████████████████████████████████▋                                                                               | 19/60 [00:10<00:22,  1.80it/s]
+ 32%|████████████████████████████████████▋                                                                               | 19/60 [00:10<00:22,  1.80it/s]
+ 40%|██████████████████████████████████████████████▍                                                                     | 24/60 [00:12<00:18,  1.89it/s]
+ 47%|██████████████████████████████████████████████████████▏                                                             | 28/60 [00:14<00:13,  2.35it/s]
+ 52%|███████████████████████████████████████████████████████████▉                                                        | 31/60 [00:16<00:14,  1.94it/s]
+ 52%|███████████████████████████████████████████████████████████▉                                                        | 31/60 [00:16<00:14,  1.94it/s]
+ 60%|█████████████████████████████████████████████████████████████████████▌                                              | 36/60 [00:18<00:11,  2.11it/s]
+ 65%|███████████████████████████████████████████████████████████████████████████▍                                        | 39/60 [00:20<00:11,  1.88it/s]
+ 65%|███████████████████████████████████████████████████████████████████████████▍                                        | 39/60 [00:20<00:11,  1.88it/s]
+ 72%|███████████████████████████████████████████████████████████████████████████████████▏                                | 43/60 [00:22<00:08,  2.07it/s]
+ 78%|██████████████████████████████████████████████████████████████████████████████████████████▊                         | 47/60 [00:24<00:07,  1.82it/s]
+ 85%|██████████████████████████████████████████████████████████████████████████████████████████████████▌                 | 51/60 [00:26<00:04,  1.98it/s]
+ 85%|██████████████████████████████████████████████████████████████████████████████████████████████████▌                 | 51/60 [00:26<00:04,  1.98it/s]
+ 93%|████████████████████████████████████████████████████████████████████████████████████████████████████████████▎       | 56/60 [00:28<00:01,  2.37it/s]
+ 98%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████  | 59/60 [00:30<00:00,  1.94it/s]
+ 98%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████  | 59/60 [00:30<00:00,  1.94it/s]
+{'loss': 0.0862, 'grad_norm': 2.929943323135376, 'learning_rate': 0.0, 'epoch': 8.64}
+INFO:__main__:Found 100 images in data/vlm_training/gen_0ing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:31<00:00,  1.93it/s]
+INFO:__main__:Found 100 images in data/vlm_training/gen_0ing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:31<00:00,  1.93it/s]
+INFO:__main__:Found 100 images in data/vlm_training/gen_0ing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:31<00:00,  1.93it/s]
+INFO:__main__:Found 100 images in data/vlm_training/gen_0ing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:31<00:00,  1.93it/s]
+INFO:__main__:Found 100 images in data/vlm_training/gen_0ing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:31<00:00,  1.93it/s]
+{'loss': 0.0725, 'grad_norm': 1.8237143754959106, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+ 28%|████████████████████████████████▊                                                                                   | 17/60 [00:08<00:22,  1.89it/s]
+ 35%|████████████████████████████████████████▌                                                                           | 21/60 [00:10<00:16,  2.36it/s]
+ 35%|████████████████████████████████████████▌                                                                           | 21/60 [00:10<00:16,  2.36it/s]
+ 42%|████████████████████████████████████████████████▎                                                                   | 25/60 [00:13<00:18,  1.88it/s]
+ 48%|████████████████████████████████████████████████████████                                                            | 29/60 [00:14<00:14,  2.14it/s]
+ 48%|████████████████████████████████████████████████████████                                                            | 29/60 [00:14<00:14,  2.14it/s]
+ 55%|███████████████████████████████████████████████████████████████▊                                                    | 33/60 [00:17<00:14,  1.82it/s]
+ 62%|███████████████████████████████████████████████████████████████████████▌                                            | 37/60 [00:18<00:11,  1.99it/s]
+ 68%|███████████████████████████████████████████████████████████████████████████████▎                                    | 41/60 [00:21<00:10,  1.78it/s]
+ 68%|███████████████████████████████████████████████████████████████████████████████▎                                    | 41/60 [00:21<00:10,  1.78it/s]
+ 75%|███████████████████████████████████████████████████████████████████████████████████████                             | 45/60 [00:23<00:07,  1.90it/s]
+ 82%|██████████████████████████████████████████████████████████████████████████████████████████████▋                     | 49/60 [00:24<00:04,  2.34it/s]
+ 82%|██████████████████████████████████████████████████████████████████████████████████████████████▋                     | 49/60 [00:24<00:04,  2.34it/s]
+ 88%|██████████████████████████████████████████████████████████████████████████████████████████████████████▍             | 53/60 [00:27<00:03,  1.86it/s]
+ 95%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████▏     | 57/60 [00:29<00:01,  2.11it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:30<00:00,  1.94it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:30<00:00,  1.94it/s]
+{'loss': 0.0136, 'grad_norm': 0.3035208582878113, 'learning_rate': 0.0, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:30<00:00,  1.94it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:30<00:00,  1.94it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...███████████████████████████████| 60/60 [00:30<00:00,  1.94it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: Closeup of bins of food that include broccoli and bread.
+INFO:__main__:Generated caption: a photo with many details showing broccoli in bins, - the. on … food park big confines a large two three and busted zoo fr herd blue tie field cat spot an nearᅯ gi angeles ocean tower leaned lightedgong dogն softer o giant green & person vittorio ridingიր some œ pet silk chiկյ neck deserts itտ black number grazing man goldminated grassy designer pedestriansս
+INFO:__main__:Model saved to models/vlm/gen_4_baseline
+INFO:__main__:Training generation 5
+INFO:__main__:Using checkpoint from models/vlm/gen_4_baseline
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm_training/gen_0
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_5 using baseline mode
+INFO:__main__:Using all 100 images for training in gen_5 with baseline mode
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 5 with 10 epochs in baseline mode
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+  5%|█████▊                                                                                                               | 3/60 [00:01<00:34,  1.67it/s]
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0127, 'grad_norm': 0.4674980640411377, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0146, 'grad_norm': 0.43829211592674255, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0122, 'grad_norm': 0.14518043398857117, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.006, 'grad_norm': 0.11269212514162064, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0032, 'grad_norm': 0.0777791440486908, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0029, 'grad_norm': 0.08017659187316895, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 30.9881, 'train_samples_per_second': 32.27, 'train_steps_per_second': 1.936, 'train_loss': 0.008594201846669118, 'epoch': 8.64}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.004, 'grad_norm': 0.519365131855011, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0087, 'grad_norm': 0.5428426861763, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0043, 'grad_norm': 0.23952731490135193, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0021, 'grad_norm': 0.0362396165728569, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0009, 'grad_norm': 0.021949591115117073, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0008, 'grad_norm': 0.022217119112610817, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 30.9159, 'train_samples_per_second': 32.346, 'train_steps_per_second': 1.941, 'train_loss': 0.003464606124907732, 'epoch': 8.64}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0006, 'grad_norm': 0.01613171398639679, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0033, 'grad_norm': 0.7067567706108093, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0047, 'grad_norm': 0.3313862681388855, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0063, 'grad_norm': 0.2553146481513977, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0005, 'grad_norm': 0.01657053455710411, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0003, 'grad_norm': 0.011799199506640434, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 31.0933, 'train_samples_per_second': 32.161, 'train_steps_per_second': 1.93, 'train_loss': 0.002626399913181861, 'epoch': 8.64}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0004, 'grad_norm': 0.0038558661472052336, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0026, 'grad_norm': 0.41274750232696533, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0014, 'grad_norm': 0.004535043146461248, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0004, 'grad_norm': 0.044416457414627075, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0001, 'grad_norm': 0.0027444278821349144, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0001, 'grad_norm': 0.0026560486294329166, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 30.6041, 'train_samples_per_second': 32.675, 'train_steps_per_second': 1.961, 'train_loss': 0.0008482515967140595, 'epoch': 8.64}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0001, 'grad_norm': 0.033217135816812515, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0043, 'grad_norm': 0.3384352922439575, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0028, 'grad_norm': 0.04291502758860588, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0006, 'grad_norm': 0.15927430987358093, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0001, 'grad_norm': 0.007127697579562664, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0001, 'grad_norm': 0.0032469877041876316, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 31.5015, 'train_samples_per_second': 31.745, 'train_steps_per_second': 1.905, 'train_loss': 0.001328691709204577, 'epoch': 8.64}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0001, 'grad_norm': 0.2117120623588562, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0034, 'grad_norm': 0.237531840801239, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0011, 'grad_norm': 0.00843481533229351, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0007, 'grad_norm': 0.001740841893479228, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0012, 'grad_norm': 0.00715208426117897, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+{'loss': 0.0, 'grad_norm': 0.0034304566215723753, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 31.3063, 'train_samples_per_second': 31.942, 'train_steps_per_second': 1.917, 'train_loss': 0.0010917569656157867, 'epoch': 8.64}
+  0%|                                                                                                                             | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.

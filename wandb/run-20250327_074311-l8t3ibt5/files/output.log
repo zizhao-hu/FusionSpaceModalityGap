@@ -1,0 +1,360 @@
+  0%|                                                                              | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+
+ 17%|███████████▌                                                         | 10/60 [00:05<00:25,  1.94it/s]
+
+
+
+ 35%|████████████████████████▏                                            | 21/60 [00:11<00:18,  2.15it/s]
+
+
+ 47%|████████████████████████████████▏                                    | 28/60 [00:15<00:14,  2.15it/s]
+
+
+
+ 65%|████████████████████████████████████████████▊                        | 39/60 [00:21<00:11,  1.79it/s]
+
+
+ 78%|██████████████████████████████████████████████████████               | 47/60 [00:25<00:07,  1.75it/s]
+
+
+
+ 97%|██████████████████████████████████████████████████████████████████▋  | 58/60 [00:31<00:01,  1.86it/s]
+{'loss': 2.8198, 'grad_norm': 26.04001235961914, 'learning_rate': 9.259259259259259e-07, 'epoch': 8.64}
+100%|█████████████████████████████████████████████████████████████████████| 60/60 [00:32<00:00,  1.83it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: a detailed photo of a lunch box with a variety of food including broccote, broccote, broccote, broccote, broccote, broccote, broccote, broccote, and broccote, broccote, and broccote
+INFO:__main__:Generated caption: a detailed image showing a lunch box with a variety of food in it, including broccote, broccte and broccite on the side of the plate, and the other items in the box, as well, it is a small plastic container,
+INFO:__main__:Model saved to models/vlm/gen_1_gen0
+INFO:__main__:Training generation 2
+INFO:__main__:Using checkpoint from models/vlm/gen_1_gen0
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm/train/images/real
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_2 using gen0 mode
+INFO:__main__:Using all 100 images for training in gen_2 with gen0 mode
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 2 with 10 epochs in gen0 mode
+  0%|                                                                              | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+ 12%|████████▏                                                             | 7/60 [00:03<00:22,  2.36it/s]
+
+
+
+ 32%|█████████████████████▊                                               | 19/60 [00:10<00:22,  1.86it/s]
+
+
+
+ 50%|██████████████████████████████████▌                                  | 30/60 [00:15<00:15,  1.94it/s]
+
+
+ 63%|███████████████████████████████████████████▋                         | 38/60 [00:19<00:11,  1.92it/s]
+
+
+
+ 83%|█████████████████████████████████████████████████████████▌           | 50/60 [00:25<00:04,  2.17it/s]
+
+
+ 97%|██████████████████████████████████████████████████████████████████▋  | 58/60 [00:29<00:01,  1.98it/s]
+{'loss': 0.8721, 'grad_norm': 22.327119827270508, 'learning_rate': 0.0, 'epoch': 8.64}
+100%|█████████████████████████████████████████████████████████████████████| 60/60 [00:30<00:00,  1.94it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: a detailed photo of a lunch box with a variety of food including broccote, broccote, broccote, broccote, broccote, broccote, broccote, broccote, and broccote, broccote, and broccote
+INFO:__main__:Generated caption: a high resolution photo that shows a detailed photo of a lunch box with a variety of food and a cup of coffee on the side of the ' s
+INFO:__main__:Model saved to models/vlm/gen_2_gen0
+INFO:__main__:Training generation 3
+INFO:__main__:Using checkpoint from models/vlm/gen_2_gen0
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm/train/images/real
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_3 using gen0 mode
+INFO:__main__:Using all 100 images for training in gen_3 with gen0 mode
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 3 with 10 epochs in gen0 mode
+  0%|                                                                              | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+  7%|████▋                                                                 | 4/60 [00:02<00:32,  1.75it/s]
+ 13%|█████████▎                                                            | 8/60 [00:04<00:24,  2.12it/s]
+ 13%|█████████▎                                                            | 8/60 [00:04<00:24,  2.12it/s]
+ 20%|█████████████▊                                                       | 12/60 [00:06<00:26,  1.80it/s]
+ 27%|██████████████████▍                                                  | 16/60 [00:08<00:22,  1.96it/s]
+ 33%|███████████████████████                                              | 20/60 [00:10<00:21,  1.84it/s]
+ 33%|███████████████████████                                              | 20/60 [00:10<00:21,  1.84it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+{'loss': 0.2454, 'grad_norm': 6.161944389343262, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+{'loss': 0.2097, 'grad_norm': 3.511939764022827, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+{'loss': 0.126, 'grad_norm': 3.013690948486328, 'learning_rate': 1.0185185185185185e-05, 'epoch': 7.16}
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+ 40%|███████████████████████████▌                                         | 24/60 [00:12<00:18,  1.91it/s]
+{'loss': 0.0983, 'grad_norm': 2.4948737621307373, 'learning_rate': 9.259259259259259e-07, 'epoch': 8.64}
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+{'loss': 0.0963, 'grad_norm': nan, 'learning_rate': 4.722222222222222e-05, 'epoch': 1.48}
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+{'loss': 0.1259, 'grad_norm': 2.857403516769409, 'learning_rate': 3.888888888888889e-05, 'epoch': 2.96}
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+{'loss': 0.0702, 'grad_norm': 0.7105340957641602, 'learning_rate': 2.962962962962963e-05, 'epoch': 4.32}
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+{'loss': 0.0541, 'grad_norm': 0.9084229469299316, 'learning_rate': 2.037037037037037e-05, 'epoch': 5.8}
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+{'loss': 0.0403, 'grad_norm': 0.47946280241012573, 'learning_rate': 1.1111111111111112e-05, 'epoch': 7.16}
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+INFO:__main__:Using all 100 images for training in gen_4 with gen0 modeuse_cache=False`...0:18,  1.91it/s]
+{'loss': 0.0274, 'grad_norm': 0.3477247655391693, 'learning_rate': 1.8518518518518519e-06, 'epoch': 8.64}
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0405, 'grad_norm': 2.2876198291778564, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0681, 'grad_norm': 1.1694773435592651, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0516, 'grad_norm': 1.2847399711608887, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0479, 'grad_norm': 0.9107705354690552, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0236, 'grad_norm': 0.33306118845939636, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loading model with aggressive memory optimizationstting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0157, 'grad_norm': 0.22668713331222534, 'learning_rate': 0.0, 'epoch': 8.64}
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0433, 'grad_norm': 1.665941596031189, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0465, 'grad_norm': 0.9091185927391052, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0299, 'grad_norm': 0.41167184710502625, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0228, 'grad_norm': 0.4056931436061859, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0121, 'grad_norm': 0.20786379277706146, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_6 using gen0 modese`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.009, 'grad_norm': 0.05009693652391434, 'learning_rate': 0.0, 'epoch': 8.64}
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0217, 'grad_norm': 0.5728206038475037, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0377, 'grad_norm': 1.5077862739562988, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0282, 'grad_norm': 0.5626064538955688, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0216, 'grad_norm': 0.7126138806343079, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0105, 'grad_norm': 0.6007969379425049, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Generated caption: a detailed scene showing a lunch box with a variety of food and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0082, 'grad_norm': 0.05860239639878273, 'learning_rate': 0.0, 'epoch': 8.64}
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0248, 'grad_norm': 0.4033958911895752, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.032, 'grad_norm': 1.4248493909835815, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0213, 'grad_norm': 1.0461113452911377, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0179, 'grad_norm': 0.23211094737052917, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0083, 'grad_norm': 0.4046773910522461, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Training generation 8th gradient checkpointing. Setting `use_cache=False`...od and a cup of coffee on the table next to the plate is a small plate - Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0073, 'grad_norm': 0.2244492620229721, 'learning_rate': 0.0, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.021, 'grad_norm': 1.1610333919525146, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0206, 'grad_norm': 0.9734621047973633, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0137, 'grad_norm': 0.9156980514526367, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0181, 'grad_norm': 0.5812517404556274, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0088, 'grad_norm': 0.2900594472885132, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0047, 'grad_norm': 0.13564646244049072, 'learning_rate': 0.0, 'epoch': 8.64}
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0131, 'grad_norm': 0.29407089948654175, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0213, 'grad_norm': 1.027988076210022, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0204, 'grad_norm': 0.6513081192970276, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0102, 'grad_norm': 0.6715733408927917, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0041, 'grad_norm': 0.09280891716480255, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+{'loss': 0.0035, 'grad_norm': 0.013292966410517693, 'learning_rate': 0.0, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...ase use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.

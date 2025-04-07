@@ -1,0 +1,1062 @@
+2025-03-27 07:43:11,687 INFO    StreamThr :25188 [internal.py:wandb_internal():85] W&B internal server running at pid: 25188, started at: 2025-03-27 07:43:11.686860
+2025-03-27 07:43:11,688 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status
+2025-03-27 07:43:11,690 INFO    WriterThread:25188 [datastore.py:open_for_write():87] open: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\run-l8t3ibt5.wandb
+2025-03-27 07:43:11,691 DEBUG   SenderThread:25188 [sender.py:send():391] send: header
+2025-03-27 07:43:11,716 DEBUG   SenderThread:25188 [sender.py:send():391] send: run
+2025-03-27 07:43:12,052 INFO    SenderThread:25188 [dir_watcher.py:__init__():211] watching files in: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files
+2025-03-27 07:43:12,052 INFO    SenderThread:25188 [sender.py:_start_run_threads():1200] run started: l8t3ibt5 with start time 1743086591.687854
+2025-03-27 07:43:12,061 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: run_start
+2025-03-27 07:43:12,080 DEBUG   HandlerThread:25188 [system_info.py:__init__():26] System info init
+2025-03-27 07:43:12,080 DEBUG   HandlerThread:25188 [system_info.py:__init__():41] System info init done
+2025-03-27 07:43:12,080 INFO    HandlerThread:25188 [system_monitor.py:start():194] Starting system monitor
+2025-03-27 07:43:12,080 INFO    SystemMonitor:25188 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2025-03-27 07:43:12,080 INFO    HandlerThread:25188 [system_monitor.py:probe():214] Collecting system info
+2025-03-27 07:43:12,084 INFO    SystemMonitor:25188 [interfaces.py:start():188] Started cpu monitoring
+2025-03-27 07:43:12,084 INFO    SystemMonitor:25188 [interfaces.py:start():188] Started disk monitoring
+2025-03-27 07:43:12,085 INFO    SystemMonitor:25188 [interfaces.py:start():188] Started gpu monitoring
+2025-03-27 07:43:12,091 INFO    SystemMonitor:25188 [interfaces.py:start():188] Started memory monitoring
+2025-03-27 07:43:12,099 INFO    SystemMonitor:25188 [interfaces.py:start():188] Started network monitoring
+2025-03-27 07:43:12,102 DEBUG   HandlerThread:25188 [system_info.py:probe():152] Probing system
+2025-03-27 07:43:12,103 DEBUG   HandlerThread:25188 [system_info.py:_probe_git():137] Probing git
+2025-03-27 07:43:12,144 DEBUG   HandlerThread:25188 [system_info.py:_probe_git():145] Probing git done
+2025-03-27 07:43:12,144 DEBUG   HandlerThread:25188 [system_info.py:probe():200] Probing system done
+2025-03-27 07:43:12,144 DEBUG   HandlerThread:25188 [system_monitor.py:probe():223] {'os': 'Windows-10-10.0.26100-SP0', 'python': '3.11.9', 'heartbeatAt': '2025-03-27T14:43:12.102084', 'startedAt': '2025-03-27T14:43:11.676858', 'docker': None, 'cuda': None, 'args': ('--training_mode', 'gen0', '--generations', '10', '--epochs', '10', '--batch_size', '4'), 'state': 'running', 'program': 'C:\\Users\\zizha\\development\\FusionSpaceModalityGap\\src\\train_blip2.py', 'codePathLocal': 'src\\train_blip2.py', 'codePath': 'src\\train_blip2.py', 'git': {'remote': 'https://github.com/zizhao-hu/FusionSpaceModalityGap', 'commit': '468cafe0fc123b7be9efc53b2685283f97e92b21'}, 'email': 'zizhaohu3@gmail.com', 'root': 'C:/Users/zizha/development/FusionSpaceModalityGap', 'host': 'zizhao-pc', 'username': 'zizha', 'executable': 'C:\\Users\\zizha\\anaconda3\\envs\\311\\python.exe', 'cpu_count': 16, 'cpu_count_logical': 24, 'cpu_freq': {'current': 3400.0, 'min': 0.0, 'max': 3400.0}, 'cpu_freq_per_core': [{'current': 3400.0, 'min': 0.0, 'max': 3400.0}], 'disk': {'/': {'total': 930.3115196228027, 'used': 602.890796661377}}, 'gpu': 'NVIDIA GeForce RTX 4090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 4090', 'memory_total': 25757220864}], 'memory': {'total': 31.835468292236328}}
+2025-03-27 07:43:12,144 INFO    HandlerThread:25188 [system_monitor.py:probe():224] Finished collecting system info
+2025-03-27 07:43:12,145 INFO    HandlerThread:25188 [system_monitor.py:probe():227] Publishing system info
+2025-03-27 07:43:12,145 DEBUG   HandlerThread:25188 [system_info.py:_save_conda():209] Saving list of conda packages installed into the current environment
+2025-03-27 07:43:12,146 ERROR   HandlerThread:25188 [system_info.py:_save_conda():223] Error saving conda packages: [WinError 2] The system cannot find the file specified
+Traceback (most recent call last):
+  File "C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\wandb\sdk\internal\system\system_info.py", line 216, in _save_conda
+    subprocess.call(
+  File "C:\Users\zizha\anaconda3\envs\311\Lib\subprocess.py", line 389, in call
+    with Popen(*popenargs, **kwargs) as p:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zizha\anaconda3\envs\311\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\zizha\anaconda3\envs\311\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+2025-03-27 07:43:12,148 DEBUG   HandlerThread:25188 [system_info.py:_save_conda():224] Saving conda packages done
+2025-03-27 07:43:12,148 INFO    HandlerThread:25188 [system_monitor.py:probe():229] Finished publishing system info
+2025-03-27 07:43:12,150 DEBUG   SenderThread:25188 [sender.py:send():391] send: files
+2025-03-27 07:43:12,150 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-metadata.json with policy now
+2025-03-27 07:43:12,244 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: python_packages
+2025-03-27 07:43:12,244 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: python_packages
+2025-03-27 07:43:12,244 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:43:12,244 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:43:12,245 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:43:12,417 DEBUG   SenderThread:25188 [sender.py:send():391] send: telemetry
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: telemetry
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: telemetry
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:12,418 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: telemetry
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: telemetry
+2025-03-27 07:43:12,418 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:43:12,609 INFO    wandb-upload_0:25188 [upload_job.py:push():130] Uploaded file C:\Users\zizha\AppData\Local\Temp\tmpfcq6xluqwandb\oowbbsvx-wandb-metadata.json
+2025-03-27 07:43:13,063 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:13,063 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\requirements.txt
+2025-03-27 07:43:13,063 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-metadata.json
+2025-03-27 07:43:13,063 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\conda-environment.yaml
+2025-03-27 07:43:15,077 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:16,722 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:17,104 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:17,831 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:17,832 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:17,832 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:17,832 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:17,832 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:17,832 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:17,833 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:17,833 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:18,117 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_created():271] file/dir created: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:19,117 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:20,132 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:21,144 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:22,212 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:22,255 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:43:23,158 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:23,443 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:23,444 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:23,444 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:23,445 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:24,161 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:25,162 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:26,173 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:27,184 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:27,261 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:43:27,261 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:43:27,376 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:28,714 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:28,714 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:28,715 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:28,715 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:29,195 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:29,195 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:30,207 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:31,208 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:32,262 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:43:32,956 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:33,212 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:34,165 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:34,166 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:34,166 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:34,167 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:34,218 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:35,233 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:36,233 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:37,247 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:38,536 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:39,254 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:39,304 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:39,304 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:39,305 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:39,305 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:40,258 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:40,259 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:41,274 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:42,272 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:43:42,272 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:43:42,272 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:43:43,302 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:43,749 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:44,304 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:43:44,967 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:44,968 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:44,968 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:44,970 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:44,970 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:44,970 DEBUG   SenderThread:25188 [sender.py:send():391] send: telemetry
+2025-03-27 07:43:44,970 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:44,971 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:44,971 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:44,971 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:44,971 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:44,971 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:44,971 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:44,972 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:44,972 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:44,972 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:44,972 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:44,972 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:44,973 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:45,317 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:45,317 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:46,318 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:47,333 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:47,875 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:43:47,876 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:47,876 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:43:47,876 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:43:47,876 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:43:49,098 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:49,336 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:51,343 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:52,283 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:43:53,212 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:53,212 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:53,212 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:53,213 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:53,358 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:53,358 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:54,372 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:54,432 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:43:55,375 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:57,272 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:43:57,272 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:43:57,383 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:58,564 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:43:58,565 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:43:58,565 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:43:58,566 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:43:59,397 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:43:59,397 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:43:59,946 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:00,403 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:01,405 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:02,295 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:44:03,420 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:03,562 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:03,563 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:03,563 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:03,564 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:04,433 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:05,282 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:05,448 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:06,462 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:08,489 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:08,829 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:08,830 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:08,830 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:08,830 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:09,502 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:10,525 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:10,648 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:12,109 DEBUG   SystemMonitor:25188 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2025-03-27 07:44:12,109 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:44:12,280 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:44:12,280 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:44:12,311 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:44:12,539 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:13,574 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:13,574 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:13,574 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:13,575 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:14,566 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:14,566 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:15,807 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:16,586 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:16,586 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:44:18,614 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:18,845 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:18,846 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:18,846 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:18,846 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:18,847 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:18,847 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:18,848 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:18,848 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:18,848 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:18,848 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:18,848 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:18,849 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:18,849 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:18,849 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:18,849 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:18,849 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:18,849 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:18,850 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:19,628 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:20,628 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:21,272 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:21,369 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:44:21,369 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:44:21,369 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:44:21,369 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:44:21,369 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:44:22,321 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:44:22,647 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:24,663 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:26,623 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:26,642 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:26,643 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:26,643 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:26,651 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:26,691 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:26,691 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:27,281 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:44:27,281 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:44:28,721 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:30,738 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:31,933 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:31,951 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:31,953 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:31,953 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:31,954 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:32,326 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:44:32,765 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:32,765 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:34,793 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:36,748 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:36,748 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:36,748 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:36,749 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:36,824 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:36,824 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:37,291 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:38,842 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:40,867 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:41,963 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:41,964 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:41,964 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:41,964 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:42,121 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:44:42,279 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:44:42,279 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:44:42,327 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:44:42,465 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:42,873 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:42,874 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:43,888 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:44,888 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:46,734 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:46,735 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:46,736 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:46,736 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:46,912 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:46,912 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:47,908 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:47,926 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:48,939 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:48,939 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:44:50,944 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:51,972 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:51,972 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:51,973 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:51,974 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:51,974 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:51,975 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:51,975 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:51,977 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:51,977 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:51,977 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:51,978 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:51,978 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:51,978 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:51,979 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:51,979 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:51,979 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:51,979 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:51,980 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:44:52,647 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:44:52,961 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:52,961 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:44:53,088 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:53,969 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:54,546 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:44:54,546 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:44:54,546 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:44:54,547 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:44:54,547 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:44:54,969 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:56,997 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:57,278 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:44:57,278 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:44:58,629 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:44:59,025 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:44:59,745 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:44:59,745 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:44:59,745 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:44:59,746 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:00,039 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:01,039 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:02,052 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:02,662 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:45:03,067 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:03,829 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:04,962 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:04,963 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:04,963 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:04,963 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:05,093 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:05,094 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:06,104 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:07,118 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:09,133 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:09,139 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:09,708 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:09,709 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:09,709 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:09,710 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:10,133 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:11,137 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:12,121 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:45:12,152 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:12,277 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:45:12,277 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:45:12,668 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:45:13,166 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:14,417 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:15,003 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:15,004 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:15,004 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:15,004 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:15,181 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:15,181 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:16,195 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:17,197 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:19,200 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:19,810 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:19,827 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:19,977 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:19,977 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:19,977 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:20,215 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:45:20,215 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:21,230 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:22,244 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:22,680 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:45:23,259 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:25,275 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:25,387 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:25,407 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:25,407 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:25,408 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:25,409 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:25,410 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:25,410 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:25,410 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:25,411 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:25,411 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:25,411 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:25,411 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:25,411 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:25,412 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:25,412 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:25,412 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:25,412 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:25,412 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:25,413 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:26,288 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:26,288 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:27,287 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:45:27,287 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:45:27,303 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:27,976 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:45:27,977 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:45:27,977 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:45:27,977 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:45:27,977 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:45:29,315 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:30,424 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:31,323 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:32,683 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:45:33,337 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:33,579 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:33,580 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:33,581 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:33,581 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:34,350 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:35,352 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:35,482 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:36,366 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:37,367 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:38,846 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:38,847 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:38,847 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:38,848 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:39,379 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:39,379 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:40,394 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:40,816 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:41,400 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:42,124 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:45:42,297 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:45:42,297 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:45:42,691 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:45:43,408 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:43,895 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:43,895 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:43,895 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:43,896 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:44,421 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:45,435 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:46,357 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:46,448 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:47,463 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:49,434 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:49,434 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:49,435 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:49,435 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:49,473 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:49,473 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:50,485 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:51,500 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:51,916 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:52,514 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:45:52,684 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:45:53,526 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:54,396 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:54,397 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:54,397 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:54,398 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:54,540 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:54,540 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:45:56,553 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:57,306 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:45:57,307 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:45:57,530 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:45:58,553 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:45:59,921 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:59,922 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:59,922 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:59,923 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:45:59,924 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:59,924 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:59,925 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:59,925 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:59,925 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:59,925 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:59,925 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:59,926 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:59,926 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:59,926 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:59,926 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:45:59,926 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:45:59,926 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:45:59,927 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:00,567 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:00,567 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:02,394 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:46:02,394 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:46:02,394 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:46:02,394 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:46:02,394 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:46:02,575 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:02,594 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:02,685 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:46:04,584 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:06,601 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:07,786 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:07,804 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:07,804 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:07,804 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:07,806 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:08,619 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:08,619 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:10,630 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:12,134 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:46:12,306 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:46:12,306 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:46:12,635 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:12,698 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:46:12,791 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:13,153 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:13,154 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:13,154 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:13,155 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:13,636 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:14,646 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:16,674 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:17,795 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:17,986 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:17,987 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:17,987 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:17,987 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:18,694 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:18,694 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:20,703 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:22,711 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:46:22,711 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:22,807 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:23,334 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:23,334 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:23,335 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:23,335 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:23,716 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:46:23,716 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:24,729 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:26,743 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:27,305 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:46:27,305 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:46:28,285 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:28,306 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:28,307 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:28,307 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:28,308 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:28,760 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:28,760 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:30,771 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:32,720 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:46:32,797 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:33,632 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:33,650 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:33,651 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:33,651 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:33,652 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:33,653 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:33,653 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:33,653 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:33,653 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:33,654 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:33,654 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:33,654 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:33,654 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:33,654 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:33,654 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:33,655 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:33,655 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:33,655 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:33,655 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:33,812 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:34,815 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:36,171 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:46:36,172 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:46:36,172 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:46:36,172 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:46:36,172 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:46:36,833 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:38,836 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:39,058 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:40,854 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:41,504 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:41,505 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:41,505 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:41,506 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:41,867 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:42,148 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:46:42,319 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:46:42,319 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:46:42,728 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:46:42,868 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:44,566 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:44,882 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:46,892 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:46,963 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:46,964 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:46,964 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:46,964 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:47,895 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:47,895 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:48,909 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:50,022 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:50,935 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:51,918 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:51,919 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:51,919 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:51,919 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:51,948 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:52,729 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:46:52,962 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:53,975 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:54,988 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:55,573 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:46:56,003 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:46:57,013 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:46:57,341 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:46:57,341 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:46:57,347 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:46:57,545 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:46:57,545 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:46:57,546 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:46:58,026 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:46:59,041 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:00,053 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:00,954 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:01,064 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:02,296 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:02,297 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:02,297 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:02,297 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:02,736 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:47:03,094 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:03,095 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:04,107 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:05,121 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:06,504 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:07,135 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:07,706 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:07,706 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:07,706 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:07,707 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:07,708 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:07,708 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:07,709 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:07,709 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:07,709 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:07,709 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:07,709 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:07,710 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:07,710 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:07,710 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:07,711 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:07,711 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:07,711 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:07,711 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:08,146 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:09,160 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:10,175 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:10,180 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:47:10,181 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:47:10,181 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:47:10,181 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:47:10,181 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:47:11,187 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:11,935 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:12,151 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:47:12,358 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:47:12,358 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:47:12,748 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:47:13,213 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:15,226 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:15,527 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:15,528 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:15,528 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:15,528 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:16,242 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:17,243 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:17,253 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:18,266 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:19,269 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:20,888 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:20,888 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:20,889 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:20,889 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:21,294 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:21,294 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:22,297 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:22,709 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:22,750 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:47:23,310 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:25,326 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:25,636 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:25,636 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:25,636 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:25,637 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:26,337 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:27,352 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:27,368 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:47:27,368 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:47:27,876 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:28,353 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:28,353 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:47:29,358 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:30,793 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:30,794 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:30,794 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:30,794 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:31,370 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:31,370 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:32,375 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:32,750 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:47:33,193 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:33,381 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:35,393 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:35,571 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:35,571 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:35,571 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:35,572 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:36,401 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:37,406 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:38,383 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:38,421 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:39,435 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:40,769 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:40,771 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:40,771 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:40,772 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:40,773 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:40,773 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:40,774 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:40,774 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:40,774 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:40,774 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:40,774 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:40,774 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:40,774 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:40,774 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:40,775 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:40,775 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:40,775 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:40,775 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:41,452 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:41,452 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:42,156 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:47:42,374 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:47:42,374 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:47:42,452 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:42,776 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:47:43,467 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:43,526 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:43,622 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:47:43,622 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:47:43,622 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:47:43,622 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:47:43,622 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:47:45,490 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:47,513 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:48,984 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:49,003 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:49,004 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:49,004 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:49,005 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:49,541 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:49,541 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:50,556 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:51,570 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:52,785 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:47:53,585 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:54,217 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:54,236 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:54,236 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:54,237 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:54,237 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:54,598 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:47:55,608 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:56,620 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:57,369 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:47:57,369 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:47:57,634 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:58,635 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:47:59,083 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:47:59,084 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:47:59,085 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:47:59,085 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:47:59,628 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:47:59,649 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:00,661 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:00,662 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:48:02,689 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:02,797 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:48:04,578 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:04,579 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:04,579 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:04,580 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:04,718 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:04,718 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:05,194 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:06,745 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:08,750 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:09,494 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:09,495 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:09,495 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:09,496 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:09,751 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:10,641 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:10,752 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:12,165 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:48:12,377 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:48:12,377 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:48:12,756 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:12,803 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:48:14,774 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:14,790 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:14,791 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:14,791 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:14,792 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:14,792 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:14,793 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:14,793 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:14,793 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:14,793 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:14,793 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:14,794 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:14,794 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:14,794 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:14,794 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:14,794 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:14,795 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:14,795 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:14,795 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:15,645 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:15,787 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:16,799 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:17,153 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:48:17,153 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:48:17,153 DEBUG   SenderThread:25188 [sender.py:send():391] send: metric
+2025-03-27 07:48:17,153 WARNING SenderThread:25188 [sender.py:send_metric():1417] Seen metric with glob (shouldn't happen)
+2025-03-27 07:48:17,154 DEBUG   SenderThread:25188 [sender.py:send():391] send: config
+2025-03-27 07:48:18,827 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:20,722 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:20,852 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:22,424 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:22,425 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:22,425 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:22,426 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:22,806 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:48:22,868 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:22,868 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:24,896 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:25,937 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:26,911 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:27,377 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:48:27,377 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:48:27,643 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:27,644 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:27,644 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:27,645 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:27,921 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:28,922 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:29,933 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:30,941 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:31,215 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:31,941 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:48:32,480 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:32,481 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:32,481 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:32,481 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:32,816 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:48:32,957 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:32,958 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:33,973 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:34,984 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:36,585 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:37,009 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:37,764 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:37,765 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:37,765 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:37,765 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:38,022 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:39,037 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:40,038 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:41,040 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:41,877 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:42,169 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:48:42,381 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: stop_status
+2025-03-27 07:48:42,381 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: stop_status
+2025-03-27 07:48:42,608 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:42,608 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:42,609 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:42,609 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:42,816 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:48:43,051 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:43,052 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:44,064 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:45,072 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:47,087 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:47,364 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:47,947 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:47,947 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:47,947 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:47,948 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: partial_history
+2025-03-27 07:48:47,949 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:47,949 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:47,949 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:47,950 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:47,950 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:47,950 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:47,950 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:47,950 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:47,950 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:47,951 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:47,951 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:47,951 DEBUG   SenderThread:25188 [sender.py:send():391] send: history
+2025-03-27 07:48:47,951 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: summary_record
+2025-03-27 07:48:47,952 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:48,092 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:49,100 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:49,127 DEBUG   SenderThread:25188 [sender.py:send():391] send: exit
+2025-03-27 07:48:49,127 INFO    SenderThread:25188 [sender.py:send_exit():598] handling exit code: 0
+2025-03-27 07:48:49,127 INFO    SenderThread:25188 [sender.py:send_exit():600] handling runtime: 337
+2025-03-27 07:48:49,127 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:49,127 INFO    SenderThread:25188 [sender.py:send_exit():606] send defer
+2025-03-27 07:48:49,127 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,127 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 0
+2025-03-27 07:48:49,127 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,127 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 0
+2025-03-27 07:48:49,127 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 1
+2025-03-27 07:48:49,128 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,128 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 1
+2025-03-27 07:48:49,128 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,128 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 1
+2025-03-27 07:48:49,128 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 2
+2025-03-27 07:48:49,128 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,128 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 2
+2025-03-27 07:48:49,128 INFO    HandlerThread:25188 [system_monitor.py:finish():203] Stopping system monitor
+2025-03-27 07:48:49,134 DEBUG   SystemMonitor:25188 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2025-03-27 07:48:49,134 INFO    HandlerThread:25188 [interfaces.py:finish():200] Joined cpu monitor
+2025-03-27 07:48:49,134 DEBUG   SystemMonitor:25188 [system_monitor.py:_start():183] Publishing last batch of metrics
+2025-03-27 07:48:49,134 INFO    HandlerThread:25188 [interfaces.py:finish():200] Joined disk monitor
+2025-03-27 07:48:49,173 INFO    HandlerThread:25188 [interfaces.py:finish():200] Joined gpu monitor
+2025-03-27 07:48:49,173 INFO    HandlerThread:25188 [interfaces.py:finish():200] Joined memory monitor
+2025-03-27 07:48:49,173 INFO    HandlerThread:25188 [interfaces.py:finish():200] Joined network monitor
+2025-03-27 07:48:49,173 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,173 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 2
+2025-03-27 07:48:49,173 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 3
+2025-03-27 07:48:49,174 DEBUG   SenderThread:25188 [sender.py:send():391] send: stats
+2025-03-27 07:48:49,174 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,174 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 3
+2025-03-27 07:48:49,174 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,174 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 3
+2025-03-27 07:48:49,174 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 4
+2025-03-27 07:48:49,174 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,174 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 4
+2025-03-27 07:48:49,174 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,174 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 4
+2025-03-27 07:48:49,174 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 5
+2025-03-27 07:48:49,174 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,174 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 5
+2025-03-27 07:48:49,174 DEBUG   SenderThread:25188 [sender.py:send():391] send: summary
+2025-03-27 07:48:49,175 INFO    SenderThread:25188 [sender.py:_save_file():1466] saving file wandb-summary.json with policy end
+2025-03-27 07:48:49,175 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,175 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 5
+2025-03-27 07:48:49,175 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 6
+2025-03-27 07:48:49,175 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,175 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 6
+2025-03-27 07:48:49,175 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,175 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 6
+2025-03-27 07:48:49,175 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 7
+2025-03-27 07:48:49,175 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: status_report
+2025-03-27 07:48:49,175 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:49,175 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 7
+2025-03-27 07:48:49,175 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:49,176 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 7
+2025-03-27 07:48:50,109 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:50,110 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:50,138 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: poll_exit
+2025-03-27 07:48:51,124 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:51,932 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 8
+2025-03-27 07:48:51,932 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: poll_exit
+2025-03-27 07:48:51,932 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:51,933 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 8
+2025-03-27 07:48:51,933 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:51,933 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 8
+2025-03-27 07:48:51,933 INFO    SenderThread:25188 [job_builder.py:build():443] Attempting to build job artifact
+2025-03-27 07:48:51,936 INFO    SenderThread:25188 [job_builder.py:_get_source_type():572] is repo sourced job
+2025-03-27 07:48:51,962 INFO    SenderThread:25188 [job_builder.py:build():548] adding wandb-job metadata file
+2025-03-27 07:48:51,975 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 9
+2025-03-27 07:48:51,975 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:51,975 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 9
+2025-03-27 07:48:51,975 DEBUG   SenderThread:25188 [sender.py:send():391] send: artifact
+2025-03-27 07:48:52,134 INFO    Thread-16 :25188 [dir_watcher.py:_on_file_modified():288] file/dir modified: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:52,166 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: poll_exit
+2025-03-27 07:48:52,522 INFO    SenderThread:25188 [sender.py:send_artifact():1549] sent artifact job-https___github.com_zizhao-hu_FusionSpaceModalityGap_src_train_blip2.py - {'id': 'QXJ0aWZhY3Q6MTYwMTY3NDU2NQ==', 'state': 'COMMITTED', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjU5Mjc0MzI2Mw==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6MTYwMTY3NDU2NQ==', 'versionIndex': 0}}}
+2025-03-27 07:48:52,522 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:52,522 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 9
+2025-03-27 07:48:52,522 INFO    SenderThread:25188 [dir_watcher.py:finish():358] shutting down directory watcher
+2025-03-27 07:48:53,138 INFO    SenderThread:25188 [dir_watcher.py:finish():388] scan: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files
+2025-03-27 07:48:53,139 INFO    SenderThread:25188 [dir_watcher.py:finish():402] scan save: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\conda-environment.yaml conda-environment.yaml
+2025-03-27 07:48:53,139 INFO    SenderThread:25188 [dir_watcher.py:finish():402] scan save: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml config.yaml
+2025-03-27 07:48:53,139 INFO    SenderThread:25188 [dir_watcher.py:finish():402] scan save: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log output.log
+2025-03-27 07:48:53,141 INFO    SenderThread:25188 [dir_watcher.py:finish():402] scan save: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\requirements.txt requirements.txt
+2025-03-27 07:48:53,142 INFO    SenderThread:25188 [dir_watcher.py:finish():402] scan save: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-metadata.json wandb-metadata.json
+2025-03-27 07:48:53,144 INFO    SenderThread:25188 [dir_watcher.py:finish():402] scan save: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json wandb-summary.json
+2025-03-27 07:48:53,147 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 10
+2025-03-27 07:48:53,147 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: poll_exit
+2025-03-27 07:48:53,147 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:53,149 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 10
+2025-03-27 07:48:53,149 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:53,149 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 10
+2025-03-27 07:48:53,149 INFO    SenderThread:25188 [file_pusher.py:finish():169] shutting down file pusher
+2025-03-27 07:48:53,181 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: poll_exit
+2025-03-27 07:48:53,182 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: poll_exit
+2025-03-27 07:48:53,554 INFO    wandb-upload_0:25188 [upload_job.py:push():130] Uploaded file C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\config.yaml
+2025-03-27 07:48:53,569 INFO    wandb-upload_1:25188 [upload_job.py:push():130] Uploaded file C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\output.log
+2025-03-27 07:48:53,575 INFO    wandb-upload_3:25188 [upload_job.py:push():130] Uploaded file C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\wandb-summary.json
+2025-03-27 07:48:53,605 INFO    wandb-upload_2:25188 [upload_job.py:push():130] Uploaded file C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\files\requirements.txt
+2025-03-27 07:48:53,820 INFO    Thread-15 (_thread_body):25188 [sender.py:transition_state():626] send defer: 11
+2025-03-27 07:48:53,820 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:53,821 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 11
+2025-03-27 07:48:53,822 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:53,822 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 11
+2025-03-27 07:48:53,822 INFO    SenderThread:25188 [file_pusher.py:join():175] waiting for file pusher
+2025-03-27 07:48:53,823 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 12
+2025-03-27 07:48:53,823 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:53,823 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 12
+2025-03-27 07:48:53,823 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:53,823 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 12
+2025-03-27 07:48:53,823 INFO    SenderThread:25188 [file_stream.py:finish():601] file stream finish called
+2025-03-27 07:48:54,139 INFO    SenderThread:25188 [file_stream.py:finish():605] file stream finish is done
+2025-03-27 07:48:54,139 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 13
+2025-03-27 07:48:54,139 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:54,139 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 13
+2025-03-27 07:48:54,139 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:54,139 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 13
+2025-03-27 07:48:54,139 INFO    SenderThread:25188 [sender.py:transition_state():626] send defer: 14
+2025-03-27 07:48:54,140 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: defer
+2025-03-27 07:48:54,140 DEBUG   SenderThread:25188 [sender.py:send():391] send: final
+2025-03-27 07:48:54,140 INFO    HandlerThread:25188 [handler.py:handle_request_defer():184] handle defer: 14
+2025-03-27 07:48:54,140 DEBUG   SenderThread:25188 [sender.py:send():391] send: footer
+2025-03-27 07:48:54,140 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: defer
+2025-03-27 07:48:54,140 INFO    SenderThread:25188 [sender.py:send_request_defer():622] handle sender defer: 14
+2025-03-27 07:48:54,140 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: poll_exit
+2025-03-27 07:48:54,140 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: server_info
+2025-03-27 07:48:54,141 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: poll_exit
+2025-03-27 07:48:54,141 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: poll_exit
+2025-03-27 07:48:54,141 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: get_summary
+2025-03-27 07:48:54,141 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: server_info
+2025-03-27 07:48:54,141 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: sampled_history
+2025-03-27 07:48:54,142 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: internal_messages
+2025-03-27 07:48:54,230 DEBUG   SenderThread:25188 [sender.py:send_request():418] send_request: poll_exit
+2025-03-27 07:48:54,231 INFO    MainThread:25188 [wandb_run.py:_footer_history_summary_info():4078] rendering history
+2025-03-27 07:48:54,231 INFO    MainThread:25188 [wandb_run.py:_footer_history_summary_info():4110] rendering summary
+2025-03-27 07:48:54,232 INFO    MainThread:25188 [wandb_run.py:_footer_sync_info():4037] logging synced files
+2025-03-27 07:48:54,233 DEBUG   HandlerThread:25188 [handler.py:handle_request():158] handle_request: shutdown
+2025-03-27 07:48:54,233 INFO    HandlerThread:25188 [handler.py:finish():884] shutting down handler
+2025-03-27 07:48:55,147 INFO    WriterThread:25188 [datastore.py:close():296] close: C:\Users\zizha\development\FusionSpaceModalityGap\wandb\run-20250327_074311-l8t3ibt5\run-l8t3ibt5.wandb
+2025-03-27 07:48:55,240 INFO    SenderThread:25188 [sender.py:finish():1631] shutting down sender
+2025-03-27 07:48:55,240 INFO    SenderThread:25188 [file_pusher.py:finish():169] shutting down file pusher
+2025-03-27 07:48:55,240 INFO    SenderThread:25188 [file_pusher.py:join():175] waiting for file pusher

@@ -1,0 +1,14 @@
+{
+  "avg_length": 10.377,
+  "vocab_size": 597.8,
+  "perplexity": 19.808,
+  "bleu-4": 0.85,
+  "meteor": 0.85,
+  "rouge-l": 0.85,
+  "cider": 8.5,
+  "spice": 0.85,
+  "clip_score": 0.3041015625,
+  "clip_variance": 0.001146697998046875,
+  "rmg": 0.4418930009365577,
+  "l2m": 0.8251953125
+}

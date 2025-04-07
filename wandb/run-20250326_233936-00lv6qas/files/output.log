@@ -1,0 +1,528 @@
+  0%|                                                                                               | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+
+ 15%|█████████████                                                                          | 9/60 [00:05<00:27,  1.89it/s]
+
+
+ 28%|████████████████████████▎                                                             | 17/60 [00:09<00:22,  1.89it/s]
+
+
+
+ 48%|█████████████████████████████████████████▌                                            | 29/60 [00:15<00:15,  2.03it/s]
+
+
+
+ 67%|█████████████████████████████████████████████████████████▎                            | 40/60 [00:21<00:11,  1.80it/s]
+
+
+ 78%|███████████████████████████████████████████████████████████████████▎                  | 47/60 [00:25<00:07,  1.78it/s]
+
+
+
+ 98%|████████████████████████████████████████████████████████████████████████████████████▌ | 59/60 [00:31<00:00,  1.92it/s]
+{'loss': 2.8198, 'grad_norm': 26.04001235961914, 'learning_rate': 9.259259259259259e-07, 'epoch': 8.64}
+100%|██████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:31<00:00,  1.88it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: a detailed photo of a lunch box with a variety of food including broccote, broccote, broccote, broccote, broccote, broccote, broccote, broccote, and broccote, broccote, and broccote
+INFO:__main__:Generated caption: a detailed image showing a lunch box with a variety of food in it, including broccote, broccte and broccite on the side of the plate, and the other items in the box, as well, it is a small plastic container,
+INFO:__main__:Model saved to models/vlm/gen_1_recursive
+INFO:__main__:Training generation 2
+INFO:__main__:Generating captions for generation 1
+INFO:__main__:Loading BLIP model from models/vlm/gen_1_recursive
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Generation 1 parameters: temperature=0.95, top_p=0.92, top_k=40, repetition_penalty=1.30, num_beams=4
+Generating captions:   0%|                                                                         | 0/100 [00:00<?, ?it/s]Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Generating captions: 100%|███████████████████████████████████████████████████████████████| 100/100 [00:47<00:00,  2.11it/s]
+INFO:__main__:Generated 100 captions
+INFO:__main__:Using checkpoint from models/vlm/gen_1_recursive
+INFO:__main__:Found 100 images for training
+INFO:__main__:Loaded 414113 captions from data/coco/annotations/captions_train2014.json
+INFO:__main__:Found 100 images in data/vlm/train/images/real
+INFO:__main__:Created dataset with 100 image-caption pairs for gen_2 using recursive mode
+INFO:__main__:Using all 100 images for training in gen_2 with recursive mode
+INFO:__main__:Loading model with aggressive memory optimizations
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Starting training for generation 2 with 10 epochs in recursive mode
+  0%|                                                                                               | 0/60 [00:00<?, ?it/s]C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:295: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with torch.enable_grad(), device_autocast_ctx, torch.cpu.amp.autocast(**ctx.cpu_autocast_kwargs):  # type: ignore[attr-defined]
+
+
+ 15%|█████████████                                                                          | 9/60 [00:04<00:26,  1.92it/s]
+
+
+
+ 33%|████████████████████████████▋                                                         | 20/60 [00:11<00:23,  1.73it/s]
+
+
+ 47%|████████████████████████████████████████▏                                             | 28/60 [00:14<00:13,  2.44it/s]
+
+
+
+ 67%|█████████████████████████████████████████████████████████▎                            | 40/60 [00:20<00:10,  1.93it/s]
+
+
+ 82%|██████████████████████████████████████████████████████████████████████▏               | 49/60 [00:24<00:04,  2.46it/s]
+
+
+ 95%|█████████████████████████████████████████████████████████████████████████████████▋    | 57/60 [00:28<00:01,  2.22it/s]
+{'loss': 0.8973, 'grad_norm': 22.705554962158203, 'learning_rate': 0.0, 'epoch': 8.64}
+100%|██████████████████████████████████████████████████████████████████████████████████████| 60/60 [00:30<00:00,  1.97it/s]
+INFO:__main__:Training completed successfully
+INFO:__main__:Saving model
+INFO:__main__:Generating caption for the first training image to evaluate the model
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+C:\Users\zizha\anaconda3\envs\311\Lib\site-packages\torch\utils\checkpoint.py:92: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+INFO:__main__:Original caption: a detailed image showing a lunch box with a variety of food in it and a small container with broccote, broccte and other food items in the container is on the other part of the
+INFO:__main__:Generated caption: a high resolution photo that shows a lunch box with a variety of food in it and a small container with broccote, broccte and other food items in the container is on the other part of the
+INFO:__main__:Model saved to models/vlm/gen_2_recursive
+INFO:__main__:Training generation 3
+INFO:__main__:Generating captions for generation 2
+INFO:__main__:Loading BLIP model from models/vlm/gen_2_recursive
+INFO:accelerate.utils.modeling:We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+INFO:__main__:Generation 2 parameters: temperature=1.10, top_p=0.94, top_k=30, repetition_penalty=1.40, num_beams=3
+Generating captions:   0%|                                                                         | 0/100 [00:00<?, ?it/s]Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+Generating captions:   6%|███▉                                                             | 6/100 [00:02<00:37,  2.52it/s]
+Generating captions:  11%|███████                                                         | 11/100 [00:04<00:33,  2.65it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 1.0044, 'grad_norm': 18.686092376708984, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.4193, 'grad_norm': 10.880142211914062, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.1751, 'grad_norm': 6.05136251449585, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.1001, 'grad_norm': 3.4422824382781982, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0572, 'grad_norm': 2.414971351623535, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+Generating captions:  17%|██████████▉                                                     | 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0458, 'grad_norm': 2.0441317558288574, 'learning_rate': 0.0, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.3763, 'grad_norm': 1.8409028053283691, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0467, 'grad_norm': 0.7132318615913391, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0239, 'grad_norm': 0.630031168460846, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0117, 'grad_norm': 0.205427885055542, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0051, 'grad_norm': 0.12717418372631073, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0046, 'grad_norm': 0.14869755506515503, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 30.3195, 'train_samples_per_second': 32.982, 'train_steps_per_second': 1.979, 'train_loss': 0.07806999279807011, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.757, 'grad_norm': 2.195519208908081, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.2167, 'grad_norm': 1.4241122007369995, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0748, 'grad_norm': 1.3127021789550781, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0355, 'grad_norm': 0.6139938235282898, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0234, 'grad_norm': 0.25819098949432373, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0122, 'grad_norm': 0.10547099262475967, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 29.479, 'train_samples_per_second': 33.922, 'train_steps_per_second': 2.035, 'train_loss': 0.1866085487107436, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.6486, 'grad_norm': 2.23416805267334, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.2042, 'grad_norm': 1.3679062128067017, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0647, 'grad_norm': 0.6767865419387817, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0274, 'grad_norm': 0.3484286069869995, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0119, 'grad_norm': 0.13356459140777588, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0084, 'grad_norm': 0.09581451117992401, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 31.0886, 'train_samples_per_second': 32.166, 'train_steps_per_second': 1.93, 'train_loss': 0.1608730796724558, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.4952, 'grad_norm': 2.5401804447174072, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.1702, 'grad_norm': 1.0619913339614868, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0479, 'grad_norm': 0.5205383896827698, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0232, 'grad_norm': 0.3919975161552429, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.011, 'grad_norm': 0.14390428364276886, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0089, 'grad_norm': 0.12546899914741516, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 31.9191, 'train_samples_per_second': 31.329, 'train_steps_per_second': 1.88, 'train_loss': 0.12606287399927776, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.2265, 'grad_norm': 1.0520117282867432, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0803, 'grad_norm': 1.433627963066101, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0198, 'grad_norm': 0.24832652509212494, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0103, 'grad_norm': 0.10817604511976242, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0046, 'grad_norm': 0.06540652364492416, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0039, 'grad_norm': 0.07666579633951187, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 31.2184, 'train_samples_per_second': 32.032, 'train_steps_per_second': 1.922, 'train_loss': 0.057587147193650406, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.1674, 'grad_norm': 1.7111666202545166, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0497, 'grad_norm': 0.8534237146377563, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0148, 'grad_norm': 0.1908029466867447, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0065, 'grad_norm': 0.0888422280550003, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.003, 'grad_norm': 0.0474204458296299, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0027, 'grad_norm': 0.04353078454732895, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 30.2169, 'train_samples_per_second': 33.094, 'train_steps_per_second': 1.986, 'train_loss': 0.04068606651077668, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.1385, 'grad_norm': 1.150657057762146, 'learning_rate': 4.62962962962963e-05, 'epoch': 1.48}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0334, 'grad_norm': 0.85782790184021, 'learning_rate': 3.7037037037037037e-05, 'epoch': 2.96}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0074, 'grad_norm': 0.10801295191049576, 'learning_rate': 2.777777777777778e-05, 'epoch': 4.32}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0039, 'grad_norm': 0.18599966168403625, 'learning_rate': 1.8518518518518518e-05, 'epoch': 5.8}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0021, 'grad_norm': 0.03333975747227669, 'learning_rate': 9.259259259259259e-06, 'epoch': 7.16}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
+{'loss': 0.0019, 'grad_norm': 0.028975917026400566, 'learning_rate': 0.0, 'epoch': 8.64}
+{'train_runtime': 30.0399, 'train_samples_per_second': 33.289, 'train_steps_per_second': 1.997, 'train_loss': 0.03119640511771043, 'epoch': 8.64}
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...| 17/100 [00:06<00:30,  2.70it/s]
